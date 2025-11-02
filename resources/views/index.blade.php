@@ -1,11 +1,15 @@
 @extends("layouts.main_layout")
 
 @section("content")
-    <div class="position-absolute top-50 start-50 translate-middle">
-        <h1 class="fs-bold">Ola Mundo!</h1>
+    @include("layouts.navbar")
 
-        <p class="my-5">...</p>
-
-        <footer><img style="width: 35px; height: 35px;" class="border border-black" src="{{ asset("assets/images/perfil.png") }}"> Todos os Direitos Reservados: Luciano Eduardo Stefanello da Silva</footer>
+    <div class="container text-center w-50">
+        <div class="d-grid gap-3">
+            <button class="btn btn-lg btn-dark border border-3 border-danger">Batalhar</button>
+            <button class="btn btn-lg btn-dark border border-3 border-danger">Regras</button>
+            <button class="btn btn-lg btn-dark border border-3 border-danger">Sobre</button>
+        </div>
     </div>
+    
+    @include("layouts.direitos")
 @endsection
