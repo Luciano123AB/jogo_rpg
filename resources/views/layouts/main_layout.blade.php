@@ -11,6 +11,10 @@
     @include("layouts.partials.styles")
 </head>
 <body style="background-image: url({{ asset("assets/images/$imagem") }}); background-size: cover; background-repeat: no-repeat; background-position: center;" class="fst-italic">
+    @include("layouts.navbar")
+    
     @yield("content")
+
+    @include("layouts.direitos")
 </body>
 </html>
