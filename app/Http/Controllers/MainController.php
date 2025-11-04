@@ -20,7 +20,9 @@ class MainController extends Controller
             ],
         ]);
         
-        return view("index")->with("imagem", "index.png");
+        return view("index")
+            ->with("imagem", "estrada.png")
+            ->with("pagina", "Home");
     }
 
     public function sobreClasses(): View {
@@ -31,6 +33,8 @@ class MainController extends Controller
             ]
         ]);
 
-        return view("sobre_classes")->with("imagem", "index");
+        return view("sobre_classes")
+            ->with("imagem", "estatuas_classes.png")
+            ->with("pagina", "Sobre");
     }
 }

@@ -3,7 +3,14 @@
         <a href="{{ route("home") }}" id="home" class="navbar-brand">
             <img src="{{ asset("assets/images/icone.png") }}" id="icone">
             <span class="titulo cor_fonte fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
+            <span class="cor_fonte align-middle fs-3">- {{ $pagina }}</span>
         </a>
+
+        @if($pagina != "Home")
+            <a href="{{ route("home") }}" class="botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger">
+                <span class="cor_fonte"><i class="bi bi-arrow-90deg-left"></i> Voltar</span>
+            </a>
+        @endif
 
         <div class="d-flex gap-3">
             <button class="botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger">

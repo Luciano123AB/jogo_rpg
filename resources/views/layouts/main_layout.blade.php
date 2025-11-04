@@ -10,7 +10,7 @@
 
     @include("layouts.partials.styles")
 </head>
-<body style="background-image: url({{ asset("assets/images/$imagem") }});" class="fst-italic">
+<body style="background-image: url({{ asset("assets/images/fundos/$imagem") }});" class="fst-italic">
     @include("layouts.partials.alertas")
     
     @include("layouts.navbar")
