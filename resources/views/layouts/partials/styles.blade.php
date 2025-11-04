@@ -1,6 +1,7 @@
 <style>
     body {
         cursor: url("/assets/images/cursores/cursor.png"), auto;
+        height: 100vh;
         background: no-repeat center center fixed;
         background-size: cover;
     }
