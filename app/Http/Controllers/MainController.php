@@ -22,4 +22,15 @@ class MainController extends Controller
         
         return view("index")->with("imagem", "index.png");
     }
+
+    public function sobreClasses(): View {
+        session([
+            "alerta_sobre" => [
+                "titulo" => "Descrição das Classes",
+                "texto" => "Aqui você vai entender como cada classe funciona."
+            ]
+        ]);
+
+        return view("sobre_classes")->with("imagem", "index");
+    }
 }
