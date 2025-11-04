@@ -12,6 +12,13 @@ class MainController extends Controller
         if (!is_dir(base_path("node_modules"))) {
             Boot::dependencias();
         }
+
+        session([
+            "alerta_home" => [
+                "titulo" => "Seja Muito Bem Vindo!",
+                "texto" => "Faça seu cadastro caso ainda não tenha feito e divirta-se."
+            ],
+        ]);
         
         return view("index")->with("imagem", "index.png");
     }

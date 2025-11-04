@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a href="{{ route("home") }}" id="home" class="navbar-brand">
             <img src="{{ asset("assets/images/icone.png") }}" id="icone">
-            <span id="titulo" class="cor_fonte fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
+            <span class="titulo cor_fonte fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
         </a>
 
         <div class="d-flex gap-3">
