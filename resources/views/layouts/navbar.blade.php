@@ -7,11 +7,11 @@
 
         <div class="d-flex gap-3">
             <button class="botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger">
-                <span class="cor_fonte">Cadastrar</span>
+                <span class="cor_fonte"><i class="bi bi-person-add"></i> Cadastrar</span>
             </button>
                 
             <button class="botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger">
-                <span class="cor_fonte">Logar</span>
+                <span class="cor_fonte"><i class="bi bi-box-arrow-in-right"></i> Logar</span>
             </button>
         </div>
     </div>

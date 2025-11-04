@@ -44,6 +44,10 @@
         transform: scale(1.1);
     }
 
+    #icone_batalhar {
+        width: 18px;
+    }
+
     #card {
         background-color: rgba(0, 0, 0, 0.3);
     }
