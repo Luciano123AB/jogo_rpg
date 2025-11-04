@@ -3,6 +3,7 @@
         <a href="{{ route("home") }}" id="home" class="navbar-brand">
             <img src="{{ asset("assets/images/icone.png") }}" id="icone">
             <span class="titulo cor_fonte fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
+            <span class="cor_fonte align-middle fs-3">- {{ $pagina }}</span>
         </a>
 
         <div class="d-flex gap-3">

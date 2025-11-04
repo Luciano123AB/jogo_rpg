@@ -20,6 +20,6 @@ class MainController extends Controller
             ],
         ]);
         
-        return view("index")->with("imagem", "index.png");
+        return view("index")->with("imagem", "index.png")->with("pagina", "Home");
     }
 }
