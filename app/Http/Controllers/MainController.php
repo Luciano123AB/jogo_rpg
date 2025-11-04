@@ -35,6 +35,6 @@ class MainController extends Controller
 
         return view("sobre_classes")
             ->with("imagem", "estatuas_classes.png")
-            ->with("pagina", "Sobre");
+            ->with("pagina", "Descrições");
     }
 }

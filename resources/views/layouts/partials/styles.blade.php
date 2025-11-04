@@ -49,11 +49,21 @@
         width: 18px;
     }
 
-    #card {
+    .fundo_card {
         background-color: rgba(0, 0, 0, 0.3);
     }
 
+    .cards {
+        box-shadow: 5px 5px 5px 0 rgba(36, 40, 43);
+        transition: transform 0.3s ease;
+    }
+
+    .cards:hover {
+        transform: scale(0.95);
+    }
+
     #direitos {
+        width: 40px;
         text-decoration: underline;
     }
 </style>
