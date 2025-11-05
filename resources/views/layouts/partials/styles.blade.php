@@ -1,6 +1,13 @@
 <style>
-    body {
+    * {
         cursor: url("/assets/images/cursores/cursor.png"), auto;
+    }
+
+    .cursor:hover {
+        cursor: url("/assets/images/cursores/cursor_batalha.png"), auto;
+    }
+
+    body {
         height: 100vh;
         background: no-repeat center center fixed;
         background-size: cover;
@@ -11,17 +18,12 @@
         border-style: double;
     }
 
-    #home:hover {
-        cursor: url("/assets/images/cursores/cursor_batalha.png"), auto;
-    }
-
     #icone {
         width: 70px;
         transition: transform 0.3s ease;
     }
 
     #icone:hover {
-        cursor: url("/assets/images/cursores/cursor_batalha.png"), auto;
         transform: scale(1.1);
     }
 
@@ -41,7 +43,6 @@
     }
 
     .botoes:hover {
-        cursor: url("/assets/images/cursores/cursor_batalha.png"), auto;
         transform: scale(1.1);
     }
 
@@ -60,7 +61,7 @@
 
     .cards:hover {
         transform: scale(0.95);
-    }
+    }    
 
     #direitos {
         width: 40px;
