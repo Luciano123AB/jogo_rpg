@@ -12,7 +12,7 @@
             </a>
         @endif
 
-        <div class="d-flex gap-3">
+        <div class="d-flex gap-3 my-1">
             <button class="cursor botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger">
                 <span class="cursor cor_fonte"><i class="bi bi-person-add"></i> Cadastrar</span>
             </button>
