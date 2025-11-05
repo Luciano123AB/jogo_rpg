@@ -27,6 +27,10 @@
         transform: scale(1.1);
     }
 
+    #icone_creditos {
+        width: 30px;
+    }
+
     .cor_fonte {
         color: #e5a350;
     }
@@ -61,7 +65,11 @@
 
     .cards:hover {
         transform: scale(0.95);
-    }    
+    }
+
+    #card_creditos {
+        box-shadow: 5px 5px 5px 0 rgba(36, 40, 43);
+    }
 
     #direitos {
         width: 40px;
