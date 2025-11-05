@@ -17,11 +17,7 @@
     
     @yield("content")
 
-    @if($pagina == "Home")
-        @include("layouts.footer.direitos_home")
-    @else
-        @include("layouts.footer.direitos")
-    @endif
+    @include("layouts.direitos")
 
     @include("layouts.partials.scripts");
 </body>
