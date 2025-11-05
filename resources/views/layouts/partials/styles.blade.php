@@ -41,8 +41,11 @@
         -webkit-text-stroke-color: #8d7752;
     }
 
-    .botoes {
+    .sombra {
         box-shadow: 5px 5px 5px 0 rgba(36, 40, 43);
+    }
+
+    .botoes {
         transition: transform 0.3s ease;
     }
 
@@ -59,16 +62,11 @@
     }
 
     .cards {
-        box-shadow: 5px 5px 5px 0 rgba(36, 40, 43);
         transition: transform 0.3s ease;
     }
 
     .cards:hover {
         transform: scale(0.95);
-    }
-
-    #card_creditos {
-        box-shadow: 5px 5px 5px 0 rgba(36, 40, 43);
     }
 
     #direitos {
