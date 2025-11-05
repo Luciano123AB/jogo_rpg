@@ -7,4 +7,6 @@ Route::prefix("/")->group(function () {
     Route::get("", [MainController::class, "home"])->name("home");
 
     Route::get("sobre_classes", [MainController::class, "sobreClasses"])->name("sobre");
+
+    Route::get("creditos", [MainController::class, "creditos"])->name("creditos");
 });

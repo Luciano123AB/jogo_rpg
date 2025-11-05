@@ -37,4 +37,17 @@ class MainController extends Controller
             ->with("imagem", "estatuas_classes.png")
             ->with("pagina", "Descrições");
     }
+
+    public function creditos(): View {
+        session([
+            "alerta_creditos" => [
+                "titulo" => "Créditos do Jogo",
+                "texto" => "Aqui você verá a lista de todos os desenvolvedores envolvidos."
+            ]
+        ]);
+
+        return view("creditos")            
+            ->with("imagem", "estrada.png")
+            ->with("pagina", "Créditos");
+    }
 }
