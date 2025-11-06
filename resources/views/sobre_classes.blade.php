@@ -3,7 +3,7 @@
 @section("content")
     <div class="container">
         <div class="fundo_card card p-3">
-            <div class="card-group gap-3 w-100">
+            <div class="animate__animated animate__fadeInLeft card-group gap-3 w-100">
                 <div class="cards sombra card bg-dark rounded">
                     <div class="card-header text-center border-bottom">
                         <h4 class="titulo cor_fonte card-title">Guerreiro</h4>
