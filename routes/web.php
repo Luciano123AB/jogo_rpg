@@ -4,7 +4,9 @@ use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
-    Route::get("", [MainController::class, "home"])->name("home");
-
-    Route::get("sobre_classes", [MainController::class, "sobreClasses"])->name("sobre");
+    Route::controller(MainController::class)->group(function() {
+        Route::get("", "home")->name("home");
+        
+        Route::get("sobre_classes", "sobreClasses")->name("sobre");
+    });
 });
