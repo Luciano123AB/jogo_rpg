@@ -3,7 +3,7 @@
         <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
             <img src="{{ asset("assets/images/icone.png") }}" id="icone" class="cursor">
             <span class="cursor titulo cor_fonte fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
-            <span class="cursor cor_fonte align-middle fs-3">- {{ $pagina }}</span>
+            <span class="cursor cor_fonte animate__animated animate__fadeIn align-middle fs-3">- {{ $pagina }}</span>
         </a>
 
         <div class="d-flex gap-3 my-1">
