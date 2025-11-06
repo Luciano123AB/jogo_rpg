@@ -14,6 +14,8 @@
     @include("layouts.partials.alertas")
     
     @include("layouts.navbar")
+
+    @include("layouts.audio")
     
     @yield("content")
 

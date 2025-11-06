@@ -1,12 +1,21 @@
 <?php
 
+use App\Http\Controllers\Audios;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
-    Route::get("", [MainController::class, "home"])->name("home");
+    Route::controller(Audios::class)->group(function() {
+        Route::get("musica_normal", "musicaNormal")->name("musicaNormal");
+    });
+});
 
-    Route::get("sobre_classes", [MainController::class, "sobreClasses"])->name("sobre");
+Route::prefix("/")->group(function () {
+    Route::controller(MainController::class)->group(function() {
+        Route::get("", "home")->name("home");
+        
+        Route::get("sobre_classes", "sobreClasses")->name("sobre");
 
-    Route::get("creditos", [MainController::class, "creditos"])->name("creditos");
+        Route::get("creditos", "creditos")->name("creditos");
+    });
 });

@@ -1,4 +1,4 @@
-<nav id="navbar" class="navbar navbar-expand-lg bg-black border-5 border-danger rounded-bottom-5 mb-5">
+<nav id="navbar" class="navbar navbar-expand-lg bg-black border-5 border-danger rounded-bottom-5 mb-4">
     <div class="container-fluid">
         <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
             <img src="{{ asset("assets/images/icone.png") }}" id="icone" class="cursor">
