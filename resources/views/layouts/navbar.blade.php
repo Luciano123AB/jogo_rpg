@@ -8,17 +8,17 @@
 
         @if($pagina != "Home")
             <a href="{{ route("home") }}" class="cursor sombra botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger">
-                <span class="cursor cor_fonte"><i class="bi bi-arrow-90deg-left"></i> Voltar</span>
+                <span class="cursor cor_fonte"><i class="cursor bi bi-arrow-90deg-left"></i> Voltar</span>
             </a>
         @endif
 
         <div class="d-flex gap-3 my-1">
             <button class="cursor sombra botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger">
-                <span class="cursor cor_fonte"><i class="bi bi-person-add"></i> Cadastrar</span>
+                <span class="cursor cor_fonte"><i class="cursor bi bi-person-add"></i> Cadastrar</span>
             </button>
                 
             <button class="cursor sombra botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger">
-                <span class="cursor cor_fonte"><i class="bi bi-box-arrow-in-right"></i> Logar</span>
+                <span class="cursor cor_fonte"><i class="cursor bi bi-box-arrow-in-right"></i> Logar</span>
             </button>
         </div>
     </div>
