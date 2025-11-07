@@ -5,9 +5,9 @@
         }
     });
 
-    const audio = document.getElementById("trilha_sonora_normal");
+    const audio = document.getElementById("trilha_sonora");
 
-    @if(session("musicaNormal") === "Desativado")
+    @if(session("musica") === "Desativado")
         audio.muted = true;
     @else
         audio.muted = false;

@@ -25,6 +25,19 @@ class MainController extends Controller
             ->with("pagina", "Home");
     }
 
+    public function regras(): View {
+        session([
+            "alerta_regras" => [
+                "titulo" => "Regras do Jogo",
+                "texto" => "Aqui você entenderá como o jogo funciona."
+            ]
+        ]);
+
+        return view("regras")
+            ->with("imagem", "campo_treinamento.png")
+            ->with("pagina", "Regras");
+    }
+
     public function sobreClasses(): View {
         session([
             "alerta_sobre" => [

@@ -31,14 +31,24 @@
         width: 30px;
     }
 
-    .cor_fonte {
+    .cor_fonte_claro {
         color: #e5a350;
     }
 
-    .titulo {
+    .cor_fonte_escuro {
+        color: #493722;
+    }    
+
+    .titulo_claro {
         text-decoration: underline;
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: #8d7752;
+    }
+    
+    .titulo_escuro {
+        text-decoration: underline;
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: #64553a;
     }
 
     .sombra {
@@ -57,8 +67,12 @@
         width: 18px;
     }
 
-    .fundo_card {
+    .fundo_card_escuro {
         background-color: rgba(0, 0, 0, 0.3);
+    }
+
+    .fundo_card_claro {
+        background-color: rgba(127, 127, 127, 0.3);
     }
 
     .cards {
