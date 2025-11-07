@@ -151,5 +151,5 @@
         });
     </script>
 
-    {{ session(["alerta_creditos_lancado" => true]) }}
+    {{ session(["alerta_regras_lancado" => true]) }}
 @endif
