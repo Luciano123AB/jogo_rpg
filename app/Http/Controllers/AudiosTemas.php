@@ -28,7 +28,7 @@ class AudiosTemas extends Controller
 
     public function mudarTema() {
         if (!session()->has("tema")) {
-            session(["tema" => "claro"]);
+            session(["tema" => "escuro"]);
 
             return redirect()->back();
         } else {
