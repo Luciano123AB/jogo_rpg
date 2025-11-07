@@ -4,7 +4,7 @@
     <div class="container">
         <div class="{{ session("tema") == "escuro" ? "fundo_card_claro" : "fundo_card_escuro" }} card p-3">
             <div class="d-grid gap-3 w-100">
-                <div class="sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} p-3">
+                <div class="sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} p-3">
                     <div>
                         <h3 class="{{ session("tema") == "escuro" ? "titulo_escuro" : "titulo_claro" }} {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Nome do jogo e introdução inicial:</h3>
                         <ul>

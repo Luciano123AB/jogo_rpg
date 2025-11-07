@@ -4,7 +4,7 @@
     <div class="container">
         <div class="{{ session("tema") == "escuro" ? "fundo_card_claro" : "fundo_card_escuro" }} card p-3">
             <div class="animate__animated animate__fadeInLeft card-group gap-3 w-100">
-                <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} rounded">
+                <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded">
                     <div class="card-header text-center border-bottom">
                         <h4 class="{{ session("tema") == "escuro" ? "titulo_escuro" : "titulo_claro" }} {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title">Guerreiro</h4>
                     </div>
@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} rounded">
+                <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} {{ session("tema") == "escuro" ? "border-start border-primary" : "border-start border-danger" }} rounded">
                     <div class="card-header text-center border-bottom">
                         <h4 class="{{ session("tema") == "escuro" ? "titulo_escuro" : "titulo_claro" }} {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title">Mago</h4>
                     </div>
@@ -44,7 +44,7 @@
                     </div>
                 </div>
 
-                <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} rounded">
+                <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} {{ session("tema") == "escuro" ? "border-start border-primary" : "border-start border-danger" }} rounded">
                     <div class="card-header text-center border-bottom">
                         <h4 class="{{ session("tema") == "escuro" ? "titulo_escuro" : "titulo_claro" }} {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title">Assassino</h4>
                     </div>
