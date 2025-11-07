@@ -7,7 +7,7 @@
         </a>
 
         @if($pagina != "Home")
-            <a href="{{ route("home") }}" class="cursor botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger">
+            <a href="{{ route("home") }}" class="cursor botoes btn btn-lg btn-dark d-flex border border-danger focus-ring focus-ring-danger my-1">
                 <span class="cursor cor_fonte"><i class="cursor bi bi-arrow-90deg-left"></i> Voltar</span>
             </a>
         @endif
