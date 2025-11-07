@@ -4,7 +4,7 @@
     <div class="container">
         <div class="fundo_card card p-3">
             <div class="d-grid gap-3 w-100">
-                <div class="sombra card bg-dark p-3">
+                <div class="sombra card bg-dark border-danger p-3">
                     <div>
                         <h3 class="titulo cor_fonte animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Nome do jogo e introdução inicial:</h3>
                         <ul>
