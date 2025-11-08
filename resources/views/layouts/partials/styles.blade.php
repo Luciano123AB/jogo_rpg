@@ -87,4 +87,9 @@
         width: 40px;
         text-decoration: underline;
     }
+
+    #perfil_cadastro {
+        width: 100px;
+        height: 100px;
+    }
 </style>
