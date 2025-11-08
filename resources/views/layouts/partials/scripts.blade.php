@@ -34,7 +34,7 @@
             const classeSelecionada = e.target.value;
             const basePath = "{{ asset('assets/images/perfils') }}/";
 
-            perfil.classList.remove("border-secondary", "border-danger", "border-primary", "border-dark");
+            perfil.classList.remove("border-light", "border-danger", "border-primary", "border-dark");
             perfil.classList.remove("bg-danger", "bg-primary", "bg-dark");
 
             switch (classeSelecionada) {
@@ -55,7 +55,7 @@
 
                 default:
                     perfil.src = basePath + "vazio.png";
-                    perfil.classList.add("border-secondary");
+                    perfil.classList.add("border-light");
                 break;
             }
         }

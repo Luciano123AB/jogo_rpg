@@ -65,7 +65,7 @@
                             <div>
                                 <label class="form-label {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">Perfil:</label>
                                 <div>
-                                    <img src="{{ asset('assets/images/perfils/vazio.png') }}" id="perfil_cadastro" class="border border-3 border-secondary rounded-circle">
+                                    <img src="{{ asset('assets/images/perfils/vazio.png') }}" id="perfil_cadastro" class="border border-3 border-light rounded-circle">
                                 </div>
                             </div>
                         </div>
