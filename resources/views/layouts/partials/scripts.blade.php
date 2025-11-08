@@ -15,4 +15,15 @@
             console.error("Erro ao reproduzir o áudio:", error);
         });
     @endif
+
+    function limparCampos() {
+        document.getElementById("usuario").value = "";
+        document.getElementById("senha").value = "";
+
+        var classe = document.getElementById("classe");
+
+        if (classe) {
+            classe.selectedIndex = 0;
+        }        
+    }
 </script>

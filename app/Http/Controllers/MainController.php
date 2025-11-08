@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Personagen;
+use App\Models\Skill;
 use App\Services\Boot;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -46,6 +48,9 @@ class MainController extends Controller
     }
 
     public function sobreClasses(): View {
+
+        $personagens = Personagen::all();
+
         session([
             "alerta_sobre" => [
                 "titulo" => "Descrição das Classes",
@@ -55,7 +60,8 @@ class MainController extends Controller
 
         return view("sobre_classes")
             ->with("imagem", "estatuas_classes.png")
-            ->with("pagina", "Descrições");
+            ->with("pagina", "Descrições")
+            ->with("personagens", $personagens);
     }
 
     public function creditos(): View {

@@ -15,7 +15,12 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string("classe", 9)->nullable();
             $table->string("imagem", 13)->nullable();
-            $table->integer("vida")->nullable();
+            $table->string("descricao", 366)->nullable();
+            $table->string("tipo_dano", 6)->nullable();
+            $table->string("alcance", 5)->nullable();
+            $table->string("vida")->nullable();
+            $table->string("defesa", 5)->nullable();
+            $table->integer("hp")->nullable();
             $table->integer("id_skill01")->nullable();
             $table->integer("id_skill02")->nullable();
             $table->integer("id_skill03")->nullable();

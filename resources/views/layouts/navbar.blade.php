@@ -12,14 +12,27 @@
             </a>
         @endif
 
-        <div class="d-flex gap-3 my-1">
-            <button class="cursor sombra botoes btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} focus-ring focus-ring-danger">
-                <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-person-add"></i> Cadastrar</span>
-            </button>
-                
-            <button class="cursor sombra botoes btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} focus-ring focus-ring-danger">
-                <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-box-arrow-in-right"></i> Logar</span>
-            </button>
-        </div>
+        @session("player")
+            <div class="input-group mb-3">
+                <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{ session("player.usuario") }}</button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{{ "" }}">Editar</a></li>
+                    <li><a class="dropdown-item" href="{{ "" }}">Excluir</a></li>
+                    <li><a class="dropdown-item" href="{{ "" }}">Sair</a></li>
+                </ul>
+            </div>
+        @else
+            <div class="d-flex gap-3 my-1">
+                @if($pagina != "Cadastro")
+                    <a href="{{ route("cadastro") }}" class="cursor sombra botoes btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} focus-ring focus-ring-danger">
+                        <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-person-add"></i> Cadastrar</span>
+                    </a>
+                @endif
+
+                <button class="cursor sombra botoes btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} focus-ring focus-ring-danger">
+                    <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-box-arrow-in-right"></i> Logar</span>
+                </button>
+            </div>            
+        @endsession
     </div>
 </nav>

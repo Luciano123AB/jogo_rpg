@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AudiosTemas;
+use App\Http\Controllers\Cadastrar;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,5 +22,11 @@ Route::prefix("/")->group(function () {
         Route::get("sobre_classes", "sobreClasses")->name("sobre");
 
         Route::get("creditos", "creditos")->name("creditos");
+    });
+
+    Route::controller(Cadastrar::class)->group(function() {
+        Route::get("cadastro", "cadastro")->name("cadastro");
+
+        Route::post("cadastro_submit", "cadastroSubmit")->name("cadastrar");
     });
 });
