@@ -7,10 +7,19 @@
         cursor: url("/assets/images/cursores/cursor_batalha.png"), auto;
     }
 
-    body {
+    #fundo {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
         height: 100vh;
-        background: no-repeat center center fixed;
+        background-image: url('{{ asset('assets/images/fundos/' . $imagem) }}');
         background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        z-index: -1;
+        transition: transform 0.1s ease-out;
     }
 
     #navbar {
