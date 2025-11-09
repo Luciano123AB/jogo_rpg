@@ -70,6 +70,13 @@ class Cadastrar extends Controller
             return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);
         }
 
+        $player_existente = Player::all()
+                                  ->where("usuario", $usuario);
+
+        if ($player_existente) {
+            return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
+        }
+
         $player = new Player();
         $player->usuario = $usuario;
         $player->senha = $senha;
@@ -77,6 +84,7 @@ class Cadastrar extends Controller
         $player->quantidade_derrotas = 0;
         $player->id_personagem = $classe;
         $player->created_at = date("Y-m-d H:i:s");
+        $player->updated_at = null;
         $player->save();
 
         if (!$player) {

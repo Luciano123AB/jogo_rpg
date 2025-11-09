@@ -27,6 +27,25 @@
         }        
     }
 
+    document.addEventListener("click", function(e) {
+        if (e.target && (e.target.id === "mostrar" || e.target.closest("#mostrar"))) {
+
+            const senha = document.getElementById("senha");
+            const botao = document.getElementById("mostrar");
+            const olho = botao.querySelector("i");
+
+            if (senha.type === "password") {
+                senha.type = "text";
+                olho.classList.remove("bi-eye-slash-fill");
+                olho.classList.add("bi-eye-fill");
+            } else {
+                senha.type = "password";
+                olho.classList.remove("bi-eye-fill");
+                olho.classList.add("bi-eye-slash-fill");
+            }
+        }
+    });
+
     document.addEventListener("change", function(e) {
         if (e.target && e.target.id === "classe") {
 

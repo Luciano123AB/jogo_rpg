@@ -3,8 +3,8 @@
 @section("content")
     <div class="container">
         <div class="{{ session("tema") == "escuro" ? "fundo_card_claro" : "fundo_card_escuro" }} card p-3">
-            <div class="animate__animated animate__fadeInRight row row-cols-1 row-cols-md-2 g-4">
-                <div class="col">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col animate__animated animate__fadeInLeft">
                     <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         <img src="{{ asset("assets/images/fundos/coliseu.png") }}" class="card-img-top border-bottom">
                         <div class="card-body">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col animate__animated animate__fadeInRight">
                     <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         <img src="{{ asset("assets/images/fundos/coliseu.png") }}" class="card-img-top border-bottom">
                         <div class="card-body">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col animate__animated animate__fadeInLeft">
                     <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         <img src="{{ asset("assets/images/fundos/coliseu.png") }}" class="card-img-top border-bottom">
                         <div class="card-body">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                <div class="col">
+                <div class="col animate__animated animate__fadeInRight">
                     <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary" : "bg-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         <img src="{{ asset("assets/images/fundos/coliseu.png") }}" class="card-img-top border-bottom">
                         <div class="card-body">
