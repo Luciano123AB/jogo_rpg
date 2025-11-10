@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AudiosTemas;
 use App\Http\Controllers\Cadastrar;
+use App\Http\Controllers\LogarSair;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,5 +29,12 @@ Route::prefix("/")->group(function () {
         Route::get("cadastro", "cadastro")->name("cadastro");
 
         Route::post("cadastro_submit", "cadastroSubmit")->name("cadastrar");
+    });
+
+    Route::controller(LogarSair::class)->group(function() {
+        Route::post("logar", "logar")->name("logar");
+
+        Route::get("confirmar_sair", "confirmarSair")->name("confirmarSair");
+        Route::get("sair", "sair")->name("sair");
     });
 });

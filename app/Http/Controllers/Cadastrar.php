@@ -21,7 +21,7 @@ class Cadastrar extends Controller
         ]);
 
         return view("cadastro")
-            ->with("imagem", "recrutamento.png")
+            ->with("imagem", "recrutamento")
             ->with("pagina", "Cadastro")
             ->with("personagens", $personagens);
     }
@@ -99,7 +99,7 @@ class Cadastrar extends Controller
             ]);
 
             return view("index")
-                ->with("imagem", "estrada.png")
+                ->with("imagem", "estrada")
                 ->with("pagina", "Home");
         }
     }

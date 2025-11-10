@@ -26,7 +26,7 @@
                             <div class="input-group">
                                 <span class="input-group-text">***</span>
                                 <input type="password" id="senha" class="form-control cursor" name="senha" placeholder="..." aria-label=".." aria-describedby="basic-addon1" value="{{ old("senha") }}">
-                                <button type="button" id="mostrar" class="input-group-text"><i class="bi bi-eye-slash-fill"></i></button>
+                                <button type="button" id="mostrar" class="cursor input-group-text"><i class="cursor bi bi-eye-slash-fill"></i></button>
                             </div>
                             @error("senha")
                                 <div class="alert alert-danger mt-1 mb-0" role="alert">
@@ -80,8 +80,8 @@
                         @enderror
 
                         <div class="d-flex justify-content-center gap-3 text-center">
-                            <button type="submit" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light" : "btn-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-person-plus-fill"></i> Cadastrar</span></button>
-                            <button type="button" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light" : "btn-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}" onclick="limparCampos()"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Limpar</span></button>
+                            <button type="submit" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light" : "btn-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }}"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-person-plus-fill"></i> Cadastrar</span></button>
+                            <button type="button" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light" : "btn-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }}" onclick="limparCampos()"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Limpar</span></button>
                         </div>
                     </form>
                 </div>

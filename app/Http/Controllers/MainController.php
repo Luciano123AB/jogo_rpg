@@ -30,7 +30,7 @@ class MainController extends Controller
         ]);
         
         return view("index")
-            ->with("imagem", "estrada.png")
+            ->with("imagem", "estrada")
             ->with("pagina", "Home");
     }
 
@@ -43,7 +43,7 @@ class MainController extends Controller
         ]);
 
         return view("regras")
-            ->with("imagem", "campo_treinamento.png")
+            ->with("imagem", "campo_treinamento")
             ->with("pagina", "Regras");
     }
 
@@ -59,7 +59,7 @@ class MainController extends Controller
         ]);
 
         return view("sobre_classes")
-            ->with("imagem", "estatuas_classes.png")
+            ->with("imagem", "estatuas_classes")
             ->with("pagina", "Descrições")
             ->with("personagens", $personagens);
     }
@@ -73,7 +73,7 @@ class MainController extends Controller
         ]);
 
         return view("creditos")            
-            ->with("imagem", "estrada.png")
+            ->with("imagem", "estrada")
             ->with("pagina", "Créditos");
     }
 }

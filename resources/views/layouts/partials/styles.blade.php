@@ -14,7 +14,7 @@
         left: 0;
         width: 100vw;
         height: 100vh;
-        background-image: url('{{ asset('assets/images/fundos/' . $imagem) }}');
+        background-image: url('{{ asset('assets/images/fundos/' . (session('tema') === 'escuro' ? "$imagem" . '.png' : "$imagem" . '_noite.png')) }}');
         background-size: cover;
         background-repeat: no-repeat;
         background-position: center;
@@ -100,5 +100,10 @@
     #perfil_cadastro {
         width: 100px;
         height: 100px;
+    }
+
+    #perfil_player {
+        width: 50px;
+        height: 50px;
     }
 </style>
