@@ -30,10 +30,10 @@
         @if(session()->has("player"))
             <div class="d-flex">
                 <div class="input-group my-1">
-                    <button class="cursor sombra animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} dropdown-toggle d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }}" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="cursor sombra animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} dropdown-toggle d-flex border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="cursor">
                             <img src="{{ asset("assets/images/perfils/" . (session("player.personagem.classe")) . "_perfil.png") }}" id="perfil_player" class="cursor sombra border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                            <span class="cursor {{ session("tema") == "escuro" ? "titulo_escuro" : "titulo_claro" }} {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ session("player.usuario") }}</span>
+                            <span class="cursor {{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">{{ session("player.usuario") }}</span>
                         </div>
                     </button>
                     <ul class="dropdown-menu {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
@@ -46,16 +46,16 @@
         @else
             <div class="d-flex gap-3 my-1">
                 @if($pagina != "Cadastro")
-                    <a href="{{ route("cadastro") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }}">
+                    <a href="{{ route("cadastro") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border">
                         <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-person-fill-add"></i> Cadastrar</span>
                     </a>
                 @endif
 
                 <div class="dropdown">
-                    <button class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} dropdown-toggle d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }}" type="button" data-bs-toggle="dropdown" aria-expanded="{{ $errors->any() ? 'true' : 'false' }}" data-bs-auto-close="inside">
+                    <button class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} dropdown-toggle d-flex border" type="button" data-bs-toggle="dropdown" aria-expanded="{{ $errors->any() ? 'true' : 'false' }}" data-bs-auto-close="false">
                         <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-box-arrow-in-right"></i> Logar</span>
                     </button>
-                    <form action="{{ route("logar") }}" method="POST" class="sombra {{ $errors->any() ? 'animate__animated animate__fadeIn' : 'animate__animated animate__fadeInDown' }} dropdown-menu dropdown-menu-end {{ session("tema") == "escuro" ? "bg-secondary" : "bg-black" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} p-3 {{ $errors->any() ? 'show' : '' }}">
+                    <form action="{{ route("logar") }}" method="POST" class="sombra animate__animated animate__fadeInDown {{ session("tema") == "escuro" ? 'bg-secondary border-primary' : 'bg-black border-danger' }} dropdown-menu dropdown-menu-end p-3">
                         @csrf
 
                         <label class="form-label {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">Usuário:</label>
@@ -94,8 +94,8 @@
                         @enderror
 
                         <div class="d-flex justify-content-center gap-3 text-center">
-                            <button type="submit" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light" : "btn-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-door-open-fill"></i> Entrar</span></button>
-                            <button type="button" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light" : "btn-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}" onclick="limparCamposLogin()"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Limpar</span></button>
+                            <button type="submit" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary" : "btn-dark border-danger" }}"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-door-open-fill"></i> Entrar</span></button>
+                            <button type="button" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary" : "btn-dark border-danger" }}" onclick="limparCamposLogin()"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Limpar</span></button>
                         </div>
                     </form>
                 </div>

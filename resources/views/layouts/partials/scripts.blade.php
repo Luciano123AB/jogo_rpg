@@ -12,7 +12,7 @@
     @else
         audio.muted = false;
         audio.play().catch(error => {
-            console.error("Erro ao reproduzir o áudio:", error);
+            console.error("Erro ao reproduzir a trilha sonora:", error);
         });
     @endif
 
