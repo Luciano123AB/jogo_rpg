@@ -16,15 +16,24 @@
         });
     @endif
 
-    function limparCampos() {
+    function limparCamposLogin() {
         document.getElementById("usuario").value = "";
         document.getElementById("senha").value = "";
+    }
+
+    function limparCamposCadastro() {
+        document.getElementById("novo_usuario").value = "";
+        document.getElementById("nova_senha").value = "";
+        document.getElementById("confirmar_nova_senha").value = "";
 
         var classe = document.getElementById("classe");
+        var perfil_cadastro = document.getElementById("perfil_cadastro");
 
         if (classe) {
             classe.selectedIndex = 0;
-        }        
+            perfil_cadastro.src = "{{ asset('assets/images/perfils/vazio.png') }}";
+            perfil_cadastro.classList.add("border-light");
+        }
     }
 
     const fundo = document.getElementById("fundo");
@@ -42,6 +51,42 @@
 
             const senha = document.getElementById("senha");
             const botao = document.getElementById("mostrar");
+            const olho = botao.querySelector("i");
+
+            if (senha.type === "password") {
+                senha.type = "text";
+                olho.classList.remove("bi-eye-slash-fill");
+                olho.classList.add("bi-eye-fill");
+            } else {
+                senha.type = "password";
+                olho.classList.remove("bi-eye-fill");
+                olho.classList.add("bi-eye-slash-fill");
+            }
+        }
+    });
+
+    document.addEventListener("click", function(e) {
+        if (e.target && (e.target.id === "mostrar_novo" || e.target.closest("#mostrar_novo"))) {
+
+            const senha = document.getElementById("nova_senha");
+            const botao = document.getElementById("mostrar_novo");
+            const olho = botao.querySelector("i");
+
+            if (senha.type === "password") {
+                senha.type = "text";
+                olho.classList.remove("bi-eye-slash-fill");
+                olho.classList.add("bi-eye-fill");
+            } else {
+                senha.type = "password";
+                olho.classList.remove("bi-eye-fill");
+                olho.classList.add("bi-eye-slash-fill");
+            }
+        }
+
+        if (e.target && (e.target.id === "mostrar_confirmar_novo" || e.target.closest("#mostrar_confirmar_novo"))) {
+
+            const senha = document.getElementById("confirmar_nova_senha");
+            const botao = document.getElementById("mostrar_confirmar_novo");
             const olho = botao.querySelector("i");
 
             if (senha.type === "password") {

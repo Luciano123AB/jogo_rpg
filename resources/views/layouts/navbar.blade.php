@@ -36,10 +36,10 @@
                             <span class="cursor {{ session("tema") == "escuro" ? "titulo_escuro" : "titulo_claro" }} {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ session("player.usuario") }}</span>
                         </div>
                     </button>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ "" }}">Editar</a></li>
-                        <li><a class="dropdown-item" href="{{ "" }}">Excluir</a></li>
-                        <li><a class="dropdown-item" href="{{ route("confirmarSair") }}">Sair</a></li>
+                    <ul class="dropdown-menu {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
+                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ "" }}">Editar</a></li>
+                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ "" }}">Excluir</a></li>
+                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ route("confirmarSair") }}">Sair</a></li>
                     </ul>
                 </div>
             </div>
@@ -61,8 +61,8 @@
                         <label class="form-label {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">Usuário:</label>
                         <div class="mb-3">
                             <div class="input-group">
-                                <span class="input-group-text"><i class="bi bi-person-fill"></i></span>
-                                <input type="text" id="usuario" class="form-control cursor" name="usuario" placeholder="Username123" aria-label="Username123" aria-describedby="basic-addon1" value="{{ old("usuario") }}">
+                                <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light border-primary" : "cor_fonte_claro bg-dark border-danger" }}"><i class="bi bi-person-fill"></i></span>
+                                <input type="text" id="usuario" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="usuario" placeholder="Username123" aria-label="Username123" aria-describedby="basic-addon1" value="{{ old("usuario") }}">
                             </div>
                             @error("usuario")
                                 <div class="alert alert-danger mt-1 mb-0" role="alert">
@@ -74,9 +74,9 @@
                         <label class="form-label {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">Senha:</label>
                         <div class="mb-3">
                             <div class="input-group">
-                                <span class="input-group-text">***</span>
-                                <input type="password" id="senha" class="form-control cursor" name="senha" placeholder="..." aria-label=".." aria-describedby="basic-addon1" value="{{ old("senha") }}">
-                                <button type="button" id="mostrar" class="cursor input-group-text"><i class="cursor bi bi-eye-slash-fill"></i></button>
+                                <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light border-primary" : "cor_fonte_claro bg-dark border-danger" }}">***</span>
+                                <input type="password" id="senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="senha" placeholder="..." aria-label=".." aria-describedby="basic-addon1" value="{{ old("senha") }}">
+                                <button type="button" id="mostrar" class="cursor input-group-text {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light border-primary" : "cor_fonte_claro bg-dark border-danger" }}"><i class="cursor bi bi-eye-slash-fill"></i></button>
                             </div>
                             @error("senha")
                                 <div class="alert alert-danger mt-1 mb-0" role="alert">
@@ -95,7 +95,7 @@
 
                         <div class="d-flex justify-content-center gap-3 text-center">
                             <button type="submit" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light" : "btn-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-door-open-fill"></i> Entrar</span></button>
-                            <button type="button" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light" : "btn-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}" onclick="limparCampos()"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Limpar</span></button>
+                            <button type="button" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light" : "btn-dark" }} {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}" onclick="limparCamposLogin()"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Limpar</span></button>
                         </div>
                     </form>
                 </div>

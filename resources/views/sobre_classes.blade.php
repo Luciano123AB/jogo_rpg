@@ -24,7 +24,7 @@
                         <div class="card-body">
                             <h5 class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title text-center fw-bold">Sobre:</h5>
                             <p class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-text text-center">{{ $personagem->descricao }}</p>                            
-                        </div>    
+                        </div>
 
                         <div class="card-body border-top">
                             <h5 class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title fw-bold">Atributos:</h5>

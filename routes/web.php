@@ -27,8 +27,9 @@ Route::prefix("/")->group(function () {
 
     Route::controller(Cadastrar::class)->group(function() {
         Route::get("cadastro", "cadastro")->name("cadastro");
-
-        Route::post("cadastro_submit", "cadastroSubmit")->name("cadastrar");
+        Route::post("confirmar_cadastrar", "confirmarCadastrar")->name("confirmarCadastrar");
+        Route::get("cancelar_cadastrar", "cancelarCadastrar")->name("cancelarCadastrar");
+        Route::get("cadastro_submit", "cadastroSubmit")->name("cadastrar");
     });
 
     Route::controller(LogarSair::class)->group(function() {

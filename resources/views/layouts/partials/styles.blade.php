@@ -106,4 +106,8 @@
         width: 50px;
         height: 50px;
     }
+
+    #fogo {
+        z-index: -1;
+    }
 </style>

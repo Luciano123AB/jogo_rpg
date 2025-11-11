@@ -25,6 +25,6 @@
 
     @include("layouts.partials.scripts");
 
-    <img src="{{ asset('assets/images/gifs/' . (session('tema') === 'escuro' ? 'fogo_invertido.gif' : 'fogo.gif')) }}" class="position-fixed bottom-0 start-50 translate-middle-x opacity-25 w-100 h-25">
+    <img id="fogo" src="{{ asset('assets/images/gifs/' . (session('tema') === 'escuro' ? 'fogo_invertido.gif' : 'fogo.gif')) }}" class="position-fixed bottom-0 start-50 translate-middle-x opacity-25 w-100 h-25">
 </body>
 </html>
