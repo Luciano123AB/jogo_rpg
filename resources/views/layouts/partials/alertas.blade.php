@@ -1,7 +1,7 @@
 @php
 
-    $alerta = session('alerta');
-    $pagina = $alerta['pagina'] ?? null;
+    $alerta = session("alerta");
+    $pagina = $alerta["pagina"] ?? null;
 
     $chaveLancado = "alerta_{$pagina}_lancado";
 @endphp
@@ -18,7 +18,7 @@
             imageUrl: "{{ asset('assets/images/icone.png') }}",
             imageHeight: 150,
             title: "<label class='d-grid gap-3 py-2'><span class='{{ session('tema') == 'escuro' ? 'titulo_escuro cor_fonte_escuro' : 'titulo_claro cor_fonte_claro' }}'>{{ session('alerta.titulo') }}</span><span class='{{ session('tema') == 'escuro' ? 'cor_fonte_escuro' : 'cor_fonte_claro' }} fs-5'>{{ session('alerta.texto') }}</span></label>",
-            footer: "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' id='ok' class='cursor sombra botoes animate__animated animate__fadeIn btn {{ session('tema') == 'escuro' ? 'btn-secondary' : 'btn-danger' }} btn-sm rounded-pill'><i style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' class='cursor bi bi-check-circle-fill'></i><span style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }}' class='cursor'> OK</span></button>",
+            footer: "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' id='ok' class='cursor sombra botoes animate__animated animate__fadeIn btn {{ session('tema') == 'escuro' ? 'btn-secondary' : 'btn-danger' }} btn-sm rounded-pill'><i style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' id='ok' class='cursor bi bi-check-circle-fill'></i><span style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }}' id='ok' class='cursor'> OK</span></button>",
             showClass: {
                 popup: `
                     animate__animated
@@ -96,7 +96,7 @@
             imageUrl: "{{ asset('assets/images/icone.png') }}",
             imageHeight: 150,
             title: "<label class='d-grid gap-3 py-2'><span class='{{ session('tema') == 'escuro' ? 'titulo_escuro cor_fonte_escuro' : 'titulo_claro cor_fonte_claro' }}'>{{ session('alerta_sucesso.titulo') }}</span><span class='{{ session('tema') == 'escuro' ? 'cor_fonte_escuro' : 'cor_fonte_claro' }} fs-5'>{{ session('alerta_sucesso.texto') }}</span></label>",
-            footer: "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' id='ok' class='cursor sombra botoes animate__animated animate__fadeIn btn {{ session('tema') == 'escuro' ? 'btn-secondary' : 'btn-danger' }} btn-sm rounded-pill'><i style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' class='cursor bi bi-check-circle-fill'></i><span style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }}' class='cursor'> OK</span></button>",
+            footer: "<button style='--bs-icon-link-transform: translate3d(0, -.125rem, 0); border-color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' id='ok' class='cursor sombra botoes animate__animated animate__fadeIn btn {{ session('tema') == 'escuro' ? 'btn-secondary' : 'btn-danger' }} btn-sm rounded-pill'><i style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }};' id='ok' class='cursor bi bi-check-circle-fill'></i><span style='color: {{ session('tema') == 'escuro' ? '#493722' : '#e5a350' }}' id='ok' class='cursor'> OK</span></button>",
             showClass: {
                 popup: `
                     animate__animated

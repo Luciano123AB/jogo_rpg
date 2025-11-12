@@ -22,11 +22,12 @@ class LogarSair extends Controller
 
         $usuario = $request->input("usuario");
         $senha = $request->input("senha");
-        $player = Player::where("usuario", $usuario)
-                                 ->where("senha", $senha)
-                                 ->first();
 
-        if (!$player) {
+        $player = Player::where("usuario", $usuario)
+                        ->first();
+        $player_senha = Player::where("senha");
+
+        if (!$player && bcrypt($player_senha) != $senha) {
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente novamente."]);
         }
 

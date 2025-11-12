@@ -107,6 +107,18 @@
         height: 50px;
     }
 
+    .opcoes_player_claro:hover {
+        background-color: #64553a;
+    }
+
+    .opcoes_player_escuro:hover {
+        background-color: #8d7752;
+    }
+
+    .cor_nivel {
+        color: #073c8b;
+    }
+
     #fogo {
         z-index: -1;
     }

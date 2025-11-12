@@ -31,15 +31,18 @@
             <div class="d-flex">
                 <div class="input-group my-1">
                     <button class="cursor sombra animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} dropdown-toggle d-flex border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <div class="cursor">
-                            <img src="{{ asset("assets/images/perfils/" . (session("player.personagem.classe")) . "_perfil.png") }}" id="perfil_player" class="cursor sombra border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
-                            <span class="cursor {{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">{{ session("player.usuario") }}</span>
+                        <div class="cursor d-flex">
+                            <img src="{{ asset("assets/images/perfils/" . (session("player.personagem.classe")) . "_perfil.png") }}" id="perfil_player" class="cursor sombra border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle me-2">
+                            <div>
+                                <h4 class="cursor {{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">{{ session("player.usuario") }}</h4>
+                                <span class="{{ session("tema") == "escuro" ? "cor_nivel" : "text-danger" }}">Nível: {{ session("player.nivel") }}</span>
+                            </div>
                         </div>
                     </button>
                     <ul class="dropdown-menu {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
-                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ "" }}">Editar</a></li>
-                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ route("confirmarDeletar") }}">Excluir</a></li>
-                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ route("confirmarSair") }}">Sair</a></li>
+                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ "" }}">Editar</a></li>
+                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ route("confirmarDeletar") }}">Excluir</a></li>
+                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ route("confirmarSair") }}">Sair</a></li>
                     </ul>
                 </div>
             </div>

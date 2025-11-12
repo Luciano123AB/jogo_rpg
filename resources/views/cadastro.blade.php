@@ -8,11 +8,11 @@
                     <form action="{{ route("confirmarCadastrar") }}" method="post" novalidate>
                         @csrf
 
-                        <div class="card-header border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} text-center rounded-top">
+                        <div class="card-header border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} text-center rounded-top">
                             <i class="bi bi-plus-circle-fill {{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} fw-bold fs-5 me-1"></i><Label class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} fw-bold fs-5">Novo Usuário</Label>
                         </div>
 
-                        <div class="card-body border-start border-end {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
+                        <div class="card-body border-start border-2 border-end {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                             <label class="form-label {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">Usuário:</label>
                             <div class="mb-3">
                                 <div class="input-group">
@@ -111,7 +111,7 @@
                             @enderror
                         </div>
 
-                        <div class="card-footer border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} d-flex justify-content-center gap-3 text-center py-3">
+                        <div class="card-footer border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} d-flex justify-content-center gap-3 text-center py-3">
                             <button type="submit" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-person-plus-fill"></i> Cadastrar</span></button>
                             <button type="button" class="cursor sombra botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}" onclick="limparCamposCadastro()"><span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Limpar</span></button>
                         </div>

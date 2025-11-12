@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->string("usuario", 30)->nullable();
             $table->string("senha", 60)->nullable();
+            $table->integer("nivel")->nullable();
             $table->integer("quantidade_vitorias");
             $table->integer("quantidade_derrotas");
             $table->integer("id_personagem")->nullable();
