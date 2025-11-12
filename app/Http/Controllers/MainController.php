@@ -3,36 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personagen;
-use App\Services\Boot;
 use Illuminate\Contracts\View\View;
 
 class MainController extends Controller
 {
-    public function home(): View {
-
-        $banco = Boot::testarConexao();
-        
-        if ($banco == false) {
-            Boot::criarPovoarBanco();
-        }
-        
-        if (!is_dir(base_path("node_modules"))) {
-            Boot::dependencias();
-        }
-
-        session([
-            "alerta" => [
-                "titulo" => "Seja Muito Bem Vindo!",
-                "texto" => "Faça seu cadastro caso ainda não tenha feito e divirta-se.",
-                "pagina" => "home"
-            ],
-        ]);
-        
-        return view("index")
-            ->with("imagem", "estrada")
-            ->with("pagina", "Home");
-    }
-
     public function regras(): View {
         session([
             "alerta" => [
@@ -91,9 +65,40 @@ class MainController extends Controller
             ]
         ]);
 
-        return view("cadastro")
+        return view("cadastro_atualizacao")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Cadastro")
             ->with("personagens", $personagens);
+    }
+
+    public function atualizacao(): View {
+
+        $personagens = Personagen::all();
+        $id = session("player.id");
+        $usuario = session("player.usuario");
+        $senha = session("player.senha");
+        $classe = session("player.personagem.classe");
+
+        session([
+            "alerta" => [
+                "titulo" => "Atualização de Player",
+                "texto" => "Aqui você editará os dados da sua conta e escolherá sua nova classe preferencial.",
+                "pagina" => "atualizacao"
+            ]
+        ]);
+
+        return view("cadastro_atualizacao")
+            ->with("imagem", "recrutamento")
+            ->with("pagina", "Atualização")
+            ->with("personagens", $personagens)
+            ->with([
+                "dados" => [
+                    "id" => $id,
+                    "usuario" => $usuario,
+                    "senha" => decrypt($senha),
+                    "confirmar_senha" => decrypt($senha),
+                    "classe" => $classe
+                ]
+            ]);
     }
 }

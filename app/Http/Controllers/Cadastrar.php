@@ -58,7 +58,8 @@ class Cadastrar extends Controller
             return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);
         }
 
-        $player_existente = Player::where("usuario", $usuario)->first();
+        $player_existente = Player::where("usuario", $usuario)
+                                  ->first();
 
         if ($player_existente) {
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
@@ -121,9 +122,7 @@ class Cadastrar extends Controller
                 ]
             ]);
 
-            return view("index")
-                ->with("imagem", "estrada")
-                ->with("pagina", "Home");
+            return redirect()->route("home");
         }
     }
 }

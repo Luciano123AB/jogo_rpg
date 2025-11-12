@@ -5,6 +5,7 @@ use App\Http\Controllers\Cadastrar;
 use App\Http\Controllers\EditarDeletar;
 use App\Http\Controllers\LogarSair;
 use App\Http\Controllers\MainController;
+use App\Services\Boot;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix("/")->group(function () {
@@ -15,7 +16,29 @@ Route::prefix("/")->group(function () {
     });
 
     Route::controller(MainController::class)->group(function() {
-        Route::get("", "home")->name("home");
+        Route::get("", function() {
+            $banco = Boot::testarConexao();
+        
+            if ($banco == false) {
+                Boot::criarPovoarBanco();
+            }
+            
+            if (!is_dir(base_path("node_modules"))) {
+                Boot::dependencias();
+            }
+
+            session([
+                "alerta" => [
+                    "titulo" => "Seja Muito Bem Vindo!",
+                    "texto" => "Faça seu cadastro caso ainda não tenha feito e divirta-se.",
+                    "pagina" => "home"
+                ],
+            ]);
+            
+            return view("index")
+                ->with("imagem", "estrada")
+                ->with("pagina", "Home");
+        })->name("home");
 
         Route::get("regras", "regras")->name("regras");
         
@@ -24,6 +47,8 @@ Route::prefix("/")->group(function () {
         Route::get("creditos", "creditos")->name("creditos");
 
         Route::get("cadastro", "cadastro")->name("cadastro");
+
+        Route::get("atualizacao", "atualizacao")->name("atualizacao");
     });
 
     Route::controller(Cadastrar::class)->group(function() {        
@@ -41,8 +66,12 @@ Route::prefix("/")->group(function () {
     });
 
     Route::controller(EditarDeletar::class)->group(function() {
+        Route::get("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
+        Route::get("cancelar_atualizar", "cancelarAtualizar")->name("cancelarAtualizar");
+        Route::get("atualizar", "atualizar")->name("atualizar");
+
         Route::get("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
-        Route::get("cancelar_deletar", "cancelar")->name("cancelarDeletar");
-        Route::get("deletar", "deletar")->name("deletar");
+        Route::get("cancelar_deletar", "cancelarDeletar")->name("cancelarDeletar");
+        Route::get("deletar", "deletar")->name("deletar");        
     });
 });

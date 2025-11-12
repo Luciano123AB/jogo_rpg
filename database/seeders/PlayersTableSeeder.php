@@ -15,7 +15,7 @@ class PlayersTableSeeder extends Seeder
         DB::table("players")->insert([
             [
                 "usuario" => "Luciano123AB",
-                "senha" => bcrypt("24032004ABCD123"),
+                "senha" => encrypt("24032004ABCD123"),
                 "nivel" => 1,
                 "quantidade_vitorias" => 0,
                 "quantidade_derrotas" => 0,

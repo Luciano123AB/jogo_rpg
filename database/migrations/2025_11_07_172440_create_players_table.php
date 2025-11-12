@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('players', function (Blueprint $table) {
             $table->id()->autoIncrement();
             $table->string("usuario", 30)->nullable();
-            $table->string("senha", 60)->nullable();
+            $table->string("senha", 255)->nullable();
             $table->integer("nivel")->nullable();
             $table->integer("quantidade_vitorias");
             $table->integer("quantidade_derrotas");

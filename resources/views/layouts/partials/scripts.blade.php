@@ -128,7 +128,7 @@
                 break;
 
                 default:
-                    perfil.src = basePath + "vazio.png";
+                    perfil.src = basePath + "vazio_perfil.png";
                     perfil.classList.add("border-light");
                 break;
             }

@@ -40,9 +40,7 @@ class LogarSair extends Controller
             ]
         ]);
 
-        return view("index")
-            ->with("imagem", "estrada")
-            ->with("pagina", "Home");
+        return redirect()->route("home");
     }
 
     public function confirmarSair() {
@@ -68,8 +66,6 @@ class LogarSair extends Controller
         session()->forget("alerta_confirmar");        
         session()->forget(["player"]);
 
-        return view("index")
-            ->with("imagem", "estrada")
-            ->with("pagina", "Home");
+        return redirect()->route("home");
     }
 }

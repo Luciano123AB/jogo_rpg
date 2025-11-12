@@ -14,6 +14,8 @@
                     <i class="cursor bi bi-question-circle-fill"></i>
                 @elseif($pagina == "Cadastro")
                     <i class="cursor bi bi-person-fill-add"></i>
+                @elseif($pagina == "Atualização")
+                    <i class="cursor bi bi-person-fill-down"></i>
                 @elseif($pagina == "Batalha" || $pagina == "Preparação")
                     ⚔️
                 @endif
@@ -40,7 +42,7 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
-                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ "" }}">Editar</a></li>
+                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ route("atualizacao") }}">Editar</a></li>
                         <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ route("confirmarDeletar") }}">Excluir</a></li>
                         <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ route("confirmarSair") }}">Sair</a></li>
                     </ul>
