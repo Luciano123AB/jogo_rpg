@@ -91,7 +91,7 @@ class Cadastrar extends Controller
 
         $player = new Player();
         $player->usuario = session("alerta_confirmar.dados.usuario");
-        $player->senha = session("alerta_confirmar.dados.senha");
+        $player->senha = bcrypt(session("alerta_confirmar.dados.senha"));
         $player->quantidade_vitorias = 0;
         $player->quantidade_derrotas = 0;
         $player->id_personagem = session("alerta_confirmar.dados.classe");
@@ -102,7 +102,14 @@ class Cadastrar extends Controller
         if (!$player) {
             session()->forget(["alerta_confirmar"]);
 
-            return redirect()->back()->withInput()->withErrors(["cadastrar" => "Erro ao tentar cadastrar o player! Tente novamente."]);
+            session([
+                "alerta_erro" => [
+                    "titulo" => "Erro ao Cadastrar!",
+                    "texto" => "Ocorreu um erro ao tentar cadastrar esse player! Tente novamente."
+                ]
+            ]);
+
+            return redirect()->back()->withInput();
         } else {
             session()->forget("alerta_confirmar");
             

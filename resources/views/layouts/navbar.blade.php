@@ -38,7 +38,7 @@
                     </button>
                     <ul class="dropdown-menu {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
                         <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ "" }}">Editar</a></li>
-                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ "" }}">Excluir</a></li>
+                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ route("confirmarDeletar") }}">Excluir</a></li>
                         <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro bg-light" : "cor_fonte_claro bg-dark" }}" href="{{ route("confirmarSair") }}">Sair</a></li>
                     </ul>
                 </div>

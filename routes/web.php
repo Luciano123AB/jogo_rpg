@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AudiosTemas;
 use App\Http\Controllers\Cadastrar;
+use App\Http\Controllers\EditarDeletar;
 use App\Http\Controllers\LogarSair;
 use App\Http\Controllers\MainController;
 use Illuminate\Support\Facades\Route;
@@ -9,12 +10,10 @@ use Illuminate\Support\Facades\Route;
 Route::prefix("/")->group(function () {
     Route::controller(AudiosTemas::class)->group(function() {
         Route::get("tocar_musica", "tocarMusica")->name("musica");
-
+    
         Route::get("mudar_tema", "mudarTema")->name("tema");
     });
-});
 
-Route::prefix("/")->group(function () {
     Route::controller(MainController::class)->group(function() {
         Route::get("", "home")->name("home");
 
@@ -39,5 +38,11 @@ Route::prefix("/")->group(function () {
         Route::get("confirmar_sair", "confirmarSair")->name("confirmarSair");
         Route::get("cancelar_sair", "cancelar")->name("cancelarSair");
         Route::get("sair", "sair")->name("sair");
+    });
+
+    Route::controller(EditarDeletar::class)->group(function() {
+        Route::get("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
+        Route::get("cancelar_deletar", "cancelar")->name("cancelarDeletar");
+        Route::get("deletar", "deletar")->name("deletar");
     });
 });

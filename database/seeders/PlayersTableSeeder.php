@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +15,7 @@ class PlayersTableSeeder extends Seeder
         DB::table("players")->insert([
             [
                 "usuario" => "Luciano123AB",
-                "senha" => "24032004ABCD123",
+                "senha" => bcrypt("24032004ABCD123"),
                 "quantidade_vitorias" => 0,
                 "quantidade_derrotas" => 0,
                 "id_personagem" => 2,
