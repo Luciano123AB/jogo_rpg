@@ -33,7 +33,7 @@ class LogarSair extends Controller
         session([
             "player" => $player,
 
-            "alerta_login_sucesso" => [
+            "alerta_sucesso" => [
                 "titulo" => "Login Efetuado com Sucesso!",
                 "texto" => "Agora você pode acessar a página de batalha."
             ]
@@ -46,16 +46,25 @@ class LogarSair extends Controller
 
     public function confirmarSair() {
         session([
-            "alerta_confirmar_sair" => [
+            "alerta_confirmar" => [
                 "titulo" => "Confirmar Saída",
-                "texto" => "Tem certeza que deseja sair?"
+                "texto" => "Tem certeza que deseja sair?",
+                "cancelar" => "cancelarSair",
+                "sim" => "sair"
             ]
         ]);
 
         return redirect()->back();
     }
 
+    public function cancelar() {
+        session()->forget("alerta_confirmar");
+
+        return redirect()->back();
+    }
+
     public function sair() {
+        session()->forget("alerta_confirmar");        
         session()->forget(["player"]);
 
         return view("index")

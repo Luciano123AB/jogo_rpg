@@ -3,29 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
-use App\Models\Personagen;
-use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class Cadastrar extends Controller
 {
-    public function cadastro(): View {
-
-        $personagens = Personagen::all();
-
-        session([
-            "alerta_cadastro" => [
-                "titulo" => "Cadastro de Player",
-                "texto" => "Aqui você criará sua conta e escolherá sua classe preferencial."
-            ]
-        ]);
-
-        return view("cadastro")
-            ->with("imagem", "recrutamento")
-            ->with("pagina", "Cadastro")
-            ->with("personagens", $personagens);
-    }
-
     public function confirmarCadastrar(Request $request) {
         
         $classe_escolhida = $request->input("classe");
@@ -84,9 +65,11 @@ class Cadastrar extends Controller
         }
 
         session([
-            "alerta_confirmar_cadastro" => [
+            "alerta_confirmar" => [
                 "titulo" => "Confirmação Cadastro!",
                 "texto" => "Tem certeza que deseja cadastrar esse player?",
+                "cancelar" => "cancelarCadastrar",
+                "sim" => "cadastrar",
                 "dados" => [
                     "usuario" => $usuario,
                     "senha" => $senha,
@@ -98,8 +81,8 @@ class Cadastrar extends Controller
         return redirect()->back()->withInput();
     }
 
-    public function cancelarCadastrar() {
-        session()->forget("alerta_confirmar_cadastro");
+    public function cancelar() {
+        session()->forget("alerta_confirmar");
 
         return redirect()->back()->withInput();
     }
@@ -107,24 +90,24 @@ class Cadastrar extends Controller
     public function cadastroSubmit() {
 
         $player = new Player();
-        $player->usuario = session("alerta_confirmar_cadastro.dados.usuario");
-        $player->senha = session("alerta_confirmar_cadastro.dados.senha");
+        $player->usuario = session("alerta_confirmar.dados.usuario");
+        $player->senha = session("alerta_confirmar.dados.senha");
         $player->quantidade_vitorias = 0;
         $player->quantidade_derrotas = 0;
-        $player->id_personagem = session("alerta_confirmar_cadastro.dados.classe");
+        $player->id_personagem = session("alerta_confirmar.dados.classe");
         $player->created_at = date("Y-m-d H:i:s");
         $player->updated_at = null;
         $player->save();
 
         if (!$player) {
-            session()->forget(["alerta_confirmar_cadastro"]);
+            session()->forget(["alerta_confirmar"]);
 
             return redirect()->back()->withInput()->withErrors(["cadastrar" => "Erro ao tentar cadastrar o player! Tente novamente."]);
         } else {
-            session()->forget("alerta_confirmar_cadastro");
+            session()->forget("alerta_confirmar");
             
             session([
-                "alerta_cadastro_sucesso" => [
+                "alerta_sucesso" => [
                     "titulo" => "Player Cadastrado com Sucesso!",
                     "texto" => "Agora você pode realizar o login e acessar a página de batalha."
                 ]

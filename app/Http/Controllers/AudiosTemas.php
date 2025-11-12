@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 class AudiosTemas extends Controller
 {
     public function tocarMusica() {

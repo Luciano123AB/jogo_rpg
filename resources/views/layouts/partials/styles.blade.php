@@ -110,4 +110,8 @@
     #fogo {
         z-index: -1;
     }
+
+    #login {
+        width: 300px;
+    }
 </style>

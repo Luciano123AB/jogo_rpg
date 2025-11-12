@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personagen;
-use App\Models\Skill;
 use App\Services\Boot;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class MainController extends Controller
 {
@@ -23,9 +21,10 @@ class MainController extends Controller
         }
 
         session([
-            "alerta_home" => [
+            "alerta" => [
                 "titulo" => "Seja Muito Bem Vindo!",
-                "texto" => "Faça seu cadastro caso ainda não tenha feito e divirta-se."
+                "texto" => "Faça seu cadastro caso ainda não tenha feito e divirta-se.",
+                "pagina" => "home"
             ],
         ]);
         
@@ -36,9 +35,10 @@ class MainController extends Controller
 
     public function regras(): View {
         session([
-            "alerta_regras" => [
+            "alerta" => [
                 "titulo" => "Regras do Jogo",
-                "texto" => "Aqui você entenderá como o jogo funciona."
+                "texto" => "Aqui você entenderá como o jogo funciona.",
+                "pagina" => "regras"
             ]
         ]);
 
@@ -52,9 +52,10 @@ class MainController extends Controller
         $personagens = Personagen::all();
 
         session([
-            "alerta_sobre" => [
+            "alerta" => [
                 "titulo" => "Descrição das Classes",
-                "texto" => "Aqui você vai entender como cada classe funciona."
+                "texto" => "Aqui você vai entender como cada classe funciona.",
+                "pagina" => "sobre"
             ]
         ]);
 
@@ -66,14 +67,33 @@ class MainController extends Controller
 
     public function creditos(): View {
         session([
-            "alerta_creditos" => [
+            "alerta" => [
                 "titulo" => "Créditos do Jogo",
-                "texto" => "Aqui você verá a lista de todos os desenvolvedores envolvidos."
+                "texto" => "Aqui você verá a lista de todos os desenvolvedores envolvidos.",
+                "pagina" => "creditos"
             ]
         ]);
 
-        return view("creditos")            
+        return view("creditos")
             ->with("imagem", "estrada")
             ->with("pagina", "Créditos");
+    }
+
+    public function cadastro(): View {
+
+        $personagens = Personagen::all();
+
+        session([
+            "alerta" => [
+                "titulo" => "Cadastro de Player",
+                "texto" => "Aqui você criará sua conta e escolherá sua classe preferencial.",
+                "pagina" => "cadastro"
+            ]
+        ]);
+
+        return view("cadastro")
+            ->with("imagem", "recrutamento")
+            ->with("pagina", "Cadastro")
+            ->with("personagens", $personagens);
     }
 }

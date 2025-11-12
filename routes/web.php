@@ -23,12 +23,13 @@ Route::prefix("/")->group(function () {
         Route::get("sobre_classes", "sobreClasses")->name("sobre");
 
         Route::get("creditos", "creditos")->name("creditos");
+
+        Route::get("cadastro", "cadastro")->name("cadastro");
     });
 
-    Route::controller(Cadastrar::class)->group(function() {
-        Route::get("cadastro", "cadastro")->name("cadastro");
+    Route::controller(Cadastrar::class)->group(function() {        
         Route::post("confirmar_cadastrar", "confirmarCadastrar")->name("confirmarCadastrar");
-        Route::get("cancelar_cadastrar", "cancelarCadastrar")->name("cancelarCadastrar");
+        Route::get("cancelar_cadastrar", "cancelar")->name("cancelarCadastrar");
         Route::get("cadastro_submit", "cadastroSubmit")->name("cadastrar");
     });
 
@@ -36,6 +37,7 @@ Route::prefix("/")->group(function () {
         Route::post("logar", "logar")->name("logar");
 
         Route::get("confirmar_sair", "confirmarSair")->name("confirmarSair");
+        Route::get("cancelar_sair", "cancelar")->name("cancelarSair");
         Route::get("sair", "sair")->name("sair");
     });
 });
