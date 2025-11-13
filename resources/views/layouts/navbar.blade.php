@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
             <img src="{{ asset("assets/images/icone.png") }}" id="icone" class="cursor">
-            <span class="fs-3">🎮</span>
+            <span class="align-middle fs-3">🎮</span>
             <span class="cursor {{ session("tema") == "escuro" ? "titulo_escuro" : "titulo_claro" }} {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
             <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeIn align-middle fs-3">- 
                 @if ($pagina == "Home")
