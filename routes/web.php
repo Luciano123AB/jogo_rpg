@@ -49,6 +49,8 @@ Route::prefix("/")->group(function () {
         Route::get("cadastro", "cadastro")->name("cadastro");
 
         Route::get("atualizacao", "atualizacao")->name("atualizacao");
+
+        Route::get("listagem", "listagem")->name("listagem");
     });
 
     Route::controller(Cadastrar::class)->group(function() {        

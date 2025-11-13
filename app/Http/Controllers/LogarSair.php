@@ -27,7 +27,7 @@ class LogarSair extends Controller
                         ->first();
         $player_senha = Player::where("senha");
 
-        if (!$player && bcrypt($player_senha) != $senha) {
+        if (!$player && $player_senha != encrypt($senha)) {
             return redirect()->back()->withInput()->withErrors(["playerNaoExiste" => "Esse player não está cadastrado! Tente novamente."]);
         }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personagen;
+use App\Models\Player;
 use Illuminate\Contracts\View\View;
 
 class MainController extends Controller
@@ -100,5 +101,23 @@ class MainController extends Controller
                     "classe" => $classe
                 ]
             ]);
+    }
+
+    public function listagem() {
+
+        $players = Player::all();
+
+        session([
+            "alerta" => [
+                "titulo" => "Lista de Players",
+                "texto" => "Aqui você vizualizará todos os players existentes e quem está na liderança.",
+                "pagina" => "listagem"
+            ]
+        ]);
+
+        return view("listagem_players")
+            ->with("imagem", "recrutamento")
+            ->with("pagina", "Listagem")
+            ->with("players", $players);
     }
 }

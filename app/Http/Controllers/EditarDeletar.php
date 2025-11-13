@@ -149,7 +149,7 @@ class EditarDeletar extends Controller
         
         $novo_player = Player::find($id);
         $novo_player->usuario = $usuario;
-        $novo_player->senha = bcrypt($senha);
+        $novo_player->senha = encrypt($senha);
         $novo_player->id_personagem = $classe;
         $novo_player->updated_at = date("Y-m-d H:m:s");
         $novo_player->save();
