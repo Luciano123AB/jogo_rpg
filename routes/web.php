@@ -66,7 +66,7 @@ Route::prefix("/")->group(function () {
     });
 
     Route::controller(EditarDeletar::class)->group(function() {
-        Route::get("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
+        Route::post("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
         Route::get("cancelar_atualizar", "cancelarAtualizar")->name("cancelarAtualizar");
         Route::get("atualizar", "atualizar")->name("atualizar");
 

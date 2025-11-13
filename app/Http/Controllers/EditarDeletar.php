@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
+use Illuminate\Http\Request;
 
 class EditarDeletar extends Controller
 {
@@ -58,13 +59,75 @@ class EditarDeletar extends Controller
         }
     }
 
-    public function confirmarAtualizar() {
+    public function confirmarAtualizar(Request $request) {
+        
+        $classe_escolhida = $request->input("classe");
+        
+        $request->validate(
+            [
+                "novo_usuario" => "required|max:30",
+                "nova_senha" => "required|max:60",
+                "confirmar_nova_senha" => "required"
+            ],
+
+            [
+                "novo_usuario.required" => "O campo usuário é obrigatório.",
+                "novo_usuario.max" => "O nome de usuário deve ter no máximo 30 caracteres.",
+                "nova_senha.required" => "O campo senha é obrigatório.",
+                "nova_senha.max" => "O nome de usuário deve ter no máximo 60 caracteres.",
+                "confirmar_nova_senha.required" => "Confirme sua senha."
+            ]
+        );
+
+        $usuario = $request->input("novo_usuario");
+        $senha = $request->input("nova_senha");
+        $confirmar_senha = $request->input("confirmar_nova_senha");
+        $classe = "";
+
+        if ($senha != $confirmar_senha) {
+            return redirect()->back()->withInput()->withErrors(["senhas" => "As senhas estão diferentes! Tente novamente."]);
+        }
+
+        switch ($classe_escolhida) {
+            case "Guerreiro":
+                $classe = 1;
+            break;
+
+            case "Mago":
+                $classe = 2;
+            break;
+
+            case "Assassino":
+                $classe = 3;
+            break;
+            
+            default:
+                $classe = "Selecione sua classe...";
+            break;
+        }
+
+        if ($classe == "Selecione sua classe...") {
+            return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);
+        }
+
+        $player_existente = Player::where("usuario", $usuario)
+                                  ->first();
+
+        if ($player_existente) {
+            return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
+        }
+
         session([
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Atualização",
                 "texto" => "Tem certeza que deseja salvar esses novos dados?",
                 "cancelar" => "cancelarAtualizar",
-                "sim" => "atualizar"
+                "sim" => "atualizar",
+                "dados" => [
+                    "usuario" => $usuario,
+                    "senha" => $senha,
+                    "classe" => $classe
+                ]
             ]
         ]);
 
@@ -80,29 +143,35 @@ class EditarDeletar extends Controller
     public function atualizar() {
 
         $id = session("player.id");
+        $usuario = session("alerta_confirmar.dados.usuario");
+        $senha = session("alerta_confirmar.dados.senha");
+        $classe = session("alerta_confirmar.dados.classe");
         
-        $player_deletar = Player::findOrFail($id);
-        $player_deletar->delete();
+        $novo_player = Player::find($id);
+        $novo_player->usuario = $usuario;
+        $novo_player->senha = bcrypt($senha);
+        $novo_player->id_personagem = $classe;
+        $novo_player->updated_at = date("Y-m-d H:m:s");
+        $novo_player->save();
 
-        if (!$player_deletar) {
+        if (!$novo_player) {
             session()->forget(["alerta_confirmar"]);
 
             session([
                 "alerta_erro" => [
-                    "titulo" => "Erro ao Deletar!",
-                    "texto" => "Ocorreu um erro ao tentar excluir a conta! Tente novamente."
+                    "titulo" => "Erro ao Atualizar!",
+                    "texto" => "Ocorreu um erro ao tentar atualizar o player! Tente novamente."
                 ]
             ]);
 
             return redirect()->back();
         } else {
             session()->forget(["alerta_confirmar"]);
-            session()->forget(["player"]);
 
             session([
                 "alerta_sucesso" => [
-                    "titulo" => "Player Deletado com Sucesso!",
-                    "texto" => "Caso queira começar novamente do zero, sinta-se à vontade para criar uma nova conta."
+                    "titulo" => "Player Atualizado com Sucesso!",
+                    "texto" => "Para ver seu novo nome de usuário e(ou) classe nova, deslogue e faça o login novamente."
                 ]
             ]);
 

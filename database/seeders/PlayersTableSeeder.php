@@ -21,6 +21,26 @@ class PlayersTableSeeder extends Seeder
                 "quantidade_derrotas" => 0,
                 "id_personagem" => 2,
                 "created_at" => date("Y-m-d H:m:s")
+            ],
+
+            [
+                "usuario" => "Eduardo123AB",
+                "senha" => encrypt("24032004ABCD123"),
+                "nivel" => 1,
+                "quantidade_vitorias" => 0,
+                "quantidade_derrotas" => 0,
+                "id_personagem" => 1,
+                "created_at" => date("Y-m-d H:m:s")
+            ],
+
+            [
+                "usuario" => "Daniela123AB",
+                "senha" => encrypt("24032004ABCD123"),
+                "nivel" => 1,
+                "quantidade_vitorias" => 0,
+                "quantidade_derrotas" => 0,
+                "id_personagem" => 3,
+                "created_at" => date("Y-m-d H:m:s")
             ]
         ]);
     }

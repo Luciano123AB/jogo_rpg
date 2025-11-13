@@ -76,7 +76,7 @@ class MainController extends Controller
         $personagens = Personagen::all();
         $id = session("player.id");
         $usuario = session("player.usuario");
-        $senha = session("player.senha");
+        $senha = decrypt(session("player.senha"));
         $classe = session("player.personagem.classe");
 
         session([
@@ -95,8 +95,8 @@ class MainController extends Controller
                 "dados" => [
                     "id" => $id,
                     "usuario" => $usuario,
-                    "senha" => decrypt($senha),
-                    "confirmar_senha" => decrypt($senha),
+                    "senha" => $senha,
+                    "confirmar_senha" => $senha,
                     "classe" => $classe
                 ]
             ]);
