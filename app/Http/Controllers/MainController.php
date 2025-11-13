@@ -106,6 +106,8 @@ class MainController extends Controller
     public function listagem() {
 
         $players = Player::all();
+        $player_lider_vitorias = Player::orderBy('quantidade_vitorias', 'desc')->first();
+        $player_lider_nivel = Player::orderBy('nivel', 'desc')->first();
 
         session([
             "alerta" => [
@@ -118,6 +120,8 @@ class MainController extends Controller
         return view("listagem_players")
             ->with("imagem", "recrutamento")
             ->with("pagina", "Listagem")
-            ->with("players", $players);
+            ->with("players", $players)
+            ->with("player_lider_vitorias", $player_lider_vitorias)
+            ->with("player_lider_nivel", $player_lider_nivel);
     }
 }

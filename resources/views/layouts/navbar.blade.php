@@ -29,6 +29,12 @@
             </a>
         @endif
 
+        @if($pagina != "Listagem")
+            <a href="{{ route("listagem") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }} my-1">
+                <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-list-ol"></i> Lista de Players</span>
+            </a>
+        @endif
+
         @if(session()->has("player"))
             <div class="d-flex">
                 <div class="input-group my-1">

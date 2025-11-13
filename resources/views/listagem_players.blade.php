@@ -4,70 +4,48 @@
     <div class="container">
         <div class="{{ session("tema") == "escuro" ? "fundo_card_claro" : "fundo_card_escuro" }} card p-3">
             <div class="d-grid gap-3 w-100">
+                <div class="d-flex gap-3">
+                    <div class="sombra card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} w-50 p-3">
+                        <div class="d-grid text-center">
+                            <h4 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">Player com Mais Vitórias</h4>
+                            <label class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ $player_lider_vitorias->usuario }}</label>
+                            <label class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">Qtd/Vitórias: {{ $player_lider_vitorias->quantidade_vitorias }}</label>
+                        </div>
+                    </div>
+
+                    <div class="sombra d-flex card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} w-50 p-3">
+                        <div class="d-grid text-center">
+                            <h4 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">Player com Maior Nível</h4>
+                            <label class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ $player_lider_vitorias->usuario }}</label>
+                            <label class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">Nível: {{ $player_lider_vitorias->nivel }}</label>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="sombra card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
-                    <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Nome do jogo e introdução inicial:</h3>
-                        <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp"><img src="{{ asset("assets/images/icone.png") }}" id="icone_creditos"> Projeto: Jogo RPG</li>
-                        </ul>
-                    </div>
+                    <table>
+                        <thead>
+                            <th class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">Nº</th>
+                            <th class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">Usuario</th>
+                            <th class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">Classe</th>
+                            <th class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">Nível</th>
+                            <th class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">Qtd/Vitórias</th>
+                            <th class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }}">Qtd/Derrotas</th>
+                        </thead>
 
-                    <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Equipe principal do desenvolvimento:</h3>
-                        <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Direção: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Design: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Arte: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Som: Luciano Eduardo Stefanello da Silva</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Equipe de produtores e líderes:</h3>
-                        <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Luciano Eduardo Stefanello da Silva</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Equipe de apoio e colaboradores:</h3>
-                        <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Testadores: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Animadores: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Designers adicionais: Nenhum</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Música e áudio:</h3>
-                        <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Compositores: Nenhum</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Dubladores: Nenhum</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Suporte técnico e colaboradores externos:</h3>
-                        <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Luciano Eduardo Stefanello da Silva</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Agradecimentos especiais:</h3>
-                        <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Pessoas: Nenhum</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Comunidades: Nenhum</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Parceiros: Nenhum</li>
-                        </ul>
-                    </div>
-
-                    <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Lista das empresas e estúdios envolvidos:</h3>
-                        <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeInUp">Nenhum</li>
-                        </ul>
-                    </div>
+                        <tbody>
+                            @foreach ($players as $player)
+                                <tr>
+                                    <td class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ $loop->index + 1 }}</td>
+                                    <td class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ $player->usuario }}</td>
+                                    <td class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ $player->personagem->classe }}</td>
+                                    <td class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ $player->nivel }}</td>
+                                    <td class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ $player->quantidade_vitorias }}</td>
+                                    <td class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}">{{ $player->quantidade_derrotas }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
