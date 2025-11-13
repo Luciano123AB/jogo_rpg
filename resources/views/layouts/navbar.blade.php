@@ -2,6 +2,7 @@
     <div class="container-fluid">
         <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
             <img src="{{ asset("assets/images/icone.png") }}" id="icone" class="cursor">
+            <span class="fs-3">🎮</span>
             <span class="cursor {{ session("tema") == "escuro" ? "titulo_escuro" : "titulo_claro" }} {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
             <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeIn align-middle fs-3">- 
                 @if ($pagina == "Home")
@@ -16,6 +17,8 @@
                     <i class="cursor bi bi-person-fill-add"></i>
                 @elseif($pagina == "Atualização")
                     <i class="cursor bi bi-person-fill-down"></i>
+                @elseif($pagina == "Listagem")
+                    <i class="bi bi-list-stars"></i>
                 @elseif($pagina == "Batalha" || $pagina == "Preparação")
                     ⚔️
                 @endif
@@ -31,7 +34,7 @@
 
         @if($pagina != "Listagem")
             <a href="{{ route("listagem") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }} my-1">
-                <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-list-ol"></i> Lista de Players</span>
+                <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="bi bi-list-stars"></i> Lista de Players</span>
             </a>
         @endif
 

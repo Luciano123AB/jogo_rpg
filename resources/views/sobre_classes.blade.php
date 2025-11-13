@@ -6,7 +6,7 @@
             <div class="animate__animated animate__fadeInLeft card-group gap-3 w-100">
                 @foreach ($personagens as $personagem)
                     <div class="cards sombra card {{ session("tema") == "escuro" ? "bg-secondary border-start border-primary" : "bg-dark border-start border-danger" }} rounded">
-                        <div class="card-header text-center border-bottom">
+                        <div class="card-header text-center border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                             <h4 class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title">
                                 @if($personagem->classe == "Guerreiro")
                                     🛡️
@@ -19,14 +19,14 @@
                             </h4>
                         </div>
 
-                        <img src="{{ asset("assets/images/personagens/$personagem->imagem") }}" class="card-img-top border-bottom" alt="...">
+                        <img src="{{ asset("assets/images/personagens/$personagem->imagem") }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         
                         <div class="card-body">
-                            <h5 class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title text-center fw-bold">Sobre:</h5>
+                            <h5 class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title text-center fw-bold"><i class="bi bi-pen-fill"></i> Sobre:</h5>
                             <p class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-text text-center">{{ $personagem->descricao }}</p>                            
                         </div>
 
-                        <div class="card-body border-top">
+                        <div class="card-body border-top {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                             <h5 class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title fw-bold">Atributos:</h5>
                             <ul class="list-group list-group-flush">
                                 <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro bg-secondary" : "cor_fonte_claro bg-dark" }} list-group-item">🎯 Tipo de dano: {{ $personagem->tipo_dano }}</li>
@@ -36,8 +36,8 @@
                             </ul>
                         </div>
 
-                        <div class="card-body border-top">
-                            <h5 class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title fw-bold">Skills:</h5>
+                        <div class="card-body border-top {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
+                            <h5 class="{{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} card-title fw-bold">🕹 Skills:</h5>
                             <ul class="list-group list-group-flush">
                                 <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro bg-secondary" : "cor_fonte_claro bg-dark" }} list-group-item">1 - {{ $personagem->skill01?->skill }}</li>
                                 <li class="{{ session("tema") == "escuro" ? "cor_fonte_escuro bg-secondary" : "cor_fonte_claro bg-dark" }} list-group-item">2 - {{ $personagem->skill02?->skill }}</li>
