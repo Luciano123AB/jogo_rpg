@@ -124,4 +124,24 @@ class MainController extends Controller
             ->with("player_lider_vitorias", $player_lider_vitorias)
             ->with("player_lider_nivel", $player_lider_nivel);
     }
+
+    public function preparacao(): View {
+
+        $personagens = Personagen::all();
+        $classe_player = session("player.personagem.classe");
+
+        session([
+            "alerta" => [
+                "titulo" => "Preparação Antes da Batalha",
+                "texto" => "Aqui você escolherá quem irá enfrentar usando sua classe.",
+                "pagina" => "preparacao"
+            ]
+        ]);
+
+        return view("preparacao")
+            ->with("imagem", "coliseu")
+            ->with("pagina", "Preparação")
+            ->with("personagens", $personagens)
+            ->with("classe", $classe_player);
+    }
 }

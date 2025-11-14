@@ -5,6 +5,8 @@ use App\Http\Controllers\Cadastrar;
 use App\Http\Controllers\EditarDeletar;
 use App\Http\Controllers\LogarSair;
 use App\Http\Controllers\MainController;
+use App\Http\Controllers\Batalha;
+use App\Http\Middleware\VerificarLogado;
 use App\Services\Boot;
 use Illuminate\Support\Facades\Route;
 
@@ -50,7 +52,11 @@ Route::prefix("/")->group(function () {
 
         Route::get("atualizacao", "atualizacao")->name("atualizacao");
 
-        Route::get("listagem", "listagem")->name("listagem");
+        Route::middleware(VerificarLogado::class)->group(function() {
+            Route::get("listagem", "listagem")->name("listagem");
+    
+            Route::get("preparacao", "preparacao")->name("preparacao");
+        });
     });
 
     Route::controller(Cadastrar::class)->group(function() {        
@@ -75,5 +81,11 @@ Route::prefix("/")->group(function () {
         Route::get("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
         Route::get("cancelar_deletar", "cancelarDeletar")->name("cancelarDeletar");
         Route::get("deletar", "deletar")->name("deletar");        
+    });
+
+    Route::controller(Batalha::class)->group(function() {
+        Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
+        Route::get("batalha", "batalhar")->name("batalhar")->middleware(VerificarLogado::class);
+        Route::get("render_se", "renderSe")->name("render_se");
     });
 });

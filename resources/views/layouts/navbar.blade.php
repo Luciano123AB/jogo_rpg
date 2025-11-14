@@ -26,19 +26,25 @@
             </span>
         </a>
 
-        @if($pagina != "Home")
+        @if($pagina != "Home" && $pagina != "Batalha")
             <a href="{{ route("home") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }} my-1">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-arrow-90deg-left"></i> Voltar</span>
             </a>
         @endif
 
-        @if($pagina != "Listagem")
+        @if($pagina == "Batalha")
+            <a href="{{ route("render_se") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }} my-1">
+                <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-arrow-90deg-left"></i> Render-se</span>
+            </a>
+        @endif
+
+        @if($pagina != "Listagem" && $pagina != "Batalha")
             <a href="{{ route("listagem") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }} my-1">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="bi bi-list-stars"></i> Lista de Players</span>
             </a>
         @endif
 
-        @if(session()->has("player"))
+        @if(session()->has("player") && $pagina != "Batalha")
             <div class="d-flex">
                 <div class="input-group my-1">
                     <button class="cursor sombra animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} dropdown-toggle d-flex border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
