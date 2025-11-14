@@ -56,6 +56,7 @@ Route::prefix("/")->group(function () {
             Route::get("listagem", "listagem")->name("listagem");
     
             Route::get("preparacao", "preparacao")->name("preparacao");
+            Route::get("batalha", "batalhar")->name("batalhar");
         });
     });
 
@@ -84,8 +85,12 @@ Route::prefix("/")->group(function () {
     });
 
     Route::controller(Batalha::class)->group(function() {
-        Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
-        Route::get("batalha", "batalhar")->name("batalhar")->middleware(VerificarLogado::class);
-        Route::get("render_se", "renderSe")->name("render_se");
+        Route::middleware(VerificarLogado::class)->group(function() {
+            Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
+            Route::get("cancelar_batalha", "cancelar")->name("cancelarBatalha");
+            Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
+            Route::get("cancelar_render", "cancelarRender")->name("cancelarRender");
+            Route::get("render_se", "renderSe")->name("renderSe");
+        });
     });
 });

@@ -1,9 +1,20 @@
-<nav id="navbar" class="navbar navbar-expand-lg {{ session("tema") == "escuro" ? "bg-light" : "bg-black" }} border-5 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-bottom-5 mb-4">
+<nav id="navbar" class="navbar navbar-expand-lg {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-black border-danger" }} border-5 rounded-bottom-5 mb-4">
     <div class="container-fluid">
-        <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
+        @php
+
+            $rota = "home";
+
+            if ($pagina == "Batalha") {
+                
+                $rota = "batalhar";
+
+            }
+        @endphp
+
+        <a href="{{ route("$rota") }}" id="home" class="cursor navbar-brand">
             <img src="{{ asset("assets/images/icone.png") }}" id="icone" class="cursor">
             <span class="align-middle fs-3">🎮</span>
-            <span class="cursor {{ session("tema") == "escuro" ? "titulo_escuro" : "titulo_claro" }} {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
+            <span class="cursor {{ session("tema") == "escuro" ? "titulo_escuro cor_fonte_escuro" : "titulo_claro cor_fonte_claro" }} fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
             <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }} animate__animated animate__fadeIn align-middle fs-3">- 
                 @if ($pagina == "Home")
                     <i class="bi bi-house-fill"></i>
@@ -27,19 +38,19 @@
         </a>
 
         @if($pagina != "Home" && $pagina != "Batalha")
-            <a href="{{ route("home") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }} my-1">
+            <a href="{{ route("home") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-arrow-90deg-left"></i> Voltar</span>
             </a>
         @endif
 
         @if($pagina == "Batalha")
-            <a href="{{ route("render_se") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }} my-1">
+            <a href="{{ route("confirmarRender") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="cursor bi bi-arrow-90deg-left"></i> Render-se</span>
             </a>
         @endif
 
         @if($pagina != "Listagem" && $pagina != "Batalha")
-            <a href="{{ route("listagem") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary" : "btn-dark" }} d-flex border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} {{ session("tema") == "escuro" ? "focus-ring focus-ring-primary" : "focus-ring focus-ring-danger" }} my-1">
+            <a href="{{ route("listagem") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border my-1">
                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fonte_escuro" : "cor_fonte_claro" }}"><i class="bi bi-list-stars"></i> Lista de Players</span>
             </a>
         @endif
@@ -58,12 +69,12 @@
                     </button>
                     <ul class="dropdown-menu {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
                         <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ route("atualizacao") }}">Editar</a></li>
-                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ route("confirmarDeletar") }}">Excluir</a></li>
+                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ route("confirmarDeletar") }}">Excluir Conta</a></li>
                         <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fonte_escuro opcoes_player_escuro" : "cor_fonte_claro opcoes_player_claro" }}" href="{{ route("confirmarSair") }}">Sair</a></li>
                     </ul>
                 </div>
             </div>
-        @else
+        @elseif($pagina != "Batalha")
             <div class="d-flex gap-3 my-1">
                 @if($pagina != "Cadastro")
                     <a href="{{ route("cadastro") }}" class="cursor sombra botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border">

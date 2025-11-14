@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class EditarDeletar extends Controller
 {
-    public function confirmarDeletar() {
+    public function confirmarDeletar(): RedirectResponse {
         session([
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Deleção",
@@ -20,13 +21,13 @@ class EditarDeletar extends Controller
         return redirect()->back();
     }
 
-    public function cancelarDeletar() {
+    public function cancelarDeletar(): RedirectResponse {
         session()->forget(["alerta_confirmar"]);
 
         return redirect()->back();
     }
 
-    public function deletar() {
+    public function deletar(): RedirectResponse {
 
         $id = session("player.id");
         
@@ -59,7 +60,7 @@ class EditarDeletar extends Controller
         }
     }
 
-    public function confirmarAtualizar(Request $request) {
+    public function confirmarAtualizar(Request $request): RedirectResponse {
         
         $classe_escolhida = $request->input("classe");
         
@@ -134,13 +135,13 @@ class EditarDeletar extends Controller
         return redirect()->back();
     }
 
-    public function cancelarAtualizar() {
+    public function cancelarAtualizar(): RedirectResponse {
         session()->forget(["alerta_confirmar"]);
 
         return redirect()->back();
     }
 
-    public function atualizar() {
+    public function atualizar(): RedirectResponse {
 
         $id = session("player.id");
         $usuario = session("alerta_confirmar.dados.usuario");

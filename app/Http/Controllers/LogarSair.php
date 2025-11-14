@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class LogarSair extends Controller
 {
-    public function logar(Request $request) {
+    public function logar(Request $request): RedirectResponse {
         $request->validate(
             [
                 "usuario" => "required",
@@ -43,7 +44,7 @@ class LogarSair extends Controller
         return redirect()->route("home");
     }
 
-    public function confirmarSair() {
+    public function confirmarSair(): RedirectResponse {
         session([
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Saída",
@@ -56,13 +57,13 @@ class LogarSair extends Controller
         return redirect()->back();
     }
 
-    public function cancelar() {
+    public function cancelar(): RedirectResponse {
         session()->forget("alerta_confirmar");
 
         return redirect()->back();
     }
 
-    public function sair() {
+    public function sair(): RedirectResponse {
         session()->forget("alerta_confirmar");        
         session()->forget(["player"]);
 

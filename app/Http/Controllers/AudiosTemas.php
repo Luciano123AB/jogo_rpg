@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+
 class AudiosTemas extends Controller
 {
-    public function tocarMusica() {
+    public function tocarMusica(): RedirectResponse {
         if (!session()->has("musica")) {
-            session(["musica" => "Desativado"]);
-
-            return redirect()->back();
+            session(["musica" => "Desativado"]);            
         } else {
             if (session("musica") == "Ativado") {
                 session(["musica" => "Desativado"]);
@@ -22,13 +22,13 @@ class AudiosTemas extends Controller
                 return redirect()->back();
             }
         }
+
+        return redirect()->back();
     }
 
-    public function mudarTema() {
+    public function mudarTema(): RedirectResponse {
         if (!session()->has("tema")) {
-            session(["tema" => "escuro"]);
-
-            return redirect()->back();
+            session(["tema" => "escuro"]);            
         } else {
             if (session("tema") == "claro") {
                 session(["tema" => "escuro"]);
@@ -42,5 +42,7 @@ class AudiosTemas extends Controller
                 return redirect()->back();
             }
         }
+
+        return redirect()->back();
     }
 }

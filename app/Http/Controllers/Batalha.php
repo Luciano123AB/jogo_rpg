@@ -2,45 +2,75 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Personagen;
 use App\Models\Player;
-use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 
 class Batalha extends Controller
 {
-    public function confirmarBatalha() {
+    public function confirmarBatalha(Request $request): RedirectResponse {
+        $request->validate(
+            [
+                "oponente" => "required|exists:personagens,id"
+            ],
+
+            [
+                "oponente.required" => "Você deve escolher o seu oponente primeiro."
+            ]
+        );
+
+        $id = $request->oponente;
+        $oponente = Personagen::find($id);
+
         session([
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Batalha",
                 "texto" => "Tem certeza que está pronto para ir para a batalha?",
                 "cancelar" => "cancelarBatalha",
-                "sim" => "batalhar"
+                "sim" => "batalhar",
+                "dados" => [
+                    "oponente" => $oponente->classe,
+                    "hp_oponente" => $oponente->hp,
+                    "skills_oponente" => [
+                        "skill01" => $oponente->skill01->skill,
+                        "skill02" => $oponente->skill02->skill,
+                        "skill03" => $oponente->skill03->skill
+                    ]
+                ]
             ]
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->withInput();
     }
 
-    public function cancelar() {
+    public function cancelar(): RedirectResponse {
         session()->forget("alerta_confirmar");
 
         return redirect()->back();
     }
 
-    public function batalhar(): View {
+    public function cancelarRender(): RedirectResponse {
+        session()->forget("alerta_confirmar_render");
+
+        return redirect()->back();
+    }
+
+    public function confirmarRender(): RedirectResponse {
         session([
-            "alerta" => [
-                "titulo" => "Batalha",
-                "texto" => "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras.",
-                "pagina" => "batalha"
+            "alerta_confirmar_render" => [
+                "titulo" => "Confirmar Rendição",
+                "texto" => "Tem certeza que deseja desistir dessa batalha?",
+                "cancelar" => "cancelarRender",
+                "sim" => "renderSe"
             ]
         ]);
 
-        return view("batalha")
-            ->with("imagem", "coliseu")
-            ->with("pagina", "Batalha");
+        return redirect()->back();
     }
 
-    public function renderSe() {
+    public function renderSe(): RedirectResponse {
+        session()->forget("alerta_confirmar_render");
 
         $id = session("player.id");
         
@@ -55,6 +85,6 @@ class Batalha extends Controller
             ]
         ]);
 
-        return redirect()->route("home");
+        return redirect()->route("preparacao");
     }
 }

@@ -103,7 +103,7 @@ class MainController extends Controller
             ]);
     }
 
-    public function listagem() {
+    public function listagem(): View {
 
         $players = Player::all();
         $player_lider_vitorias = Player::orderBy('quantidade_vitorias', 'desc')->first();
@@ -127,8 +127,10 @@ class MainController extends Controller
 
     public function preparacao(): View {
 
+        $id = session("player.id");
         $personagens = Personagen::all();
         $classe_player = session("player.personagem.classe");
+        $nivel = Player::find($id);
 
         session([
             "alerta" => [
@@ -142,6 +144,30 @@ class MainController extends Controller
             ->with("imagem", "coliseu")
             ->with("pagina", "Preparação")
             ->with("personagens", $personagens)
-            ->with("classe", $classe_player);
+            ->with("classe", $classe_player)
+            ->with("nivel", $nivel->nivel);
+    }
+
+    public function batalhar(): View {
+        session()->forget("alerta_confirmar");
+
+        session([
+            "alerta" => [
+                "titulo" => "Batalha",
+                "texto" => "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras.",
+                "pagina" => "batalha"
+            ]
+        ]);
+
+        $oponente = session("alerta_confirmar.dados.oponente");
+        $hp_oponente = session("alerta_confirmar.dados.hp_oponente");
+        $skills_oponente = [session("alerta_confirmar.dados.skills_oponente.skill01"), session("alerta_confirmar.dados.skills_oponente.skill02"), session("alerta_confirmar.dados.skills_oponente.skill03")];
+
+        return view("batalha")
+            ->with("imagem", "coliseu")
+            ->with("pagina", "Batalha")
+            ->with("oponente", $oponente)
+            ->with("hp_oponente", $hp_oponente)
+            ->with("skills_oponente", $skills_oponente);
     }
 }

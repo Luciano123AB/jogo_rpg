@@ -3,11 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class Cadastrar extends Controller
 {
-    public function confirmarCadastrar(Request $request) {
+    public function confirmarCadastrar(Request $request): RedirectResponse {
         
         $classe_escolhida = $request->input("classe");
         
@@ -82,13 +83,13 @@ class Cadastrar extends Controller
         return redirect()->back()->withInput();
     }
 
-    public function cancelar() {
+    public function cancelar(): RedirectResponse {
         session()->forget("alerta_confirmar");
 
         return redirect()->back()->withInput();
     }
 
-    public function cadastroSubmit() {
+    public function cadastroSubmit(): RedirectResponse {
 
         $player = new Player();
         $player->usuario = session("alerta_confirmar.dados.usuario");
