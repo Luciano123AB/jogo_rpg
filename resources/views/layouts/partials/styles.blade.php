@@ -22,6 +22,10 @@
         transition: transform 0.1s ease-out;
     }
 
+    #fogo {
+        z-index: -1;
+    }
+
     #navbar {
         box-shadow: 0 20px 20px 0;
         border-style: double;
@@ -36,34 +40,26 @@
         transform: scale(1.1);
     }
 
-    #icone_creditos {
-        width: 30px;
-    }
-
-    .cor_fonte_claro {
+    .cor_fontes_claro {
         color: #e5a350;
     }
 
-    .cor_fonte_escuro {
+    .cor_fontes_escuro {
         color: #493722;
     }    
 
-    .titulo_claro {
+    .titulos_claro {
         text-decoration: underline;
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: #8d7752;
     }
     
-    .titulo_escuro {
+    .titulos_escuro {
         text-decoration: underline;
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: #64553a;
     }
-
-    .sombra {
-        box-shadow: 5px 5px 5px 0 rgba(36, 40, 43);
-    }
-
+    
     .botoes {
         transition: transform 0.3s ease;
     }
@@ -71,17 +67,26 @@
     .botoes:hover {
         transform: scale(1.1);
     }
-
-    #icone_batalhar {
-        width: 18px;
+    
+    .sombras {
+        box-shadow: 5px 5px 5px 0 rgba(36, 40, 43);
     }
-
-    .fundo_card_escuro {
+    
+    .fundos_card_escuro {
         background-color: rgba(0, 0, 0, 0.3);
     }
 
-    .fundo_card_claro {
+    .fundos_card_claro {
         background-color: rgba(127, 127, 127, 0.3);
+    }
+    
+    #direitos {
+        width: 40px;
+        text-decoration: underline;
+    }
+
+    #icone_creditos {
+        width: 30px;
     }
 
     .cards {
@@ -92,9 +97,8 @@
         transform: scale(0.95);
     }
 
-    #direitos {
-        width: 40px;
-        text-decoration: underline;
+    .paragrafos {
+        text-indent: 30px;
     }
 
     #perfil_cadastro {
@@ -115,19 +119,15 @@
         background-color: #8d7752;
     }
 
-    .cor_nivel {
+    .cor_niveis {
         color: #073c8b;
-    }
-
-    #fogo {
-        z-index: -1;
-    }
+    }    
 
     #login {
         width: 300px;
     }
 
-    .paragrafo {
-        text-indent: 30px;
+    .barras {
+        height: 20px;
     }
 </style>

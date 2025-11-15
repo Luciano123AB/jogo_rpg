@@ -151,6 +151,9 @@ class MainController extends Controller
     public function batalhar(): View {
         session()->forget("alerta_confirmar");
 
+        $id = session("id_oponente");
+        $oponente = Personagen::find($id);
+
         session([
             "alerta" => [
                 "titulo" => "Batalha",
@@ -159,15 +162,9 @@ class MainController extends Controller
             ]
         ]);
 
-        $oponente = session("alerta_confirmar.dados.oponente");
-        $hp_oponente = session("alerta_confirmar.dados.hp_oponente");
-        $skills_oponente = [session("alerta_confirmar.dados.skills_oponente.skill01"), session("alerta_confirmar.dados.skills_oponente.skill02"), session("alerta_confirmar.dados.skills_oponente.skill03")];
-
         return view("batalha")
             ->with("imagem", "coliseu")
             ->with("pagina", "Batalha")
-            ->with("oponente", $oponente)
-            ->with("hp_oponente", $hp_oponente)
-            ->with("skills_oponente", $skills_oponente);
+            ->with("oponente", $oponente);
     }
 }

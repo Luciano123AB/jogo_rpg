@@ -1,10 +1,6 @@
 <script>
-    document.addEventListener("click", function(e){
-        if(e.target && e.target.id === "ok"){
-            Swal.close();
-        }
-    });
 
+    const fundo = document.getElementById("fundo");
     const audio = document.getElementById("trilha_sonora");
 
     @if(session("musica") === "Desativado")
@@ -16,28 +12,6 @@
         });
     @endif
 
-    function limparCamposLogin() {
-        document.getElementById("usuario").value = "";
-        document.getElementById("senha").value = "";
-    }
-
-    function limparCamposCadastro() {
-        document.getElementById("novo_usuario").value = "";
-        document.getElementById("nova_senha").value = "";
-        document.getElementById("confirmar_nova_senha").value = "";
-
-        var classe = document.getElementById("classe");
-        var perfil_cadastro = document.getElementById("perfil_cadastro");
-
-        if (classe) {
-            classe.selectedIndex = 0;
-            perfil_cadastro.src = "{{ asset('assets/images/perfils/vazio.png') }}";
-            perfil_cadastro.classList.add("border-light");
-        }
-    }
-
-    const fundo = document.getElementById("fundo");
-
     document.addEventListener("mousemove", (e) => {
 
         const x = (e.clientX / window.innerWidth - 0.5) * 40;
@@ -47,25 +21,10 @@
     });
 
     document.addEventListener("click", function(e) {
-        if (e.target && (e.target.id === "mostrar" || e.target.closest("#mostrar"))) {
-
-            const senha = document.getElementById("senha");
-            const botao = document.getElementById("mostrar");
-            const olho = botao.querySelector("i");
-
-            if (senha.type === "password") {
-                senha.type = "text";
-                olho.classList.remove("bi-eye-slash-fill");
-                olho.classList.add("bi-eye-fill");
-            } else {
-                senha.type = "password";
-                olho.classList.remove("bi-eye-fill");
-                olho.classList.add("bi-eye-slash-fill");
-            }
+        if(e.target && e.target.id === "ok"){
+            Swal.close();
         }
-    });
 
-    document.addEventListener("click", function(e) {
         if (e.target && (e.target.id === "mostrar_novo" || e.target.closest("#mostrar_novo"))) {
 
             const senha = document.getElementById("nova_senha");
@@ -87,6 +46,23 @@
 
             const senha = document.getElementById("confirmar_nova_senha");
             const botao = document.getElementById("mostrar_confirmar_novo");
+            const olho = botao.querySelector("i");
+
+            if (senha.type === "password") {
+                senha.type = "text";
+                olho.classList.remove("bi-eye-slash-fill");
+                olho.classList.add("bi-eye-fill");
+            } else {
+                senha.type = "password";
+                olho.classList.remove("bi-eye-fill");
+                olho.classList.add("bi-eye-slash-fill");
+            }
+        }
+
+        if (e.target && (e.target.id === "mostrar" || e.target.closest("#mostrar"))) {
+
+            const senha = document.getElementById("senha");
+            const botao = document.getElementById("mostrar");
             const olho = botao.querySelector("i");
 
             if (senha.type === "password") {
@@ -134,4 +110,24 @@
             }
         }
     });
+
+    function limparCamposCadastro() {
+        document.getElementById("novo_usuario").value = "";
+        document.getElementById("nova_senha").value = "";
+        document.getElementById("confirmar_nova_senha").value = "";
+
+        var classe = document.getElementById("classe");
+        var perfil_cadastro = document.getElementById("perfil_cadastro");
+
+        if (classe) {
+            classe.selectedIndex = 0;
+            perfil_cadastro.src = "{{ asset('assets/images/perfils/vazio.png') }}";
+            perfil_cadastro.classList.add("border-light");
+        }
+    }
+
+    function limparCamposLogin() {
+        document.getElementById("usuario").value = "";
+        document.getElementById("senha").value = "";
+    }
 </script>

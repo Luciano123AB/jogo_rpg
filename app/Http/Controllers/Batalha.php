@@ -21,24 +21,18 @@ class Batalha extends Controller
         );
 
         $id = $request->oponente;
-        $oponente = Personagen::find($id);
 
         session([
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Batalha",
                 "texto" => "Tem certeza que está pronto para ir para a batalha?",
                 "cancelar" => "cancelarBatalha",
-                "sim" => "batalhar",
-                "dados" => [
-                    "oponente" => $oponente->classe,
-                    "hp_oponente" => $oponente->hp,
-                    "skills_oponente" => [
-                        "skill01" => $oponente->skill01->skill,
-                        "skill02" => $oponente->skill02->skill,
-                        "skill03" => $oponente->skill03->skill
-                    ]
-                ]
+                "sim" => "batalhar"
             ]
+        ]);
+
+        session([
+            "id_oponente" => $id
         ]);
 
         return redirect()->back()->withInput();

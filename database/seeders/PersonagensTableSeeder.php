@@ -22,7 +22,7 @@ class PersonagensTableSeeder extends Seeder
                 "alcance" => "Curta",
                 "vida" => "Alta",
                 "defesa" => "Alta",
-                "hp" => 1100,
+                "hp" => 1600,
                 "id_skill01" => 1,
                 "id_skill02" => 2,
                 "id_skill03" => 3
