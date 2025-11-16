@@ -47,7 +47,7 @@ class LogarSair extends Controller
     public function confirmarSair(): RedirectResponse {
         session([
             "alerta_confirmar" => [
-                "titulo" => "Confirmar Saída",
+                "titulo" => "Confirmar Saída!",
                 "texto" => "Tem certeza que deseja sair?",
                 "cancelar" => "cancelarSair",
                 "sim" => "sair"

@@ -11,7 +11,7 @@ class EditarDeletar extends Controller
     public function confirmarDeletar(): RedirectResponse {
         session([
             "alerta_confirmar" => [
-                "titulo" => "Confirmar Deleção",
+                "titulo" => "Confirmar Deleção!",
                 "texto" => "Tem certeza que deseja deletar sua conta? Esse operação é irreversível.",
                 "cancelar" => "cancelarDeletar",
                 "sim" => "deletar"
@@ -120,7 +120,7 @@ class EditarDeletar extends Controller
 
         session([
             "alerta_confirmar" => [
-                "titulo" => "Confirmar Atualização",
+                "titulo" => "Confirmar Atualização!",
                 "texto" => "Tem certeza que deseja salvar esses novos dados?",
                 "cancelar" => "cancelarAtualizar",
                 "sim" => "atualizar",

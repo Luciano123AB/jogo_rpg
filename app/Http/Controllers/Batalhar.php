@@ -25,7 +25,7 @@ class Batalhar extends Controller
 
         session([
             "alerta_confirmar" => [
-                "titulo" => "Confirmar Batalha",
+                "titulo" => "Confirmar Batalha!",
                 "texto" => "Tem certeza que está pronto para ir para a batalha?",
                 "cancelar" => "cancelarBatalha",
                 "sim" => "batalhar"
@@ -141,7 +141,7 @@ class Batalhar extends Controller
     public function confirmarRender(): RedirectResponse {
         session([
             "alerta_confirmar_render" => [
-                "titulo" => "Confirmar Rendição",
+                "titulo" => "Confirmar Rendição!",
                 "texto" => "Tem certeza que deseja desistir dessa batalha?",
                 "cancelar" => "cancelarRender",
                 "sim" => "renderSe"

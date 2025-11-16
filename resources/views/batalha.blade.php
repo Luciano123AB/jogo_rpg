@@ -48,7 +48,10 @@
                 </div>
             </div>
 
-            <h1 class="animate__animated animate__fadeInDown my-auto">🆚</h1>
+            <div class="d-grid text-center">
+                <h1 class="animate__animated animate__fadeInDown my-auto">🆚</h1>
+                <h2 id="alerta" class="animate__animated animate__pulse text-warning"></h2>
+            </div>
 
             <div class="text-center">
                 <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="
@@ -78,11 +81,11 @@
                         <label class="d-grid btn {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-secondary btn-outline-primary" : "cor_fontes_claro bg-dark btn-outline-danger" }}" for="btnradio6">🕹 <span>{{ $oponente->skill03->skill }}</span></label>
                     </div>
 
-                    @if ($batalha->vez == 1)
-                        <a href="{{ route("ataque") }}" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border" type="submit">
+                    <div hidden>
+                        <a href="{{ route("ataque") }}" id="ataque" class="cursor sombras botoes animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} d-flex border" type="submit">
                             <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} mx-auto">🤛🏼 ATACAR!</span>
                         </a>
-                    @endif
+                    </div>
                 </div>
             </div>
         </div>
@@ -100,6 +103,9 @@
             skill01.disabled = true;
             skill02.disabled = true;
             skill03.disabled = true;
+            setTimeout(() => {
+                document.getElementById("ataque").click();
+            }, 2000);
         @else
             skill01.disabled = false;
             skill02.disabled = false;
@@ -132,5 +138,11 @@
 
         hp_barra_player.style.width = calcularPorcentagem(hp_player, hp_maximo_player) + "%";
         hp_barra_oponente.style.width = calcularPorcentagem(hp_oponente, hp_maximo_oponente) + "%";
+
+        const alerta = document.getElementById("alerta");
+
+        if (calcularPorcentagem(hp_player, hp_maximo_player) <= 10 || calcularPorcentagem(hp_oponente, hp_maximo_oponente) <= 10) {
+            alerta.textContent = "Momento Decisívo!";
+        }
     </script>
 @endsection
