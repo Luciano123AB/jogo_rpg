@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string("usuario", 30)->nullable();
             $table->string("senha", 255)->nullable();
             $table->integer("nivel")->nullable();
+            $table->string("subir_nivel", 3)->nullable();
             $table->integer("quantidade_vitorias");
             $table->integer("quantidade_derrotas");
             $table->integer("id_personagem")->nullable();

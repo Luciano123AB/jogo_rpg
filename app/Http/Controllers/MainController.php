@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Batalha;
 use App\Models\Personagen;
 use App\Models\Player;
 use Illuminate\Contracts\View\View;
@@ -152,7 +153,29 @@ class MainController extends Controller
         session()->forget("alerta_confirmar");
 
         $id = session("id_oponente");
+        $nivel = session("player.nivel");
         $oponente = Personagen::find($id);
+        $vez = random_int(0, 1);
+        
+        $nova_batalha = new Batalha();
+        $nova_batalha->hp = session("player.personagem.hp") * $nivel;
+        $nova_batalha->hp_oponente = $oponente->hp * $nivel;
+        $nova_batalha->vez = $vez;
+
+        if (!session()->has("dados.batalha_comecou")) {
+            $nova_batalha->save();
+        }
+
+        session([
+            "dados" => [
+                "id_oponente" => $oponente->id,
+                "hp_maximo" => session("player.personagem.hp") * $nivel,
+                "hp_oponente_maximo" => $oponente->hp * $nivel,
+                "batalha_comecou" => true
+            ]
+        ]);
+
+        $batalha = Batalha::find(1);
 
         session([
             "alerta" => [
@@ -165,6 +188,7 @@ class MainController extends Controller
         return view("batalha")
             ->with("imagem", "coliseu")
             ->with("pagina", "Batalha")
+            ->with("batalha", $batalha)
             ->with("oponente", $oponente);
     }
 }

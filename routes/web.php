@@ -5,8 +5,10 @@ use App\Http\Controllers\Cadastrar;
 use App\Http\Controllers\EditarDeletar;
 use App\Http\Controllers\LogarSair;
 use App\Http\Controllers\MainController;
-use App\Http\Controllers\Batalha;
+use App\Http\Controllers\Batalhar;
 use App\Http\Middleware\VerificarLogado;
+use App\Http\Middleware\VerificarVencedor;
+use App\Models\Player;
 use App\Services\Boot;
 use Illuminate\Support\Facades\Route;
 
@@ -36,6 +38,23 @@ Route::prefix("/")->group(function () {
                     "pagina" => "home"
                 ],
             ]);
+
+            if (session()->has("player")) {
+
+                $id = session("player.id");
+                $player = Player::find($id);
+
+                if (session("player.nivel") < $player->nivel) {
+                    session(["player" => $player]);
+
+                    session([
+                        "alerta_nivel" => [
+                            "titulo" => "Nível: $player->nivel",
+                            "texto" => "Parabéns!, você acaba de subir de nível."
+                        ]
+                    ]);
+                }
+            }
             
             return view("index")
                 ->with("imagem", "estrada")
@@ -56,7 +75,7 @@ Route::prefix("/")->group(function () {
             Route::get("listagem", "listagem")->name("listagem");
     
             Route::get("preparacao", "preparacao")->name("preparacao");
-            Route::get("batalha", "batalhar")->name("batalhar");
+            Route::get("batalha", "batalhar")->name("batalhar")->middleware(VerificarVencedor::class);
         });
     });
 
@@ -84,10 +103,12 @@ Route::prefix("/")->group(function () {
         Route::get("deletar", "deletar")->name("deletar");        
     });
 
-    Route::controller(Batalha::class)->group(function() {
+    Route::controller(Batalhar::class)->group(function() {
         Route::middleware(VerificarLogado::class)->group(function() {
             Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
             Route::get("cancelar_batalha", "cancelar")->name("cancelarBatalha");
+            Route::post("atacar", "atacar")->name("atacar");
+            Route::get("ataque_oponente", "ataqueOponente")->name("ataque");
             Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
             Route::get("cancelar_render", "cancelarRender")->name("cancelarRender");
             Route::get("render_se", "renderSe")->name("renderSe");

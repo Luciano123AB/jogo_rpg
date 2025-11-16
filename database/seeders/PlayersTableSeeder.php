@@ -16,30 +16,55 @@ class PlayersTableSeeder extends Seeder
             [
                 "usuario" => "Luciano123AB",
                 "senha" => encrypt("24032004ABCD123"),
-                "nivel" => 1,
-                "quantidade_vitorias" => 0,
+                "nivel" => 4,
+                "subir_nivel" => "Não",
+                "quantidade_vitorias" => 8,
                 "quantidade_derrotas" => 0,
                 "id_personagem" => 2,
                 "created_at" => date("Y-m-d H:m:s")
             ],
 
             [
+                "usuario" => "Daniela123AB",
+                "senha" => encrypt("24032004ABCD123"),
+                "nivel" => 3,
+                "subir_nivel" => "Não",
+                "quantidade_vitorias" => 6,
+                "quantidade_derrotas" => 2,
+                "id_personagem" => 3,
+                "created_at" => date("Y-m-d H:m:s")
+            ],
+
+            [
                 "usuario" => "Eduardo123AB",
                 "senha" => encrypt("24032004ABCD123"),
-                "nivel" => 1,
-                "quantidade_vitorias" => 0,
-                "quantidade_derrotas" => 0,
+                "nivel" => 2,
+                "subir_nivel" => "Não",
+                "quantidade_vitorias" => 4,
+                "quantidade_derrotas" => 1,
                 "id_personagem" => 1,
                 "created_at" => date("Y-m-d H:m:s")
             ],
 
             [
-                "usuario" => "Daniela123AB",
+                "usuario" => "Maria123AB",
                 "senha" => encrypt("24032004ABCD123"),
                 "nivel" => 1,
+                "subir_nivel" => "Sim",
+                "quantidade_vitorias" => 1,
+                "quantidade_derrotas" => 2,
+                "id_personagem" => 3,
+                "created_at" => date("Y-m-d H:m:s")
+            ],
+
+            [
+                "usuario" => "Gustavo123AB",
+                "senha" => encrypt("24032004ABCD123"),
+                "nivel" => 1,
+                "subir_nivel" => "Sim",
                 "quantidade_vitorias" => 0,
                 "quantidade_derrotas" => 0,
-                "id_personagem" => 3,
+                "id_personagem" => 2,
                 "created_at" => date("Y-m-d H:m:s")
             ]
         ]);
