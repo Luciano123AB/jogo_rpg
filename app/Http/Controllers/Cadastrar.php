@@ -11,6 +11,7 @@ class Cadastrar extends Controller
     public function confirmarCadastrar(Request $request): RedirectResponse {
         
         $classe_escolhida = $request->input("classe");
+        $genero_escolhida = $request->input("genero");
         
         $request->validate(
             [
@@ -31,10 +32,33 @@ class Cadastrar extends Controller
         $usuario = $request->input("novo_usuario");
         $senha = $request->input("nova_senha");
         $confirmar_senha = $request->input("confirmar_nova_senha");
+        $genero = "";
         $classe = "";
 
         if ($senha != $confirmar_senha) {
             return redirect()->back()->withInput()->withErrors(["senhas" => "As senhas estão diferentes! Tente novamente."]);
+        }
+
+        switch ($genero_escolhida) {
+            case "Masculino":
+                $genero = "Masculino";
+            break;
+
+            case "Feminino":
+                $genero = "Feminino";
+            break;
+
+            case "Outro":
+                $genero = "Outro";
+            break;
+            
+            default:
+                $genero = "Selecione seu gênero...";
+            break;
+        }
+
+        if ($genero == "Selecione seu gênero...") {
+            return redirect()->back()->withInput()->withErrors(["genero" => "Selecione seu gênero também."]);
         }
 
         switch ($classe_escolhida) {
@@ -75,6 +99,7 @@ class Cadastrar extends Controller
                 "dados" => [
                     "usuario" => $usuario,
                     "senha" => $senha,
+                    "genero" => $genero,
                     "classe" => $classe
                 ]
             ]
@@ -93,7 +118,8 @@ class Cadastrar extends Controller
 
         $player = new Player();
         $player->usuario = session("alerta_confirmar.dados.usuario");
-        $player->senha = bcrypt(session("alerta_confirmar.dados.senha"));
+        $player->senha = encrypt(session("alerta_confirmar.dados.senha"));
+        $player->genero = session("alerta_confirmar.dados.genero");
         $player->nivel = 1;
         $player->subir_nivel = "Sim";
         $player->quantidade_vitorias = 0;

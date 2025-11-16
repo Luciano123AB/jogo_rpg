@@ -91,6 +91,28 @@
                                     </div>
                                 @enderror
                             </div>
+
+                            @if($pagina != "Atualização")
+                                <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Gênero:</label>
+                                <div class="d-flex mb-3">
+                                    <div>
+                                        <div class="input-group">
+                                            <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-sort-down"></i></span>
+                                            <select class="form-select cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="genero" aria-label="Generos">
+                                                <option selected>Selecione seu gênero...</option>
+                                                <option value="Masculino" {{ old("genero") == "Masculino" ? "selected" : "" }}>♂️ Masculino</option>
+                                                <option value="Feminino" {{ old("genero") == "Feminino" ? "selected" : "" }}>♀️ Feminino</option>
+                                                <option value="Outro" {{ old("genero") == "Outro" ? "selected" : "" }}>⚧ Outro</option>
+                                            </select>                                
+                                        </div>
+                                        @error("genero")
+                                            <div class="alert alert-danger mt-1 mb-0" role="alert">
+                                                <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+                                </div>
+                            @endif
     
                             <div class="d-flex gap-3 mb-3">
                                 <div>

@@ -16,6 +16,7 @@ class PlayersTableSeeder extends Seeder
             [
                 "usuario" => "Luciano123AB",
                 "senha" => encrypt("24032004ABCD123"),
+                "genero" => "Masculino",
                 "nivel" => 4,
                 "subir_nivel" => "Não",
                 "quantidade_vitorias" => 8,
@@ -27,6 +28,7 @@ class PlayersTableSeeder extends Seeder
             [
                 "usuario" => "Daniela123AB",
                 "senha" => encrypt("24032004ABCD123"),
+                "genero" => "Feminino",
                 "nivel" => 3,
                 "subir_nivel" => "Não",
                 "quantidade_vitorias" => 6,
@@ -38,6 +40,7 @@ class PlayersTableSeeder extends Seeder
             [
                 "usuario" => "Eduardo123AB",
                 "senha" => encrypt("24032004ABCD123"),
+                "genero" => "Masculino",
                 "nivel" => 2,
                 "subir_nivel" => "Não",
                 "quantidade_vitorias" => 4,
@@ -49,6 +52,7 @@ class PlayersTableSeeder extends Seeder
             [
                 "usuario" => "Maria123AB",
                 "senha" => encrypt("24032004ABCD123"),
+                "genero" => "Feminino",
                 "nivel" => 1,
                 "subir_nivel" => "Sim",
                 "quantidade_vitorias" => 1,
@@ -60,6 +64,7 @@ class PlayersTableSeeder extends Seeder
             [
                 "usuario" => "Gustavo123AB",
                 "senha" => encrypt("24032004ABCD123"),
+                "genero" => "Masculino",
                 "nivel" => 1,
                 "subir_nivel" => "Sim",
                 "quantidade_vitorias" => 0,
