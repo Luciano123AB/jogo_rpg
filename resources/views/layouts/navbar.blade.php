@@ -1,18 +1,7 @@
 <nav id="navbar" class="navbar navbar-expand-lg {{ session("tema") == "escuro" ? "bg-light border-primary" : "bg-black border-danger" }} border-5 rounded-bottom-5 mb-4">
     <div class="container-fluid">
-        @php
-
-            $rota = "home";
-
-            if ($pagina == "Batalha") {
-                
-                $rota = "batalhar";
-
-            }
-        @endphp
-
-        <a href="{{ route("$rota") }}" id="home" class="cursor navbar-brand">
-            <img src="{{ asset("assets/images/icone.png") }}" id="icone" class="cursor">
+        <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
+            <img src="{{ asset("assets/images/icone.png") }}" id="icone" class="cursor animate__animated animate__flipOutY animate__infinite">
             <span class="align-middle fs-3">🎮</span>
             <span class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
             <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeIn align-middle fs-3">- 
@@ -67,7 +56,7 @@
                             </div>
                         </div>
                     </button>
-                    <ul class="dropdown-menu {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
+                    <ul class="dropdown-menu animate__animated animate__fadeInDown {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
                         <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }}" href="{{ route("atualizacao") }}">Editar</a></li>
                         <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }}" href="{{ route("confirmarDeletar") }}">Excluir Conta</a></li>
                         <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }}" href="{{ route("confirmarSair") }}">Sair</a></li>

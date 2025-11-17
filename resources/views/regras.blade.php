@@ -4,7 +4,7 @@
     <div class="container">
         <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
             <div class="row row-cols-1 row-cols-md-2 g-4">
-                <div class="col animate__animated animate__fadeInLeft">
+                <div class="col animate__animated animate__fadeInTopLeft">
                     <div class="cards sombras card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }}">
                         <img src="{{ asset("assets/images/regras/" . (session("tema") == "escuro" ? "barras_vida.png" : "barras_vida_noite.png")) }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         <div class="card-body">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
 
-                <div class="col animate__animated animate__fadeInRight">
+                <div class="col animate__animated animate__fadeInTopRight">
                     <div class="cards sombras card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }}">
                         <img src="{{ asset("assets/images/regras/" . (session("tema") == "escuro" ? "skills.png" : "skills_noite.png")) }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         <div class="card-body">
@@ -24,7 +24,7 @@
                     </div>
                 </div>
 
-                <div class="col animate__animated animate__fadeInLeft">
+                <div class="col animate__animated animate__fadeInBottomLeft">
                     <div class="cards sombras card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }}">
                         <img src="{{ asset("assets/images/regras/" . (session("tema") == "escuro" ? "contador_dano.png" : "contador_dano_noite.png")) }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         <div class="card-body">
@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                <div class="col animate__animated animate__fadeInRight">
+                <div class="col animate__animated animate__fadeInBottomRight">
                     <div class="cards sombras card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }}">
                         <img src="{{ asset("assets/images/regras/" . (session("tema") == "escuro" ? "final.png" : "final_noite.png")) }}" class="card-img-top border-bottom {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }}">
                         <div class="card-body">

@@ -33,11 +33,6 @@
 
     #icone {
         width: 70px;
-        transition: transform 0.3s ease;
-    }
-
-    #icone:hover {
-        transform: scale(1.1);
     }
 
     .cor_fontes_claro {

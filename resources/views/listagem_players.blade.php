@@ -5,25 +5,29 @@
         <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
             <div class="d-grid gap-3 w-100">
                 <div class="d-flex gap-3">
-                    <div class="sombras card animate__animated animate__fadeInLeft {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} w-50 p-3">
-                        <div class="d-grid text-center">
-                            <div class="d-flex justify-content-center mb-2">
-                                <span class="fs-4 me-1">👑</span>
-                                <h4 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}">Player com Mais Vitórias</h4>
+                    <div class="cards w-50">
+                        <div class="sombras card animate__animated animate__fadeInLeft {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
+                            <div class="d-grid text-center">
+                                <div class="d-flex justify-content-center mb-2">
+                                    <span class="fs-4 me-1">👑</span>
+                                    <h4 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}">Player com Mais Vitórias</h4>
+                                </div>
+                                <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Usuário: {{ $player_lider_vitorias->usuario }}</label>
+                                <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Qtd/Vitórias: {{ $player_lider_vitorias->quantidade_vitorias }}</label>
                             </div>
-                            <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Usuário: {{ $player_lider_vitorias->usuario }}</label>
-                            <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Qtd/Vitórias: {{ $player_lider_vitorias->quantidade_vitorias }}</label>
                         </div>
                     </div>
 
-                    <div class="sombras d-flex card animate__animated animate__fadeInRight {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} w-50 p-3">
-                        <div class="d-grid text-center">
-                            <div class="d-flex justify-content-center mb-2">
-                                <span class="fs-4 me-1">👑</span>
-                                <h4 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}">Player com Maior Nível</h4>
+                    <div class="cards w-50">
+                        <div class="sombras d-flex card animate__animated animate__fadeInRight {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
+                            <div class="d-grid text-center">
+                                <div class="d-flex justify-content-center mb-2">
+                                    <span class="fs-4 me-1">👑</span>
+                                    <h4 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}">Player com Maior Nível</h4>
+                                </div>
+                                <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Usuário: {{ $player_lider_vitorias->usuario }}</label>
+                                <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Nível: {{ $player_lider_vitorias->nivel }}</label>
                             </div>
-                            <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Usuário: {{ $player_lider_vitorias->usuario }}</label>
-                            <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Nível: {{ $player_lider_vitorias->nivel }}</label>
                         </div>
                     </div>
                 </div>

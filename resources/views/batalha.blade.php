@@ -4,11 +4,13 @@
     <div class="container">
         <div class="d-flex">
             <div class="text-center">
-                <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" class="
-                    @if(session("dano_recebido"))
-                        animate__animated animate__shakeX
+                <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" class="animate__animated
+                    @if(session("dano_recebido_player"))
+                        animate__shakeX
+                    @elseif(session("dano_desferido_player"))
+                        animate__slideInRight
                     @else
-                        animate__animated animate__slideInLeft
+                        animate__slideInLeft
                     @endif
                 w-50">
                 <div class="d-grid gap-2 w-50 mx-auto">
@@ -16,8 +18,8 @@
                         <div id="hp" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%"><label class="fw-bold fs-6">❤️ {{ $batalha->hp }}</label></div>
                     </div>
                     
-                    @if (session("dano_recebido"))
-                        <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_recebido') }}</small>
+                    @if (session("dano_desferido_oponente"))
+                        <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_desferido_oponente') }}</small>
                     @endif
                     
                     <form action="{{ route("atacar") }}" method="POST" class="d-grid gap-2" novalidate>
@@ -50,15 +52,17 @@
 
             <div class="d-grid text-center">
                 <h1 class="animate__animated animate__fadeInDown my-auto">🆚</h1>
-                <h2 id="alerta" class="animate__animated animate__pulse text-warning"></h2>
+                <h2 id="alerta" class="animate__animated animate__pulse animate__flash animate__infinite text-warning"></h2>
             </div>
 
             <div class="text-center">
-                <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="
-                    @if(session("dano_desferido"))
-                        animate__animated animate__shakeX
+                <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="animate__animated
+                    @if(session("dano_recebido_oponente"))
+                        animate__shakeX
+                    @elseif(session("dano_desferido_oponente"))
+                        animate__slideInLeft
                     @else
-                        animate__animated animate__slideInRight
+                        animate__slideInRight
                     @endif
                 w-50">
                 <div class="d-grid gap-2 w-50 mx-auto">
@@ -66,8 +70,8 @@
                         <div id="hp_oponente" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 100%"><label class="fw-bold fs-6">❤️ {{ $batalha->hp_oponente }}</label></div>
                     </div>
 
-                    @if (session("dano_desferido"))
-                        <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_desferido') }}</small>
+                    @if (session("dano_desferido_player"))
+                        <small class="cor_fontes_claro fw-bold">🎯 -{{ session('dano_desferido_player') }}</small>
                     @endif
 
                     <div class="btn-group animate__animated animate__fadeIn" role="group" aria-label="SkillsOponente">
@@ -142,7 +146,7 @@
         const alerta = document.getElementById("alerta");
 
         if (calcularPorcentagem(hp_player, hp_maximo_player) <= 10 || calcularPorcentagem(hp_oponente, hp_maximo_oponente) <= 10) {
-            alerta.textContent = "Momento Decisívo!";
+            alerta.textContent = "Momento Decisivo!";
         }
     </script>
 @endsection

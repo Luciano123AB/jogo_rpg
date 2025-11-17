@@ -6,66 +6,66 @@
             <div class="d-grid gap-3 w-100">
                 <div class="sombras card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
                     <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Nome do jogo e introdução inicial:</h3>
+                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><i class="bi bi-arrow-right"></i>Nome do jogo e introdução inicial:</h3>
                         <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp"><img src="{{ asset("assets/images/icone.png") }}" id="icone_creditos"> Projeto: Jogo RPG</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><img src="{{ asset("assets/images/icone.png") }}" id="icone_creditos"> Projeto: Jogo RPG</li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Equipe principal do desenvolvimento:</h3>
+                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><i class="bi bi-arrow-right"></i>Equipe principal do desenvolvimento:</h3>
                         <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Direção: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Design: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Arte: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Som: Luciano Eduardo Stefanello da Silva</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Direção: Luciano Eduardo Stefanello da Silva</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Design: Luciano Eduardo Stefanello da Silva</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Arte: Luciano Eduardo Stefanello da Silva</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Som: Luciano Eduardo Stefanello da Silva</li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Equipe de produtores e líderes:</h3>
+                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><i class="bi bi-arrow-right"></i>Equipe de produtores e líderes:</h3>
                         <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Luciano Eduardo Stefanello da Silva</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Luciano Eduardo Stefanello da Silva</li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Equipe de apoio e colaboradores:</h3>
+                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><i class="bi bi-arrow-right"></i>Equipe de apoio e colaboradores:</h3>
                         <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Testadores: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Animadores: Luciano Eduardo Stefanello da Silva</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Designers adicionais: Nenhum</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Testadores: Luciano Eduardo Stefanello da Silva</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Animadores: Luciano Eduardo Stefanello da Silva</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Designers adicionais: Nenhum</li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Música e áudio:</h3>
+                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><i class="bi bi-arrow-right"></i>Música e áudio:</h3>
                         <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Compositores: Nenhum</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Dubladores: Nenhum</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Compositores: Nenhum</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Dubladores: Nenhum</li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Suporte técnico e colaboradores externos:</h3>
+                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><i class="bi bi-arrow-right"></i>Suporte técnico e colaboradores externos:</h3>
                         <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Luciano Eduardo Stefanello da Silva</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Luciano Eduardo Stefanello da Silva</li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Agradecimentos especiais:</h3>
+                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><i class="bi bi-arrow-right"></i>Agradecimentos especiais:</h3>
                         <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Pessoas: Nenhum</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Comunidades: Nenhum</li>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Parceiros: Nenhum</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Pessoas: Nenhum</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Comunidades: Nenhum</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Parceiros: Nenhum</li>
                         </ul>
                     </div>
 
                     <div>
-                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUp"><i class="bi bi-arrow-right"></i>Lista das empresas e estúdios envolvidos:</h3>
+                        <h3 class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} animate__animated animate__fadeInUpBig"><i class="bi bi-arrow-right"></i>Lista das empresas e estúdios envolvidos:</h3>
                         <ul>
-                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUp">Nenhum</li>
+                            <li class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeInUpBig">Nenhum</li>
                         </ul>
                     </div>
                 </div>

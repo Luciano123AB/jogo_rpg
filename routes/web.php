@@ -6,6 +6,7 @@ use App\Http\Controllers\EditarDeletar;
 use App\Http\Controllers\LogarSair;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Batalhar;
+use App\Http\Middleware\VerificarBatalha;
 use App\Http\Middleware\VerificarLogado;
 use App\Http\Middleware\VerificarVencedor;
 use App\Models\Player;
@@ -20,56 +21,58 @@ Route::prefix("/")->group(function () {
     });
 
     Route::controller(MainController::class)->group(function() {
-        Route::get("", function() {
-            $banco = Boot::testarConexao();
-        
-            if ($banco == false) {
-                Boot::criarPovoarBanco();
-            }
+        Route::middleware(VerificarBatalha::class)->group(function() {
+            Route::get("", function() {
+                $banco = Boot::testarConexao();
             
-            if (!is_dir(base_path("node_modules"))) {
-                Boot::dependencias();
-            }
-
-            session([
-                "alerta" => [
-                    "titulo" => "Seja Muito Bem Vindo!",
-                    "texto" => "Faça seu cadastro caso ainda não tenha feito e divirta-se.",
-                    "pagina" => "home"
-                ],
-            ]);
-
-            if (session()->has("player")) {
-
-                $id = session("player.id");
-                $player = Player::find($id);
-
-                if (session("player.nivel") < $player->nivel) {
-                    session(["player" => $player]);
-
-                    session([
-                        "alerta_nivel" => [
-                            "titulo" => "Nível: $player->nivel",
-                            "texto" => "Parabéns!, você acaba de subir de nível."
-                        ]
-                    ]);
+                if ($banco == false) {
+                    Boot::criarPovoarBanco();
                 }
-            }
+                
+                if (!is_dir(base_path("node_modules"))) {
+                    Boot::dependencias();
+                }
+
+                session([
+                    "alerta" => [
+                        "titulo" => "Seja Muito Bem Vindo!",
+                        "texto" => "Faça seu cadastro caso ainda não tenha feito e divirta-se.",
+                        "pagina" => "home"
+                    ],
+                ]);
+
+                if (session()->has("player")) {
+
+                    $id = session("player.id");
+                    $player = Player::find($id);
+
+                    if (session("player.nivel") < $player->nivel) {
+                        session(["player" => $player]);
+
+                        session([
+                            "alerta_nivel" => [
+                                "titulo" => "Nível: $player->nivel",
+                                "texto" => "Parabéns!, você acaba de subir de nível."
+                            ]
+                        ]);
+                    }
+                }
+                
+                return view("index")
+                    ->with("imagem", "estrada")
+                    ->with("pagina", "Home");
+            })->name("home");
+
+            Route::get("regras", "regras")->name("regras");
             
-            return view("index")
-                ->with("imagem", "estrada")
-                ->with("pagina", "Home");
-        })->name("home");
+            Route::get("sobre_classes", "sobreClasses")->name("sobre");
 
-        Route::get("regras", "regras")->name("regras");
-        
-        Route::get("sobre_classes", "sobreClasses")->name("sobre");
+            Route::get("creditos", "creditos")->name("creditos");
 
-        Route::get("creditos", "creditos")->name("creditos");
+            Route::get("cadastro", "cadastro")->name("cadastro");
 
-        Route::get("cadastro", "cadastro")->name("cadastro");
-
-        Route::get("atualizacao", "atualizacao")->name("atualizacao");
+            Route::get("atualizacao", "atualizacao")->name("atualizacao");
+        });
 
         Route::middleware(VerificarLogado::class)->group(function() {
             Route::get("listagem", "listagem")->name("listagem");

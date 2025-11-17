@@ -94,7 +94,9 @@ class Batalhar extends Controller
         $batalha->vez = 1;
         $batalha->save();
 
-        return redirect()->back()->with("dano_desferido", $dano);
+        return redirect()->back()
+            ->with("dano_desferido_player", $dano)
+            ->with("dano_recebido_oponente", true);
     }
 
     public function ataqueOponente(): RedirectResponse {
@@ -135,7 +137,9 @@ class Batalhar extends Controller
         $batalha->vez = 0;
         $batalha->save();
 
-        return redirect()->back()->with("dano_recebido", $dano);
+        return redirect()->back()
+            ->with("dano_desferido_oponente", $dano)
+            ->with("dano_recebido_player", true);
     }
 
     public function confirmarRender(): RedirectResponse {
