@@ -14,7 +14,7 @@ class Batalhar extends Controller
     public function confirmarBatalha(Request $request): RedirectResponse {
         $request->validate(
             [
-                "oponente" => "required|exists:personagens,id"
+                "oponente" => "required|exists:personagems,id"
             ],
 
             [
