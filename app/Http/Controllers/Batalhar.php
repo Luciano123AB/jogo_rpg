@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batalha;
-use App\Models\Personagen;
+use App\Models\Personagem;
 use App\Models\Player;
 use App\Services\Randoms;
 use Illuminate\Http\RedirectResponse;
@@ -55,7 +55,7 @@ class Batalhar extends Controller
         }
 
         $id = session("player.personagem.id");
-        $personagem = Personagen::find($id);       
+        $personagem = Personagem::find($id);       
         $nivel = session("player.nivel");
         
         $dano = Randoms::danoPlayerSorteado($personagem, $nivel, $skill_escolhida);
@@ -77,7 +77,7 @@ class Batalhar extends Controller
     public function ataqueOponente(): RedirectResponse {
 
         $id = session("dados.id_oponente");
-        $personagem = Personagen::find($id);
+        $personagem = Personagem::find($id);
         $nivel = session("player.nivel");
               
         $dano = Randoms::danoOponenteSorteado($personagem, $nivel);

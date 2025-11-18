@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Batalha;
-use App\Models\Personagen;
+use App\Models\Personagem;
 use App\Models\Player;
 use Illuminate\Contracts\View\View;
 
@@ -25,7 +25,7 @@ class MainController extends Controller
 
     public function sobreClasses(): View {
 
-        $personagens = Personagen::all();
+        $personagens = Personagem::all();
 
         session([
             "alerta" => [
@@ -57,7 +57,7 @@ class MainController extends Controller
 
     public function cadastro(): View {
 
-        $personagens = Personagen::all();
+        $personagens = Personagem::all();
 
         session([
             "alerta" => [
@@ -75,7 +75,7 @@ class MainController extends Controller
 
     public function atualizacao(): View {
 
-        $personagens = Personagen::all();
+        $personagens = Personagem::all();
         $id = session("player.id");
         $usuario = session("player.usuario");
         $senha = decrypt(session("player.senha"));
@@ -129,7 +129,7 @@ class MainController extends Controller
     public function preparacao(): View {
 
         $id = session("player.id");
-        $personagens = Personagen::all();
+        $personagens = Personagem::all();
         $classe_player = session("player.personagem.classe");
         $nivel = Player::find($id);
 
@@ -154,7 +154,7 @@ class MainController extends Controller
 
         $id = session("id_oponente");
         $nivel = session("player.nivel");
-        $oponente = Personagen::find($id);
+        $oponente = Personagem::find($id);
         $vez = random_int(0, 1);
         
         $nova_batalha = new Batalha();

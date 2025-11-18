@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('personagens', function (Blueprint $table) {
+        Schema::create('personagems', function (Blueprint $table) {
             $table->id()->autoIncrement()->comment("1");
             $table->string("classe", 9)->nullable()->comment("Guerreiro|Mago|Assassino");
             $table->string("imagem", 13)->nullable()->comment("guerreiro.png|mago.png|assassino.png");
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('personagens');
+        Schema::dropIfExists('personagems');
     }
 };

@@ -5,14 +5,14 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
-class PersonagensTableSeeder extends Seeder
+class PersonagemsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-        DB::table("personagens")->insert([
+        DB::table("personagems")->insert([
             [
                 "classe" => "Guerreiro",
                 "imagem" => "guerreiro.png",

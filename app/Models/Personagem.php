@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Personagen extends Model
+class Personagem extends Model
 {
     protected $fillable = [
         "classe",
@@ -22,7 +22,7 @@ class Personagen extends Model
     }
 
     public function player() {
-        return $this->belongsTo(Personagen::class);
+        return $this->belongsTo(Personagem::class);
     }
 
     public function skill01() {

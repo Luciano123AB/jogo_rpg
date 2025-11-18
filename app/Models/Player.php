@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Personagen;
+use App\Models\Personagem;
 use Illuminate\Database\Eloquent\Model;
 
 class Player extends Model
@@ -18,10 +18,10 @@ class Player extends Model
     ];
     
     public function personagens() {
-        return $this->hasMany(Personagen::class);
+        return $this->hasMany(Personagem::class);
     }
 
     public function personagem() {
-        return $this->belongsTo(Personagen::class, "id_personagem");
+        return $this->belongsTo(Personagem::class, "id_personagem");
     }
 }
