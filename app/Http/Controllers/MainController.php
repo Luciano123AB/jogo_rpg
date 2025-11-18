@@ -106,9 +106,9 @@ class MainController extends Controller
 
     public function listagem(): View {
 
-        $players = Player::all();
-        $player_lider_vitorias = Player::orderBy('quantidade_vitorias', 'desc')->first();
-        $player_lider_nivel = Player::orderBy('nivel', 'desc')->first();
+        $players = Player::orderBy("usuario", "asc")->get();
+        $player_lider_vitorias = Player::orderBy("quantidade_vitorias", "desc")->first();
+        $player_lider_nivel = Player::orderBy("nivel", "desc")->first();
 
         session([
             "alerta" => [
@@ -152,30 +152,39 @@ class MainController extends Controller
     public function batalhar(): View {
         session()->forget("alerta_confirmar");
 
+        $batalha = null;
         $id = session("id_oponente");
         $nivel = session("player.nivel");
         $oponente = Personagem::find($id);
         $vez = random_int(0, 1);
         
-        $nova_batalha = new Batalha();
-        $nova_batalha->hp = session("player.personagem.hp") * $nivel;
-        $nova_batalha->hp_oponente = $oponente->hp * $nivel;
-        $nova_batalha->vez = $vez;
-
         if (!session()->has("dados.batalha_comecou")) {
+            $nova_batalha = new Batalha();
+            $nova_batalha->hp = session("player.personagem.hp") * $nivel;
+            $nova_batalha->hp_oponente = $oponente->hp * $nivel;
+            $nova_batalha->vez = $vez;
+            $nova_batalha->ganhou = null;
+            $nova_batalha->created_at = date("Y-m-d H:i:s");
+            $nova_batalha->updated_at = null;
             $nova_batalha->save();
+
+            $batalha = $nova_batalha;
+
+            session([
+                "dados" => [
+                    "id_batalha" => $nova_batalha->id,
+                    "id_oponente" => $oponente->id,
+                    "hp_maximo" => session("player.personagem.hp") * $nivel,
+                    "hp_oponente_maximo" => $oponente->hp * $nivel,
+                    "batalha_comecou" => true
+                ]
+            ]);
+        } else {
+
+            $id_batalha = session("dados.id_batalha");
+
+            $batalha = Batalha::find($id_batalha);
         }
-
-        session([
-            "dados" => [
-                "id_oponente" => $oponente->id,
-                "hp_maximo" => session("player.personagem.hp") * $nivel,
-                "hp_oponente_maximo" => $oponente->hp * $nivel,
-                "batalha_comecou" => true
-            ]
-        ]);
-
-        $batalha = Batalha::find(1);
 
         session([
             "alerta" => [

@@ -33,6 +33,7 @@ class LogarSair extends Controller
         }
 
         session([
+            "xp" => $player->xp,
             "player" => $player,
 
             "alerta_sucesso" => [

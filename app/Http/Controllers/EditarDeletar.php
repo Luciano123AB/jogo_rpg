@@ -98,7 +98,7 @@ class EditarDeletar extends Controller
         $player_existente = Player::where("usuario", $usuario)
                                   ->first();
 
-        if ($player_existente) {
+        if ($player_existente && $player_existente->usuario != session("player.usuario")) {
             return redirect()->back()->withInput()->withErrors(["playerExiste" => "Esse player já está cadastrado! Tente novamente."]);
         }
 
@@ -136,7 +136,7 @@ class EditarDeletar extends Controller
         $novo_player->usuario = $usuario;
         $novo_player->senha = encrypt($senha);
         $novo_player->id_personagem = $classe;
-        $novo_player->updated_at = date("Y-m-d H:m:s");
+        $novo_player->updated_at = date("Y-m-d H:i:s");
         $novo_player->save();
 
         if (!$novo_player) {
@@ -152,6 +152,8 @@ class EditarDeletar extends Controller
             return redirect()->back();
         } else {
             session()->forget(["alerta_confirmar"]);
+
+            session(["player" => $novo_player]);
 
             session([
                 "alerta_sucesso" => [

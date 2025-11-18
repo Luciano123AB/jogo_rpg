@@ -19,7 +19,8 @@ class VerificarVencedor
     {
         if (session()->has("dados.batalha_comecou")) {
 
-            $batalha = Batalha::find(1);
+            $id_batalha = session("dados.id_batalha");
+            $batalha = Batalha::find($id_batalha);
             
             if ($batalha->hp <= 0) {
                 session()->forget(["alerta_confirmar_render", "dados", "skill01", "skill02", "skill03"]);
@@ -29,8 +30,10 @@ class VerificarVencedor
                 $player = Player::find($id);
                 $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
                 $player->save();
-    
-                Batalha::truncate();
+
+                $batalha->ganhou = "Oponente";
+                $batalha->updated_at = date("Y-m-d H:i:s");
+                $batalha->save();
                 
                 session([
                     "alerta_erro" => [
@@ -47,21 +50,24 @@ class VerificarVencedor
     
                 $id = session("player.id");
                 $rota = "preparacao";
+                $xp = 33.5;
                 
                 $player = Player::find($id);
-                if ($player->subir_nivel == "Sim") {
+                $player->xp = $player->xp + $xp;
+                if ($player->xp >= 100) {
                     $player->nivel++;
-                    $player->subir_nivel = "Não";
+                    $player->xp = 0;
                     $rota = "home";
-                } else {
-                    $player->subir_nivel = "Sim";
                 }
                 $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
                 $player->save();
-    
-                Batalha::truncate();
+
+                $batalha->ganhou = "Player";
+                $batalha->updated_at = date("Y-m-d H:i:s");
+                $batalha->save();
                 
                 session([
+                    "xp" => $player->xp,
                     "alerta_vitoria" => [
                         "titulo" => "Vitória!",
                         "texto" => "Parabéns!, continue assim e você se destacará na classificação.",

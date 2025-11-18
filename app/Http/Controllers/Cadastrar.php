@@ -88,7 +88,7 @@ class Cadastrar extends Controller
         $player->senha = encrypt(session("alerta_confirmar.dados.senha"));
         $player->genero = session("alerta_confirmar.dados.genero");
         $player->nivel = 1;
-        $player->subir_nivel = "Sim";
+        $player->xp = 0;
         $player->quantidade_vitorias = 0;
         $player->quantidade_derrotas = 0;
         $player->id_personagem = session("alerta_confirmar.dados.classe");

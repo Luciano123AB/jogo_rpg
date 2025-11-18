@@ -54,6 +54,7 @@ class Batalhar extends Controller
             return redirect()->back()->withErrors(["skill" => "Escolha sua skill primeiro."]);
         }
 
+        $id_batalha = session("dados.id_batalha");
         $id = session("player.personagem.id");
         $personagem = Personagem::find($id);       
         $nivel = session("player.nivel");
@@ -64,7 +65,7 @@ class Batalhar extends Controller
             session()->forget(["skill01", "skill02", "skill03"]);
         }
 
-        $batalha = Batalha::find(1);
+        $batalha = Batalha::find($id_batalha);
         $batalha->hp_oponente = $batalha->hp_oponente - $dano;
         $batalha->vez = 1;
         $batalha->save();
@@ -76,13 +77,14 @@ class Batalhar extends Controller
 
     public function ataqueOponente(): RedirectResponse {
 
+        $id_batalha = session("dados.id_batalha");
         $id = session("dados.id_oponente");
         $personagem = Personagem::find($id);
         $nivel = session("player.nivel");
               
         $dano = Randoms::danoOponenteSorteado($personagem, $nivel);
         
-        $batalha = Batalha::find(1);
+        $batalha = Batalha::find($id_batalha);
         $batalha->hp = $batalha->hp - $dano;
         $batalha->vez = 0;
         $batalha->save();
@@ -112,6 +114,14 @@ class Batalhar extends Controller
     }
 
     public function renderSe(): RedirectResponse {
+
+        $id_batalha = session("dados.id_batalha");
+
+        $batalha = Batalha::find($id_batalha);
+        $batalha->ganhou = "Oponente";
+        $batalha->updated_at = date("Y-m-d H:i:s");
+        $batalha->save();
+
         session()->forget(["alerta_confirmar_render", "dados", "skill01", "skill02", "skill03"]);
 
         $id = session("player.id");
@@ -119,8 +129,6 @@ class Batalhar extends Controller
         $player = Player::find($id);
         $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
         $player->save();
-
-        Batalha::truncate();
         
         session([
             "alerta_erro" => [

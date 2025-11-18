@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer("hp")->nullable()->comment("2200");
             $table->integer("hp_oponente")->nullable()->comment("3200");
             $table->integer("vez")->nullable()->comment("0|1");
+            $table->string("ganhou", 8)->nullable()->comment("Player|Oponente");
             $table->timestamps();
             $table->softDeletes();
         });
