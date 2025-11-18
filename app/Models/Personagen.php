@@ -6,6 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Personagen extends Model
 {
+    protected $fillable = [
+        "classe",
+        "imagem",
+        "descricao",
+        "tipo_dano",
+        "alcance",
+        "vida",
+        "defesa",
+        "hp"
+    ];
+
     public function skills() {
         return $this->hasMany(Skill::class);
     }

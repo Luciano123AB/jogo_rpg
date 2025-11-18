@@ -12,11 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('batalhas', function (Blueprint $table) {
-            $table->id()->autoIncrement();
-            $table->integer("hp")->nullable();
-            $table->integer("hp_oponente")->nullable();
-            $table->integer("vez")->nullable();
-            $table->string("ganhou")->nullable();
+            $table->id()->autoIncrement()->comment("1");
+            $table->integer("hp")->nullable()->comment("2200");
+            $table->integer("hp_oponente")->nullable()->comment("3200");
+            $table->integer("vez")->nullable()->comment("0|1");
             $table->timestamps();
             $table->softDeletes();
         });

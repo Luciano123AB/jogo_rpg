@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
+use App\Services\GenerosClasses;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -82,30 +83,13 @@ class EditarDeletar extends Controller
 
         $usuario = $request->input("novo_usuario");
         $senha = $request->input("nova_senha");
-        $confirmar_senha = $request->input("confirmar_nova_senha");
-        $classe = "";
+        $confirmar_senha = $request->input("confirmar_nova_senha");        
 
         if ($senha != $confirmar_senha) {
             return redirect()->back()->withInput()->withErrors(["senhas" => "As senhas estão diferentes! Tente novamente."]);
         }
 
-        switch ($classe_escolhida) {
-            case "Guerreiro":
-                $classe = 1;
-            break;
-
-            case "Mago":
-                $classe = 2;
-            break;
-
-            case "Assassino":
-                $classe = 3;
-            break;
-            
-            default:
-                $classe = "Selecione sua classe...";
-            break;
-        }
+        $classe = GenerosClasses::escolhaClasse($classe_escolhida);
 
         if ($classe == "Selecione sua classe...") {
             return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Batalha;
 use App\Models\Personagen;
 use App\Models\Player;
+use App\Services\Randoms;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -54,42 +55,16 @@ class Batalhar extends Controller
         }
 
         $id = session("player.personagem.id");
+        $personagem = Personagen::find($id);       
         $nivel = session("player.nivel");
-        $personagem = Personagen::find($id);
-        $skill01 = $personagem->skill01->skill;
-        $skill02 = $personagem->skill02->skill;
-        $skill03 = $personagem->skill03->skill;
-        $danos_skill01 = [$personagem->skill01->dano01, $personagem->skill01->dano02, $personagem->skill01->dano03];
-        $danos_skill02 = [$personagem->skill02->dano01, $personagem->skill02->dano02, $personagem->skill02->dano03];
-        $danos_skill03 = [$personagem->skill03->dano01, $personagem->skill03->dano02, $personagem->skill03->dano03];
-        $dano01_sorteado = $danos_skill01[array_rand($danos_skill01)];
-        $dano02_sorteado = $danos_skill02[array_rand($danos_skill02)];
-        $dano03_sorteado = $danos_skill03[array_rand($danos_skill03)];
         
-        $batalha = Batalha::find(1);
-        $dano = "";
-
-        switch ($skill_escolhida) {
-            case "$skill01":
-                $dano = $dano01_sorteado * $nivel;
-                session(["skill01" => true]);
-            break;
-
-            case "$skill02":
-                $dano = $dano02_sorteado * $nivel;
-                session(["skill02" => true]);
-            break;
-
-            case "$skill03":
-                $dano = $dano03_sorteado * $nivel;
-                session(["skill03" => true]);
-            break;
-        }
+        $dano = Randoms::danoPlayerSorteado($personagem, $nivel, $skill_escolhida);
 
         if (session()->has(["skill01", "skill02", "skill03"])) {
             session()->forget(["skill01", "skill02", "skill03"]);
         }
 
+        $batalha = Batalha::find(1);
         $batalha->hp_oponente = $batalha->hp_oponente - $dano;
         $batalha->vez = 1;
         $batalha->save();
@@ -102,37 +77,12 @@ class Batalhar extends Controller
     public function ataqueOponente(): RedirectResponse {
 
         $id = session("dados.id_oponente");
-        $nivel = session("player.nivel");
         $personagem = Personagen::find($id);
-        $skill01 = $personagem->skill01->skill;
-        $skill02 = $personagem->skill02->skill;
-        $skill03 = $personagem->skill03->skill;
-        $skills = [$skill01, $skill02, $skill03];
-        $danos_skill01 = [$personagem->skill01->dano01, $personagem->skill01->dano02, $personagem->skill01->dano03];
-        $danos_skill02 = [$personagem->skill02->dano01, $personagem->skill02->dano02, $personagem->skill02->dano03];
-        $danos_skill03 = [$personagem->skill03->dano01, $personagem->skill03->dano02, $personagem->skill03->dano03];
-        $skill_sorteado = $skills[array_rand($skills)];
-        $dano01_sorteado = $danos_skill01[array_rand($danos_skill01)];
-        $dano02_sorteado = $danos_skill02[array_rand($danos_skill02)];
-        $dano03_sorteado = $danos_skill03[array_rand($danos_skill03)];
-
+        $nivel = session("player.nivel");
+              
+        $dano = Randoms::danoOponenteSorteado($personagem, $nivel);
+        
         $batalha = Batalha::find(1);
-        $dano = "";
-
-        switch ($skill_sorteado) {
-            case "$skill01":
-                $dano = $dano01_sorteado * $nivel;
-            break;
-
-            case "$skill02":
-                $dano = $dano02_sorteado * $nivel;
-            break;
-
-            case "$skill03":
-                $dano = $dano03_sorteado * $nivel;
-            break;
-        }
-
         $batalha->hp = $batalha->hp - $dano;
         $batalha->vez = 0;
         $batalha->save();

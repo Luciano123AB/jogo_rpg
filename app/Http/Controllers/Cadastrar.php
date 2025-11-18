@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Player;
+use App\Services\GenerosClasses;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -10,8 +11,8 @@ class Cadastrar extends Controller
 {
     public function confirmarCadastrar(Request $request): RedirectResponse {
         
-        $classe_escolhida = $request->input("classe");
         $genero_escolhida = $request->input("genero");
+        $classe_escolhida = $request->input("classe");
         
         $request->validate(
             [
@@ -32,52 +33,18 @@ class Cadastrar extends Controller
         $usuario = $request->input("novo_usuario");
         $senha = $request->input("nova_senha");
         $confirmar_senha = $request->input("confirmar_nova_senha");
-        $genero = "";
-        $classe = "";
 
         if ($senha != $confirmar_senha) {
             return redirect()->back()->withInput()->withErrors(["senhas" => "As senhas estão diferentes! Tente novamente."]);
         }
 
-        switch ($genero_escolhida) {
-            case "Masculino":
-                $genero = "Masculino";
-            break;
-
-            case "Feminino":
-                $genero = "Feminino";
-            break;
-
-            case "Outro":
-                $genero = "Outro";
-            break;
-            
-            default:
-                $genero = "Selecione seu gênero...";
-            break;
-        }
+        $genero = GenerosClasses::escolhaGenero($genero_escolhida);
 
         if ($genero == "Selecione seu gênero...") {
             return redirect()->back()->withInput()->withErrors(["genero" => "Selecione seu gênero também."]);
         }
 
-        switch ($classe_escolhida) {
-            case "Guerreiro":
-                $classe = 1;
-            break;
-
-            case "Mago":
-                $classe = 2;
-            break;
-
-            case "Assassino":
-                $classe = 3;
-            break;
-            
-            default:
-                $classe = "Selecione sua classe...";
-            break;
-        }
+        $classe = GenerosClasses::escolhaClasse($classe_escolhida);
 
         if ($classe == "Selecione sua classe...") {
             return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);
