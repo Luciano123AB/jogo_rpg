@@ -4,7 +4,7 @@
     <div class="container w-75">
         <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
             <div class="d-grid gap-3">
-                <div class="sombras card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-black border-danger" }} p-3">
+                <div class="sombras animate__animated animate__zoomInLeft card {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-black border-danger" }} p-3">
                     @php
 
                         $rota = "confirmarCadastrar";
@@ -145,7 +145,18 @@
                                 <div>
                                     <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="bi bi-person-circle"></i> {{ $pagina == "Cadastro" ? "Perfil" : "Novo Perfil" }}:</label>
                                     <div>
-                                        <img src="{{ asset('assets/images/perfils/' . $classe . '_perfil.png') }}" id="perfil_cadastro" class="border border-3 border-light rounded-circle">
+                                        <img src="{{ asset('assets/images/perfils/' . $classe . '_perfil.png') }}" id="perfil_cadastro" class="
+                                            @if($pagina == "Atualização")
+                                                @if($classe == "Guerreiro")
+                                                    bg-danger border-danger
+                                                @elseif($classe == "Mago")
+                                                    bg-primary border-primary
+                                                @elseif($classe == "Assassino")
+                                                    bg-dark border-dark
+                                                @endif
+                                            @endif
+                                            border border-3 rounded-circle
+                                        ">
                                     </div>
                                 </div>
                             </div>
@@ -160,17 +171,17 @@
                         </div>
 
                         <div class="card-footer border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} d-flex justify-content-center gap-3 text-center py-3">
-                            <button type="submit" class="cursor sombras botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}">
+                            <button type="submit" class="cursor sombras botoes btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}">
                                 <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
                                     @if ($pagina == "Cadastro")
                                         <i class="cursor bi bi-person-plus-fill"></i>
                                     @else
                                         <i class="cursor bi bi-save-fill"></i>
-                                    @endif                                    
+                                    @endif
                                     {{ $pagina == "Cadastro" ? "Cadastrar" : "Atualizar" }}
                                 </span>
                             </button>
-                            <button type="button" class="cursor sombras botoes animate__animated animate__fadeIn btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}" onclick="limparCamposCadastro()"><span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Limpar</span></button>
+                            <button type="button" class="cursor sombras botoes btn {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }}" onclick="limparCamposCadastro()"><span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="cursor bi bi-x-circle-fill"></i> Limpar</span></button>
                         </div>
                     </form>
                 </div>
