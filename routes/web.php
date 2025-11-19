@@ -109,6 +109,7 @@ Route::prefix("/")->group(function () {
     Route::controller(Batalhar::class)->group(function() {
         Route::middleware(VerificarLogado::class)->group(function() {
             Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
+            Route::get("confirmar_desafio/{oponente}/{nome_oponente}/{nivel}", "confirmarDesafio")->name("confirmarDesafio");
             Route::get("cancelar_batalha", "cancelar")->name("cancelarBatalha");
             Route::post("atacar", "atacar")->name("atacar");
             Route::get("ataque_oponente", "ataqueOponente")->name("ataque");

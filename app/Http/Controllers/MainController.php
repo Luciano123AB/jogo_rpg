@@ -154,13 +154,25 @@ class MainController extends Controller
 
         $batalha = null;
         $id = session("id_oponente");
-        $nivel = session("player.nivel");
+        $nome_oponente = session("nome_oponente");
+        $nivel = null;
         $oponente = Personagem::find($id);
         $vez = random_int(0, 1);
+
+        if (session()->has("nivel_oponente")) {
+
+            $nivel = session("nivel_oponente");
+            
+        } else {
+
+            $nivel = session("player.nivel");
+
+        }
         
         if (!session()->has("dados.batalha_comecou")) {
-            $nova_batalha = new Batalha();
-            $nova_batalha->hp = session("player.personagem.hp") * $nivel;
+            
+            $nova_batalha = new Batalha();            
+            $nova_batalha->hp = session("player.personagem.hp") * session("player.nivel");
             $nova_batalha->hp_oponente = $oponente->hp * $nivel;
             $nova_batalha->vez = $vez;
             $nova_batalha->ganhou = null;
@@ -168,23 +180,23 @@ class MainController extends Controller
             $nova_batalha->updated_at = null;
             $nova_batalha->save();
 
-            $batalha = $nova_batalha;
+            $batalha = $nova_batalha;            
 
             session([
                 "dados" => [
                     "id_batalha" => $nova_batalha->id,
                     "id_oponente" => $oponente->id,
-                    "hp_maximo" => session("player.personagem.hp") * $nivel,
+                    "hp_maximo" => session("player.personagem.hp") * session("player.nivel"),
                     "hp_oponente_maximo" => $oponente->hp * $nivel,
                     "batalha_comecou" => true
                 ]
-            ]);
+            ]);            
         } else {
 
             $id_batalha = session("dados.id_batalha");
-
             $batalha = Batalha::find($id_batalha);
-        }
+            
+        }        
 
         session([
             "alerta" => [
@@ -198,6 +210,7 @@ class MainController extends Controller
             ->with("imagem", "coliseu")
             ->with("pagina", "Batalha")
             ->with("batalha", $batalha)
-            ->with("oponente", $oponente);
+            ->with("oponente", $oponente)
+            ->with("nome", $nome_oponente);
     }
 }

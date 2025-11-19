@@ -125,4 +125,8 @@
     .barras {
         height: 20px;
     }
+
+    #desafiar {
+        height: 63px;
+    }
 </style>

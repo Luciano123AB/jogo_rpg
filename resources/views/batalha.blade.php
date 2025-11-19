@@ -4,6 +4,7 @@
     <div class="container">
         <div class="d-flex">
             <div class="text-center">
+                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">Você</h4>
                 <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" class="animate__animated
                     @if(session("dano_recebido_player"))
                         animate__shakeX
@@ -56,6 +57,7 @@
             </div>
 
             <div class="text-center">
+                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">Oponente: {{ $nome }}</h4>
                 <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="animate__animated
                     @if(session("dano_recebido_oponente"))
                         animate__shakeX

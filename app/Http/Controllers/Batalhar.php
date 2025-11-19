@@ -34,14 +34,34 @@ class Batalhar extends Controller
         ]);
 
         session([
-            "id_oponente" => $id
+            "id_oponente" => $id,
+            "nome_oponente" => "Computador"
         ]);
 
         return redirect()->back()->withInput();
     }
 
+    public function confirmarDesafio($oponente, $nome_oponente, $nivel): RedirectResponse {
+        session([
+            "alerta_confirmar" => [
+                "titulo" => "Confirmar Desafio!",
+                "texto" => "Tem certeza que deseja desafiar este player?",
+                "cancelar" => "cancelarBatalha",
+                "sim" => "batalhar"
+            ]
+        ]);
+
+        session([
+            "id_oponente" => $oponente,
+            "nome_oponente" => $nome_oponente,
+            "nivel_oponente" => $nivel
+        ]);
+
+        return redirect()->back();
+    }
+
     public function cancelar(): RedirectResponse {
-        session()->forget("alerta_confirmar");
+        session()->forget(["alerta_confirmar", "id_oponente", "nome_oponente", "nivel_oponente"]);
 
         return redirect()->back();
     }
@@ -122,7 +142,7 @@ class Batalhar extends Controller
         $batalha->updated_at = date("Y-m-d H:i:s");
         $batalha->save();
 
-        session()->forget(["alerta_confirmar_render", "dados", "skill01", "skill02", "skill03"]);
+        session()->forget(["alerta_confirmar_render", "id_oponente", "nome_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
 
         $id = session("player.id");
         
@@ -137,6 +157,6 @@ class Batalhar extends Controller
             ]
         ]);
 
-        return redirect()->route("preparacao");
+        return redirect()->route("listagem");
     }
 }
