@@ -11,7 +11,7 @@
                     @elseif(session("dano_desferido_player"))
                         animate__slideInRight
                     @else
-                        animate__slideInLeft
+                        animate__fadeInLeftBig
                     @endif
                 w-50">
                 <div class="d-grid gap-2 w-50 mx-auto">
@@ -64,7 +64,7 @@
                     @elseif(session("dano_desferido_oponente"))
                         animate__slideInLeft
                     @else
-                        animate__slideInRight
+                        animate__fadeInRightBig
                     @endif
                 w-50">
                 <div class="d-grid gap-2 w-50 mx-auto">

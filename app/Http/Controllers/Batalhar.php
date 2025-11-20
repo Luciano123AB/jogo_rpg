@@ -41,7 +41,7 @@ class Batalhar extends Controller
         return redirect()->back()->withInput();
     }
 
-    public function confirmarDesafio($oponente, $nome_oponente, $nivel): RedirectResponse {
+    public function confirmarDesafio($player, $oponente, $nome_oponente, $nivel): RedirectResponse {
         session([
             "alerta_confirmar" => [
                 "titulo" => "Confirmar Desafio!",
@@ -52,6 +52,7 @@ class Batalhar extends Controller
         ]);
 
         session([
+            "id_player" => $player,
             "id_oponente" => $oponente,
             "nome_oponente" => $nome_oponente,
             "nivel_oponente" => $nivel
@@ -100,7 +101,17 @@ class Batalhar extends Controller
         $id_batalha = session("dados.id_batalha");
         $id = session("dados.id_oponente");
         $personagem = Personagem::find($id);
-        $nivel = session("player.nivel");
+        $nivel = null;
+
+        if (session()->has("nivel_oponente")) {
+
+            $nivel = session("nivel_oponente");
+            
+        } else {
+
+            $nivel = session("player.nivel");
+
+        }
               
         $dano = Randoms::danoOponenteSorteado($personagem, $nivel);
         
@@ -142,13 +153,22 @@ class Batalhar extends Controller
         $batalha->updated_at = date("Y-m-d H:i:s");
         $batalha->save();
 
-        session()->forget(["alerta_confirmar_render", "id_oponente", "nome_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
+        session()->forget(["alerta_confirmar_render", "id_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
 
         $id = session("player.id");
         
         $player = Player::find($id);
         $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
         $player->save();
+
+        if (session()->has("id_player")) {
+
+            $id = session("id_player");
+
+            $player = Player::find($id);
+            $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
+            $player->save();
+        }
         
         session([
             "alerta_erro" => [
@@ -157,6 +177,14 @@ class Batalhar extends Controller
             ]
         ]);
 
-        return redirect()->route("listagem");
+        if (session("nome_oponente") == "Computador") {
+            session()->forget(["nome_oponente"]);
+
+            return redirect()->route("preparacao");
+        } else {
+            session()->forget(["nome_oponente"]);
+
+            return redirect()->route("listagem");
+        }
     }
 }

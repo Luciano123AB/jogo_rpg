@@ -23,13 +23,22 @@ class VerificarVencedor
             $batalha = Batalha::find($id_batalha);
             
             if ($batalha->hp <= 0) {
-                session()->forget(["alerta_confirmar_render", "id_oponente", "nome_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
+                session()->forget(["alerta_confirmar_render", "id_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
     
-                $id = session("player.id");
+                $id = session("player.id");                
                 
                 $player = Player::find($id);
                 $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
                 $player->save();
+
+                if (session()->has("id_player")) {
+
+                    $id = session("id_player");
+
+                    $player = Player::find($id);
+                    $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
+                    $player->save();
+                }
 
                 $batalha->ganhou = "Oponente";
                 $batalha->updated_at = date("Y-m-d H:i:s");
@@ -42,32 +51,60 @@ class VerificarVencedor
                     ]
                 ]);
     
-                return redirect()->route("listagem");
+                if (session("nome_oponente") == "Computador") {
+                    session()->forget(["id_player", "nome_oponente"]);
+
+                    return redirect()->route("preparacao");
+                } else {
+                    session()->forget(["id_player", "nome_oponente"]);
+
+                    return redirect()->route("listagem");
+                }                
             }
             
             if ($batalha->hp_oponente <= 0) {
-                session()->forget(["alerta_confirmar_render", "id_oponente", "nome_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
+                session()->forget(["alerta_confirmar_render", "id_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
     
                 $id = session("player.id");
-                $rota = "preparacao";
+                $rota = "listagem";
                 $xp = 33.5;
+
+                if (session("nome_oponente") == "Computador") {
+
+                    $rota = "preparacao";
+
+                }
                 
                 $player = Player::find($id);
-                $player->xp = $player->xp + $xp;
-                if ($player->xp >= 100) {
-                    $player->nivel++;
-                    $player->xp = 0;
-                    $rota = "home";
+                if (session("nome_oponente") == "Computador") {
+                    $player->xp = $player->xp + $xp;
+                    if ($player->xp >= 100) {
+                        $player->nivel++;
+                        $player->xp = 0;
+                        $rota = "home";
+                    }
                 }
                 $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
                 $player->save();
+
+                session(["xp" => $player->xp]);
+
+                if (session()->has("id_player")) {
+
+                    $id = session("id_player");
+
+                    $player = Player::find($id);
+                    $player->quantidade_vitorias = $player->quantidade_derrotas + 1;
+                    $player->save();
+                }
+
+                session()->forget(["id_player"]);
 
                 $batalha->ganhou = "Player";
                 $batalha->updated_at = date("Y-m-d H:i:s");
                 $batalha->save();
                 
                 session([
-                    "xp" => $player->xp,
                     "alerta_vitoria" => [
                         "titulo" => "Vitória!",
                         "texto" => "Parabéns!, continue assim e você se destacará na classificação.",
@@ -75,7 +112,15 @@ class VerificarVencedor
                     ]
                 ]);
     
-                return redirect()->route("listagem");
+                if (session("nome_oponente") == "Computador") {
+                    session()->forget(["nome_oponente"]);
+
+                    return redirect()->route("preparacao");
+                } else {
+                    session()->forget(["nome_oponente"]);
+
+                    return redirect()->route("listagem");
+                }
             }
         }
 

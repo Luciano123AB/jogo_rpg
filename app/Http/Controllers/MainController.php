@@ -113,7 +113,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Lista de Players!",
-                "texto" => "Aqui você vizualizará todos os players existentes e quem está na liderança.",
+                "texto" => "Aqui você vizualizará todos os players existentes e quem está na liderança, e caso queira, poderá desafiá-los para uma batalha.",
                 "pagina" => "listagem"
             ]
         ]);
@@ -201,7 +201,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Batalha!",
-                "texto" => "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras.",
+                "texto" => "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras, e recomendo que para essa página você vire a tela do seu dispositivo. Boa sorte!",
                 "pagina" => "batalha"
             ]
         ]);
