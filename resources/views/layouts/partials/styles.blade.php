@@ -129,4 +129,10 @@
     #desafiar {
         height: 63px;
     }
+
+    .tabela-scroll {
+        max-height: 50vh;
+        overflow-y: auto;
+        overflow-x: auto;
+    }
 </style>

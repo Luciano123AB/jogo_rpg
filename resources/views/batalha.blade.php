@@ -4,7 +4,7 @@
     <div class="container">
         <div class="d-flex">
             <div class="text-center">
-                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">Você</h4>
+                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Você</h4>
                 <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" class="animate__animated
                     @if(session("dano_recebido_player"))
                         animate__shakeX
@@ -52,12 +52,23 @@
             </div>
 
             <div class="d-grid text-center">
+                @if ($vez == 0)
+                    <h4 class="text-success fw-bold">Vez:
+                        <br>
+                        <span>Você</span>
+                    </h4>
+                @else
+                    <h4 class="text-danger fw-bold">Vez:
+                        <br>
+                        <span>Oponente</span>
+                    </h4>
+                @endif
                 <h1 class="animate__animated animate__fadeInDown my-auto">🆚</h1>
                 <h2 id="alerta" class="animate__animated animate__pulse animate__flash animate__infinite text-warning"></h2>
             </div>
 
             <div class="text-center">
-                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">Oponente: {{ $nome }}</h4>
+                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Oponente: {{ $nome }}</h4>
                 <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="animate__animated
                     @if(session("dano_recebido_oponente"))
                         animate__shakeX

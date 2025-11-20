@@ -71,7 +71,11 @@ Route::prefix("/")->group(function () {
 
             Route::get("cadastro", "cadastro")->name("cadastro");
 
-            Route::get("atualizacao", "atualizacao")->name("atualizacao");
+            Route::middleware(VerificarLogado::class)->group(function() {
+                Route::get("atualizacao", "atualizacao")->name("atualizacao");
+
+                Route::get("registro_batalhas", "registroBatalhas")->name("registro");
+            });
         });
 
         Route::middleware(VerificarLogado::class)->group(function() {
@@ -91,19 +95,23 @@ Route::prefix("/")->group(function () {
     Route::controller(LogarSair::class)->group(function() {
         Route::post("logar", "logar")->name("logar");
 
-        Route::get("confirmar_sair", "confirmarSair")->name("confirmarSair");
-        Route::get("cancelar_sair", "cancelar")->name("cancelarSair");
-        Route::get("sair", "sair")->name("sair");
+        Route::middleware(VerificarLogado::class)->group(function() {
+            Route::get("confirmar_sair", "confirmarSair")->name("confirmarSair");
+            Route::get("cancelar_sair", "cancelar")->name("cancelarSair");
+            Route::get("sair", "sair")->name("sair");
+        });
     });
 
     Route::controller(EditarDeletar::class)->group(function() {
-        Route::post("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
-        Route::get("cancelar_atualizar", "cancelarAtualizar")->name("cancelarAtualizar");
-        Route::get("atualizar", "atualizar")->name("atualizar");
+        Route::middleware(VerificarLogado::class)->group(function() {
+            Route::post("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
+            Route::get("cancelar_atualizar", "cancelarAtualizar")->name("cancelarAtualizar");
+            Route::get("atualizar", "atualizar")->name("atualizar");
 
-        Route::get("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
-        Route::get("cancelar_deletar", "cancelarDeletar")->name("cancelarDeletar");
-        Route::get("deletar", "deletar")->name("deletar");        
+            Route::get("confirmar_deletar", "confirmarDeletar")->name("confirmarDeletar");
+            Route::get("cancelar_deletar", "cancelarDeletar")->name("cancelarDeletar");
+            Route::get("deletar", "deletar")->name("deletar");
+        });
     });
 
     Route::controller(Batalhar::class)->group(function() {

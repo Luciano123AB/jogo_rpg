@@ -2,8 +2,8 @@
     <div class="container-fluid">
         <a href="{{ route("home") }}" id="home" class="cursor navbar-brand">
             <img src="{{ asset("assets/images/icone.png") }}" id="icone" class="cursor animate__animated animate__flipOutY animate__infinite">
-            <span class="align-middle fs-3">🎮</span>
-            <span class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold align-middle fs-3">Projeto: Jogo RPG</span>
+            <span class="cursor align-middle fs-3">🎮</span>
+            <span class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold align-middle fs-3">Jogo Medieval RPG</span>
             <span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }} animate__animated animate__fadeIn align-middle fs-3">- 
                 @if ($pagina == "Home")
                     <i class="bi bi-house-fill"></i>
@@ -19,6 +19,8 @@
                     <i class="cursor bi bi-person-fill-down"></i>
                 @elseif($pagina == "Listagem")
                     <i class="bi bi-list-stars"></i>
+                @elseif($pagina == "Registro")
+                    <i class="bi bi-file-earmark-medical-fill"></i>
                 @elseif($pagina == "Batalha" || $pagina == "Preparação")
                     ⚔️
                 @endif
@@ -62,11 +64,14 @@
                         </div>
                     </button>
                     <ul class="dropdown-menu animate__animated animate__fadeInDown {{ session("tema") == "escuro" ? "bg-primary" : "bg-danger" }}">
-                        @if($pagina != "Atualização")
-                            <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }}" href="{{ route("atualizacao") }}">Editar</a></li>
+                        @if($pagina != "Registro")
+                            <li><a href="{{ route("registro") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-top border-black"><i class="bi bi-file-earmark-medical-fill"></i> Histórico</a></li>
                         @endif
-                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }}" href="{{ route("confirmarDeletar") }}">Excluir Conta</a></li>
-                        <li><a class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }}" href="{{ route("confirmarSair") }}">Sair</a></li>
+                        @if($pagina != "Atualização")
+                            <li><a href="{{ route("atualizacao") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-top border-black"><i class="bi bi-pen-fill"></i> Editar</a></li>
+                        @endif
+                        <li><a href="{{ route("confirmarDeletar") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-top border-black"><i class="bi bi-trash-fill"></i> Excluir Conta</a></li>
+                        <li><a href="{{ route("confirmarSair") }}" class="dropdown-item {{ session("tema") == "escuro" ? "cor_fontes_escuro opcoes_player_escuro" : "cor_fontes_claro opcoes_player_claro" }} border-bottom border-top border-black"><i class="bi bi-box-arrow-left"></i> Sair</a></li>
                     </ul>
                 </div>
             </div>

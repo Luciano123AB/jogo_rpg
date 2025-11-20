@@ -126,6 +126,26 @@ class MainController extends Controller
             ->with("player_lider_nivel", $player_lider_nivel);
     }
 
+    public function registroBatalhas(): View {
+
+        $batalhas_vitorias = Batalha::where("ganhou", session("player.usuario"))->get();
+        $batalhas_derrotas = Batalha::where("perdeu", session("player.usuario"))->get();
+
+        session([
+            "alerta" => [
+                "titulo" => "Registro de Batalhas!",
+                "texto" => "Aqui você irá relembrar todas as suas vitórias e derrotas.",
+                "pagina" => "registro"
+            ]
+        ]);
+
+        return view("registro_batalhas")
+            ->with("imagem", "recrutamento")
+            ->with("pagina", "Registro")
+            ->with("batalhas_vitorias", $batalhas_vitorias)
+            ->with("batalhas_derrotas", $batalhas_derrotas);
+    }
+
     public function preparacao(): View {
 
         $id = session("player.id");
@@ -211,6 +231,7 @@ class MainController extends Controller
             ->with("imagem", "coliseu")
             ->with("pagina", "Batalha")
             ->with("batalha", $batalha)
+            ->with("vez", $batalha->vez)
             ->with("oponente", $oponente)
             ->with("nome", $nome_oponente);
     }
