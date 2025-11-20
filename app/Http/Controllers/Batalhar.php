@@ -149,7 +149,17 @@ class Batalhar extends Controller
         $id_batalha = session("dados.id_batalha");
 
         $batalha = Batalha::find($id_batalha);
-        $batalha->ganhou = "Oponente";
+        if (session("nome_oponente") == "Computador") {
+
+            $batalha->ganhou = "Computador";
+            $batalha->perdeu = session("player.usuario");
+
+        } else {
+
+            $batalha->ganhou = session("nome_oponente");
+            $batalha->perdeu = session("player.usuario");
+
+        }
         $batalha->updated_at = date("Y-m-d H:i:s");
         $batalha->save();
 

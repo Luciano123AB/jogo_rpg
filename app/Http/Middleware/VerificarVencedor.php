@@ -38,9 +38,17 @@ class VerificarVencedor
                     $player = Player::find($id);
                     $player->quantidade_vitorias = $player->quantidade_vitorias + 1;
                     $player->save();
-                }
 
-                $batalha->ganhou = "Oponente";
+                    $batalha->ganhou = $player->usuario;
+                    $batalha->perdeu = session("player.usuario");
+                }
+                
+                if (session("nome_oponente") == "Computador") {
+
+                    $batalha->ganhou = "Computador";
+                    $batalha->perdeu = session("player.usuario");
+
+                }
                 $batalha->updated_at = date("Y-m-d H:i:s");
                 $batalha->save();
                 
@@ -73,6 +81,11 @@ class VerificarVencedor
 
                     $rota = "preparacao";
 
+                    $batalha->perdeu = "Computador";
+                } else {
+
+                    $batalha->perdeu = session("nome_oponente");
+
                 }
                 
                 $player = Player::find($id);
@@ -89,18 +102,19 @@ class VerificarVencedor
 
                 session(["xp" => $player->xp]);
 
+                $batalha->ganhou = $player->usuario;
+
                 if (session()->has("id_player")) {
 
                     $id = session("id_player");
 
                     $player = Player::find($id);
-                    $player->quantidade_vitorias = $player->quantidade_derrotas + 1;
+                    $player->quantidade_derrotas = $player->quantidade_derrotas + 1;
                     $player->save();
                 }
 
                 session()->forget(["id_player"]);
-
-                $batalha->ganhou = "Player";
+                
                 $batalha->updated_at = date("Y-m-d H:i:s");
                 $batalha->save();
                 
