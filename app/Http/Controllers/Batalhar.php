@@ -104,13 +104,9 @@ class Batalhar extends Controller
         $nivel = null;
 
         if (session()->has("nivel_oponente")) {
-
-            $nivel = session("nivel_oponente");
-            
+            $nivel = session("nivel_oponente");            
         } else {
-
             $nivel = session("player.nivel");
-
         }
               
         $dano = Randoms::danoOponenteSorteado($personagem, $nivel);
@@ -150,15 +146,11 @@ class Batalhar extends Controller
 
         $batalha = Batalha::find($id_batalha);
         if (session("nome_oponente") == "Computador") {
-
             $batalha->ganhou = "Computador";
             $batalha->perdeu = session("player.usuario");
-
         } else {
-
             $batalha->ganhou = session("nome_oponente");
             $batalha->perdeu = session("player.usuario");
-
         }
         $batalha->updated_at = date("Y-m-d H:i:s");
         $batalha->save();
@@ -172,7 +164,6 @@ class Batalhar extends Controller
         $player->save();
 
         if (session()->has("id_player")) {
-
             $id = session("id_player");
 
             $player = Player::find($id);

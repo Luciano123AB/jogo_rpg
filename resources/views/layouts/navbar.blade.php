@@ -52,7 +52,15 @@
                     <button class="cursor sombras animate__animated animate__fadeIn btn btn-lg {{ session("tema") == "escuro" ? "btn-secondary border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} dropdown-toggle d-flex border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <div class="d-grid">
                             <div class="cursor d-flex">
-                                <img src="{{ asset("assets/images/perfils/" . (session("player.personagem.classe")) . "_perfil.png") }}" id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle me-2">
+                                @php
+                                    
+                                    $perfil = asset("assets/images/perfils/" . (session("player.personagem.classe")) . "_perfil.png");
+
+                                    if (session("player.foto") != "...") {
+                                        $perfil = "data:image/png;data:image/jpeg;base64," . session("player.foto");
+                                    }
+                                @endphp
+                                <img src="{{ $perfil }}" id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle me-2">
                                 <div class="cursor">
                                     <h4 class="cursor {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }}">{{ session("player.usuario") }}</h4>
                                     <span class="cursor {{ session("tema") == "escuro" ? "cor_niveis" : "text-danger" }}">Nível: {{ session("player.nivel") }}</span>

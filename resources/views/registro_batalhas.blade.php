@@ -11,11 +11,11 @@
                             <table class="border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} w-100">
                                 <thead class="text-center">
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border"><i class="bi bi-list-ol"></i>Nº</th>
-                                    <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "border-danger" }} border">👑</th>
+                                    <th class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border">👑</th>
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border">Você</th>
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border">VS</th>
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border">Oponente</th>
-                                    <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "border-danger" }} border">⚰️</th>
+                                    <th class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border">⚰️</th>
                                 </thead>
 
                                 <tbody>
@@ -30,7 +30,7 @@
                                         </tr>
                                     @empty
                                         <tr class="text-center">
-                                            <td colspan="6" class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">NENHUM VITÓRIA EXISTENTE AINDA</td>
+                                            <td colspan="6" class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">NENHUMA VITÓRIA EXISTENTE AINDA</td>
                                         </tr>
                                     @endforelse
                                 </tbody>
@@ -46,11 +46,11 @@
                             <table class="border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} w-100">
                                 <thead class="text-center">
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border"><i class="bi bi-list-ol"></i>Nº</th>
-                                    <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "border-danger" }} border">⚰️</th>
+                                    <th class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border">⚰️</th>
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border">Você</th>
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border">VS</th>
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border">Oponente</th>
-                                    <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "border-danger" }} border">👑</th>
+                                    <th class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border">👑</th>
                                 </thead>
 
                                 <tbody>
@@ -65,7 +65,7 @@
                                         </tr>
                                     @empty
                                         <tr class="text-center">
-                                            <td colspan="6" class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">NENHUM DERROTA EXISTENTE AINDA</td>
+                                            <td colspan="6" class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">NENHUMA DERROTA EXISTENTE AINDA</td>
                                         </tr>
                                     @endforelse
                                 </tbody>

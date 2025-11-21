@@ -64,6 +64,7 @@ class EditarDeletar extends Controller
     public function confirmarAtualizar(Request $request): RedirectResponse {
         
         $classe_escolhida = $request->input("classe");
+        $foto_escolhida = $request->file("foto");
         
         $request->validate(
             [
@@ -95,6 +96,29 @@ class EditarDeletar extends Controller
             return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);
         }
 
+        if ($foto_escolhida && $foto_escolhida->isValid()) {
+
+            $foto_tamanho = $foto_escolhida->getSize();
+            $tamanho_maximo = 10485760;
+
+            if ($foto_tamanho > $tamanho_maximo) {
+                return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande.");
+            }
+
+            $foto_conteudo = file_get_contents($foto_escolhida->getRealPath());
+
+            if (!$foto_conteudo) {
+                return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto. Tente novamente.");
+            }
+
+            $foto = base64_encode($foto_conteudo);
+
+        } else {
+
+            $foto = session("player.foto");
+
+        }
+
         $player_existente = Player::where("usuario", $usuario)
                                   ->first();
 
@@ -111,7 +135,8 @@ class EditarDeletar extends Controller
                 "dados" => [
                     "usuario" => $usuario,
                     "senha" => $senha,
-                    "classe" => $classe
+                    "classe" => $classe,
+                    "foto" => $foto
                 ]
             ]
         ]);
@@ -128,14 +153,13 @@ class EditarDeletar extends Controller
     public function atualizar(): RedirectResponse {
 
         $id = session("player.id");
-        $usuario = session("alerta_confirmar.dados.usuario");
         $senha = session("alerta_confirmar.dados.senha");
-        $classe = session("alerta_confirmar.dados.classe");
         
         $novo_player = Player::find($id);
-        $novo_player->usuario = $usuario;
+        $novo_player->usuario = session("alerta_confirmar.dados.usuario");
         $novo_player->senha = encrypt($senha);
-        $novo_player->id_personagem = $classe;
+        $novo_player->id_personagem = session("alerta_confirmar.dados.classe");
+        $novo_player->foto = session("alerta_confirmar.dados.foto");
         $novo_player->updated_at = date("Y-m-d H:i:s");
         $novo_player->save();
 

@@ -7,6 +7,7 @@ use App\Http\Controllers\LogarSair;
 use App\Http\Controllers\MainController;
 use App\Http\Controllers\Batalhar;
 use App\Http\Middleware\VerificarBatalha;
+use App\Http\Middleware\VerificarDeslogado;
 use App\Http\Middleware\VerificarLogado;
 use App\Http\Middleware\VerificarVencedor;
 use App\Models\Player;
@@ -69,7 +70,7 @@ Route::prefix("/")->group(function () {
 
             Route::get("creditos", "creditos")->name("creditos");
 
-            Route::get("cadastro", "cadastro")->name("cadastro");
+            Route::get("cadastro", "cadastro")->name("cadastro")->middleware(VerificarDeslogado::class);
 
             Route::middleware(VerificarLogado::class)->group(function() {
                 Route::get("atualizacao", "atualizacao")->name("atualizacao");
@@ -86,16 +87,18 @@ Route::prefix("/")->group(function () {
         });
     });
 
-    Route::controller(Cadastrar::class)->group(function() {        
-        Route::post("confirmar_cadastrar", "confirmarCadastrar")->name("confirmarCadastrar");
-        Route::get("cancelar_cadastrar", "cancelar")->name("cancelarCadastrar");
-        Route::get("cadastro_submit", "cadastroSubmit")->name("cadastrar");
+    Route::controller(Cadastrar::class)->group(function() {    
+        Route::middleware(VerificarDeslogado::class)->group(function() {
+            Route::post("confirmar_cadastrar", "confirmarCadastrar")->name("confirmarCadastrar");
+            Route::get("cancelar_cadastrar", "cancelar")->name("cancelarCadastrar");
+            Route::get("cadastro_submit", "cadastroSubmit")->name("cadastrar");
+        });
     });
 
     Route::controller(LogarSair::class)->group(function() {
-        Route::post("logar", "logar")->name("logar");
+        Route::post("logar", "logar")->name("logar")->middleware(VerificarDeslogado::class);
 
-        Route::middleware(VerificarLogado::class)->group(function() {
+        Route::middleware([VerificarLogado::class, VerificarBatalha::class])->group(function() {
             Route::get("confirmar_sair", "confirmarSair")->name("confirmarSair");
             Route::get("cancelar_sair", "cancelar")->name("cancelarSair");
             Route::get("sair", "sair")->name("sair");
@@ -103,7 +106,7 @@ Route::prefix("/")->group(function () {
     });
 
     Route::controller(EditarDeletar::class)->group(function() {
-        Route::middleware(VerificarLogado::class)->group(function() {
+        Route::middleware([VerificarLogado::class, VerificarBatalha::class])->group(function() {
             Route::post("confirmar_atualizar", "confirmarAtualizar")->name("confirmarAtualizar");
             Route::get("cancelar_atualizar", "cancelarAtualizar")->name("cancelarAtualizar");
             Route::get("atualizar", "atualizar")->name("atualizar");
@@ -116,14 +119,20 @@ Route::prefix("/")->group(function () {
 
     Route::controller(Batalhar::class)->group(function() {
         Route::middleware(VerificarLogado::class)->group(function() {
-            Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
-            Route::get("confirmar_desafio/{player}/{oponente}/{nome_oponente}/{nivel}", "confirmarDesafio")->name("confirmarDesafio");
-            Route::get("cancelar_batalha", "cancelar")->name("cancelarBatalha");
+            Route::middleware(VerificarBatalha::class)->group(function() {
+                Route::get("confirmar_batalha", "confirmarBatalha")->name("confirmarBatalha");
+                Route::get("confirmar_desafio/{player}/{oponente}/{nome_oponente}/{nivel}", "confirmarDesafio")->name("confirmarDesafio");
+                Route::get("cancelar_batalha", "cancelar")->name("cancelarBatalha");
+            });
             Route::post("atacar", "atacar")->name("atacar");
             Route::get("ataque_oponente", "ataqueOponente")->name("ataque");
             Route::get("confirmar_render", "confirmarRender")->name("confirmarRender");
             Route::get("cancelar_render", "cancelarRender")->name("cancelarRender");
             Route::get("render_se", "renderSe")->name("renderSe");
         });
+    });
+
+    Route::fallback(function() {
+        return redirect()->route("home");
     });
 });

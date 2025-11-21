@@ -80,7 +80,7 @@
     document.addEventListener("change", function(e) {
         if (e.target && e.target.id === "classe") {
 
-            const perfil = document.getElementById("perfil_cadastro");
+            const perfil = document.querySelector(".perfil_cadastro");
             const classeSelecionada = e.target.value;
             const basePath = "{{ asset('assets/images/perfils') }}/";
 
@@ -111,17 +111,53 @@
         }
     });
 
+    function fotoPreview(input) {
+        if (input.files && input.files[0]) {
+            
+            var r = new FileReader();
+
+            r.onload = function(e) {
+                $("#foto_preview").show();
+                $("#foto_preview").attr("src", e.target.result);
+            }
+
+            r.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $().ready(function() {
+
+        hide_empty_image = false;
+        set_blank_to_empty_image = false;
+        set_image_border = true;
+
+        if (hide_empty_image)
+            $("#foto_preview").hide();
+        if (set_blank_to_empty_image)
+            $("#foto_preview").attr("src","data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=");
+
+        $("#foto").change(function(){
+            fotoPreview(this);
+        });
+    });
+
     function limparCamposCadastro() {
         document.getElementById("novo_usuario").value = "";
         document.getElementById("nova_senha").value = "";
         document.getElementById("confirmar_nova_senha").value = "";
+        document.getElementById("genero").selectedIndex = 0;
+        document.getElementById("foto").value = "";
 
-        var classe = document.getElementById("classe");
-        var perfil_cadastro = document.getElementById("perfil_cadastro");
+        const classe = document.getElementById("classe");
+        const perfil_cadastro = document.querySelector(".perfil_cadastro");
+        const foto = document.getElementById("foto_preview");
+
+        perfil_cadastro.src = "{{ asset('assets/images/perfils/vazio_perfil.png') }}";
+        foto.src = "{{ asset('assets/images/perfils/vazio_perfil.png') }}";
 
         if (classe) {
             classe.selectedIndex = 0;
-            perfil_cadastro.src = "{{ asset('assets/images/perfils/vazio.png') }}";
+            perfil_cadastro.classList.remove("border-danger", "border-primary", "border-dark");
             perfil_cadastro.classList.add("border-light");
         }
     }

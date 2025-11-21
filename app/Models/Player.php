@@ -11,6 +11,7 @@ class Player extends Model
         "usuario",
         "senha",
         "genero",
+        "foto",
         "nivel",
         "subir_nivel",
         "quantidade_vitorias",

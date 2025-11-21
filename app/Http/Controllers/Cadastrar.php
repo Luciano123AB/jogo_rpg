@@ -13,6 +13,7 @@ class Cadastrar extends Controller
         
         $genero_escolhida = $request->input("genero");
         $classe_escolhida = $request->input("classe");
+        $foto_escolhida = $request->file("foto");
         
         $request->validate(
             [
@@ -50,6 +51,29 @@ class Cadastrar extends Controller
             return redirect()->back()->withInput()->withErrors(["classe" => "Você deve escolher uma classe primeiro."]);
         }
 
+        if ($foto_escolhida && $foto_escolhida->isValid()) {
+
+            $foto_tamanho = $foto_escolhida->getSize();
+            $tamanho_maximo = 10485760;
+
+            if ($foto_tamanho > $tamanho_maximo) {
+                return redirect()->back()->withInput()->with("fotoTamanho", "Essa foto é muito grande.");
+            }
+
+            $foto_conteudo = file_get_contents($foto_escolhida->getRealPath());
+
+            if (!$foto_conteudo) {
+                return redirect()->back()->withInput()->with("fotoErro", "Não foi possível carregar esta foto. Tente novamente.");
+            }
+
+            $foto = base64_encode($foto_conteudo);
+
+        } else {
+
+            $foto = "...";
+
+        }
+
         $player_existente = Player::where("usuario", $usuario)
                                   ->first();
 
@@ -67,7 +91,8 @@ class Cadastrar extends Controller
                     "usuario" => $usuario,
                     "senha" => $senha,
                     "genero" => $genero,
-                    "classe" => $classe
+                    "classe" => $classe,
+                    "foto" => $foto
                 ]
             ]
         ]);
@@ -87,6 +112,7 @@ class Cadastrar extends Controller
         $player->usuario = session("alerta_confirmar.dados.usuario");
         $player->senha = encrypt(session("alerta_confirmar.dados.senha"));
         $player->genero = session("alerta_confirmar.dados.genero");
+        $player->foto = session("alerta_confirmar.dados.foto");
         $player->nivel = 1;
         $player->xp = 0;
         $player->quantidade_vitorias = 0;

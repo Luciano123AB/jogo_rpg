@@ -96,7 +96,7 @@
         text-indent: 30px;
     }
 
-    #perfil_cadastro {
+    .perfil_cadastro {
         width: 100px;
         height: 100px;
     }
@@ -124,6 +124,11 @@
 
     .barras {
         height: 20px;
+    }
+
+    .perfil_players {
+        width: 25px;
+        height: 25px;
     }
 
     #desafiar {

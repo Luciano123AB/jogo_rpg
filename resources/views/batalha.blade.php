@@ -4,7 +4,16 @@
     <div class="container">
         <div class="d-flex">
             <div class="text-center">
-                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Você</h4>
+                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
+                    <img src="
+                        @if (session("player.foto") == "...")
+                            {{ asset("assets/images/perfils/vazio_perfil.png") }}
+                        @else
+                            data:image/png;data:image/jpeg;base64,{{ session("player.foto") }}
+                        @endif
+                    " id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                    Você
+                </h4>
                 <img src="{{ asset("assets/images/personagens/" . (session("player.personagem.classe")) . ".png") }}" class="animate__animated
                     @if(session("dano_recebido_player"))
                         animate__shakeX

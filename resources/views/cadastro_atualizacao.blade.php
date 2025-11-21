@@ -24,16 +24,16 @@
                         }
                     @endphp
 
-                    <form action="{{ route("$rota") }}" method="post" novalidate>
+                    <form action="{{ route("$rota") }}" method="post" enctype="multipart/form-data" novalidate>
                         @csrf
 
                         <input type="hidden" value="{{ $id }}">
 
                         <div class="card-header border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} text-center rounded-top">
                             @if ($pagina == "Cadastro")
-                                <i class="bi bi-plus-circle-fill {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold fs-5"></i>
+                                <i class="bi bi-plus-circle-fill {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fs-5"></i>
                             @else
-                                <i class="bi bi-arrow-repeat {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold fs-5"></i>
+                                <i class="bi bi-arrow-repeat {{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fs-5"></i>
                             @endif
                             <Label class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro" : "titulos_claro cor_fontes_claro" }} fw-bold fs-5">{{ $titulo }}</Label>
                         </div>
@@ -45,6 +45,7 @@
                                     <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-person-fill"></i></span>
                                     <input type="text" id="novo_usuario" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="novo_usuario" placeholder="Username123" aria-label="Username123" aria-describedby="NovoUsuario" value="{{ old("novo_usuario", $values[0]) }}">
                                 </div>
+
                                 @error("novo_usuario")
                                     <div class="alert alert-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -59,12 +60,12 @@
                                     <input type="password" id="nova_senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="nova_senha" placeholder="..." aria-label="..." aria-describedby="NovaSenha" value="{{ old("nova_senha", $values[1]) }}">
                                     <button type="button" id="mostrar_novo" class="cursor input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="cursor bi bi-eye-slash-fill"></i></button>
                                 </div>
+
                                 @error("nova_senha")
                                     <div class="alert alert-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 @enderror
-
                                 @error("senhas")
                                     <div class="alert alert-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -79,12 +80,12 @@
                                     <input type="password" id="confirmar_nova_senha" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="confirmar_nova_senha" placeholder="..." aria-label="..." aria-describedby="ConfirmarNovaSenha" value="{{ old("confirmar_nova_senha", $values[2]) }}">
                                     <button type="button" id="mostrar_confirmar_novo" class="cursor input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="cursor bi bi-eye-slash-fill"></i></button>
                                 </div>
+
                                 @error("confirmar_nova_senha")
                                     <div class="alert alert-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
                                     </div>
                                 @enderror
-
                                 @error("senhas")
                                     <div class="alert alert-danger mt-1 mb-0" role="alert">
                                         <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -98,13 +99,14 @@
                                     <div>
                                         <div class="input-group">
                                             <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-sort-down"></i></span>
-                                            <select class="form-select cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="genero" aria-label="Generos">
+                                            <select id="genero" class="form-select cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="genero" aria-label="Generos">
                                                 <option selected>Selecione seu gênero...</option>
                                                 <option value="Masculino" {{ old("genero") == "Masculino" ? "selected" : "" }}>♂️ Masculino</option>
                                                 <option value="Feminino" {{ old("genero") == "Feminino" ? "selected" : "" }}>♀️ Feminino</option>
                                                 <option value="Outro" {{ old("genero") == "Outro" ? "selected" : "" }}>⚧ Outro</option>
                                             </select>                                
                                         </div>
+
                                         @error("genero")
                                             <div class="alert alert-danger mt-1 mb-0" role="alert">
                                                 <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
@@ -115,50 +117,91 @@
                             @endif
     
                             <div class="d-flex gap-3 mb-3">
-                                <div>
-                                    <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Classe" : "Nova Classe" }}:</label>
-                                    <div class="input-group">
-                                        <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-sort-down"></i></span>
-                                        <select id="classe" class="form-select cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="classe" aria-label="Classes">
-                                            <option selected>Selecione sua classe...</option>
-                                            @foreach ($personagens as $personagem)
-                                                <option value="{{ $personagem->classe }}" {{ old("classe", $values[3]) == "$personagem->classe" ? "selected" : "" }}>
-                                                    @if($personagem->classe == "Guerreiro")
-                                                        🛡️
-                                                    @elseif($personagem->classe == "Mago")
-                                                        🔮
-                                                    @else
-                                                        🗡️
-                                                    @endif
-                                                    {{ $personagem->classe }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    @error("classe")
-                                        <div class="alert alert-danger mt-1" role="alert">
-                                            <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
-                                        </div>
-                                    @enderror
-                                </div>
-    
-                                <div>
-                                    <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="bi bi-person-circle"></i> {{ $pagina == "Cadastro" ? "Perfil" : "Novo Perfil" }}:</label>
+                                <div class="d-flex gap-3 overflow-x-auto">
                                     <div>
-                                        <img src="{{ asset('assets/images/perfils/' . $classe . '_perfil.png') }}" id="perfil_cadastro" class="
-                                            @if($pagina == "Atualização")
-                                                @if($classe == "Guerreiro")
-                                                    bg-danger border-danger
-                                                @elseif($classe == "Mago")
-                                                    bg-primary border-primary
-                                                @elseif($classe == "Assassino")
-                                                    bg-dark border-dark
-                                                @endif
-                                            @endif
-                                            border border-3 rounded-circle
-                                        ">
+                                        <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Classe" : "Nova Classe" }}:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-sort-down"></i></span>
+                                            <select id="classe" class="form-select cursor {{ session("tema") == "escuro" ? "bg-light border-primary text-black" : "bg-dark border-danger text-white" }}" name="classe" aria-label="Classes">
+                                                <option selected>Selecione sua classe...</option>
+                                                @foreach ($personagens as $personagem)
+                                                    <option value="{{ $personagem->classe }}" {{ old("classe", $values[3]) == "$personagem->classe" ? "selected" : "" }}>
+                                                        @if($personagem->classe == "Guerreiro")
+                                                            🛡️
+                                                        @elseif($personagem->classe == "Mago")
+                                                            🔮
+                                                        @else
+                                                            🗡️
+                                                        @endif
+                                                        {{ $personagem->classe }}
+                                                    </option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+
+                                        @error("classe")
+                                            <div class="alert alert-danger mt-1" role="alert">
+                                                <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
+                                            </div>
+                                        @enderror
                                     </div>
-                                </div>
+
+                                    <div class="border-end {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} pe-3">
+                                        <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="bi bi-person-circle"></i> Personagem:</label>
+                                        <div>
+                                            <img src="{{ asset('assets/images/perfils/' . $classe . '_perfil.png') }}" class="
+                                                @if($pagina == "Atualização")
+                                                    @if($classe == "Guerreiro")
+                                                        bg-danger border-danger
+                                                    @elseif($classe == "Mago")
+                                                        bg-primary border-primary
+                                                    @elseif($classe == "Assassino")
+                                                        bg-dark border-dark
+                                                    @endif
+                                                @endif
+                                                perfil_cadastro border border-3 rounded-circle
+                                            ">
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">{{ $pagina == "Cadastro" ? "Foto (Opcional)" : "Nova Foto (Opcional)" }}:</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text {{ session("tema") == "escuro" ? "cor_fontes_escuro bg-light border-primary" : "cor_fontes_claro bg-dark border-danger" }}"><i class="bi bi-file-earmark-person-fill"></i></span>
+                                            <input id="foto" class="form-control cursor {{ session("tema") == "escuro" ? "bg-light border border-primary text-black" : "bg-dark border border-danger text-white" }}" type="file" name="foto" accept="image/png, image/jpeg">
+                                        </div>
+
+                                        @error("fotoTamanho")
+                                            <div class="alert alert-danger mt-1" role="alert">
+                                                <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
+                                            </div>
+                                        @enderror
+                                        @error("fotoErro")
+                                            <div class="alert alert-danger mt-1" role="alert">
+                                                <i class="bi bi-info-circle-fill me-3"></i>{{ $message }}
+                                            </div>
+                                        @enderror
+                                    </div>
+
+                                    <div>
+                                        <label class="form-label {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}"><i class="bi bi-person-bounding-box"></i> Perfil:</label>
+                                        @php
+                                            
+                                            $foto = asset("assets/images/perfils/vazio_perfil.png");
+
+                                            if ($pagina == "Atualização") {
+                                                if ($dados["foto"] != "...") {
+                                                    
+                                                    $foto = "data:image/png;base64," . $dados["foto"];
+
+                                                }
+                                            }
+                                        @endphp
+                                        <div>
+                                            <img src="{{ $foto }}" alt="Foto Preview" id="foto_preview" class="perfil_cadastro border border-3 rounded-circle">
+                                        </div>
+                                    </div>
+                                </div>    
                             </div>
     
                             @error("playerExiste")

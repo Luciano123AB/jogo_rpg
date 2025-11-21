@@ -80,6 +80,7 @@ class MainController extends Controller
         $usuario = session("player.usuario");
         $senha = decrypt(session("player.senha"));
         $classe = session("player.personagem.classe");
+        $foto = session("player.foto");
 
         session([
             "alerta" => [
@@ -99,7 +100,8 @@ class MainController extends Controller
                     "usuario" => $usuario,
                     "senha" => $senha,
                     "confirmar_senha" => $senha,
-                    "classe" => $classe
+                    "classe" => $classe,
+                    "foto" => $foto
                 ]
             ]);
     }
@@ -215,8 +217,8 @@ class MainController extends Controller
         } else {
 
             $id_batalha = session("dados.id_batalha");
-            $batalha = Batalha::find($id_batalha);
-            
+
+            $batalha = Batalha::find($id_batalha);            
         }        
 
         session([
