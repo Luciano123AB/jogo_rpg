@@ -70,7 +70,7 @@ class Cadastrar extends Controller
 
         } else {
 
-            $foto = "...";
+            $foto = "nenhuma";
 
         }
 

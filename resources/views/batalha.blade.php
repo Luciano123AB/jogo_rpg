@@ -4,9 +4,9 @@
     <div class="container">
         <div class="d-flex">
             <div class="text-center">
-                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">
+                <h4 class="cor_fontes_claro">
                     <img src="
-                        @if (session("player.foto") == "...")
+                        @if(session("player.foto") == "nenhuma")
                             {{ asset("assets/images/perfils/vazio_perfil.png") }}
                         @else
                             data:image/png;data:image/jpeg;base64,{{ session("player.foto") }}
@@ -77,7 +77,16 @@
             </div>
 
             <div class="text-center">
-                <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Oponente: {{ $nome }}</h4>
+                <h4 class="cor_fontes_claro">
+                    <img src="
+                        @if($foto == "nenhuma")
+                            {{ asset("assets/images/perfils/vazio_perfil.png") }}
+                        @else
+                            data:image/png;data:image/jpeg;base64,{{ $foto }}
+                        @endif
+                    " id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                    Oponente: {{ $nome }}
+                </h4>
                 <img src="{{ asset("assets/images/personagens/$oponente->classe" . "_reverso.png") }}" class="animate__animated
                     @if(session("dano_recebido_oponente"))
                         animate__shakeX

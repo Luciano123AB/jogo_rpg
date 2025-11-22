@@ -190,7 +190,7 @@
                                             $foto = asset("assets/images/perfils/vazio_perfil.png");
 
                                             if ($pagina == "Atualização") {
-                                                if ($dados["foto"] != "...") {
+                                                if ($dados["foto"] != "nenhuma") {
                                                     
                                                     $foto = "data:image/png;base64," . $dados["foto"];
 

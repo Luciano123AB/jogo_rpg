@@ -176,6 +176,7 @@ class MainController extends Controller
 
         $batalha = null;
         $id = session("id_oponente");
+        $foto_oponente = session("foto_oponente");
         $nome_oponente = session("nome_oponente");
         $nivel = null;
         $oponente = Personagem::find($id);
@@ -235,6 +236,7 @@ class MainController extends Controller
             ->with("batalha", $batalha)
             ->with("vez", $batalha->vez)
             ->with("oponente", $oponente)
+            ->with("foto", $foto_oponente)
             ->with("nome", $nome_oponente);
     }
 }

@@ -17,11 +17,11 @@
                                     
                                         $perfil = asset("assets/images/perfils/" . $player_lider_vitorias->personagem->classe . "_perfil.png");
 
-                                        if ($player_lider_vitorias->foto != "...") {
+                                        if ($player_lider_vitorias->foto != "nenhuma") {
                                             $perfil = "data:image/png;data:image/jpeg;base64," . $player_lider_vitorias->foto;
                                         }
                                     @endphp
-                                    <img src="{{ $perfil }}" class="cursor sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                                    <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                                     {{ $player_lider_vitorias->usuario }}
                                 </label>
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Qtd/Vitórias: {{ $player_lider_vitorias->quantidade_vitorias }}</label>
@@ -41,11 +41,11 @@
                                     
                                         $perfil = asset("assets/images/perfils/" . $player_lider_nivel->personagem->classe . "_perfil.png");
 
-                                        if ($player_lider_nivel->foto != "...") {
+                                        if ($player_lider_nivel->foto != "nenhuma") {
                                             $perfil = "data:image/png;data:image/jpeg;base64," . $player_lider_nivel->foto;
                                         }
                                     @endphp
-                                    <img src="{{ $perfil }}" class="cursor sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                                    <img src="{{ $perfil }}" class="sombras perfil_players border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                                     {{ $player_lider_nivel->usuario }}
                                 </label>
                                 <label class="{{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">Nível: {{ $player_lider_nivel->nivel }}</label>
@@ -74,12 +74,12 @@
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center fw-bold">{{ $loop->index + 1 }}</td>
                                         <td class="{{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} border text-center px-1">
                                             <img src="
-                                                @if ($player->foto == "...")
+                                                @if ($player->foto == "nenhuma")
                                                     {{ asset("assets/images/perfils/" . $player->personagem->classe . "_perfil.png") }}
                                                 @else
                                                     data:image/png;data:image/jpeg;base64,{{ $player->foto }}
                                                 @endif
-                                            " id="perfil_player" class="cursor sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
+                                            " id="perfil_player" class="sombras border {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} rounded-circle">
                                         </td>
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border px-1">
                                             @if($player->genero == "Masculino")
@@ -97,7 +97,7 @@
                                         <td class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center">{{ $player->quantidade_derrotas }}</td>
                                         <td id="desafiar" class="{{ session("tema") == "escuro" ? "cor_fontes_escuro border-primary" : "cor_fontes_claro border-danger" }} border text-center">
                                             @if($player->id != session("player.id"))
-                                                <a href="{{ route("confirmarDesafio", ["player" => $player->id, "oponente" => $player->personagem->id, "nome_oponente" => $player->usuario, "nivel" => $player->nivel]) }}" type="button" class="cursor sombras botoes btn btn-sm {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} mx-1"><span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">🤜🏼Desafiar</span></button>
+                                                <a href="{{ route("confirmarDesafio", ["player" => $player->id, "oponente" => $player->personagem->id, "nome_oponente" => $player->usuario, "nivel" => $player->nivel]) }}" type="button" class="cursor sombras botoes btn btn-sm {{ session("tema") == "escuro" ? "btn-light border-primary focus-ring focus-ring-primary" : "btn-dark border-danger focus-ring focus-ring-danger" }} mx-1"><span class="cursor {{ session("tema") == "escuro" ? "cor_fontes_escuro" : "cor_fontes_claro" }}">🤜🏼Desafiar</span></a>
                                             @endif
                                         </td>
                                     </tr>

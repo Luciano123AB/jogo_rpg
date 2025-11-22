@@ -35,6 +35,7 @@ class Batalhar extends Controller
 
         session([
             "id_oponente" => $id,
+            "foto_oponente" => "nenhuma",
             "nome_oponente" => "Computador"
         ]);
 
@@ -51,9 +52,12 @@ class Batalhar extends Controller
             ]
         ]);
 
+        $foto_oponente = Player::find($player)->foto;
+
         session([
             "id_player" => $player,
             "id_oponente" => $oponente,
+            "foto_oponente" => $foto_oponente,
             "nome_oponente" => $nome_oponente,
             "nivel_oponente" => $nivel
         ]);
@@ -155,7 +159,7 @@ class Batalhar extends Controller
         $batalha->updated_at = date("Y-m-d H:i:s");
         $batalha->save();
 
-        session()->forget(["alerta_confirmar_render", "id_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
+        session()->forget(["alerta_confirmar_render", "id_oponente", "foto_oponente", "nivel_oponente", "dados", "skill01", "skill02", "skill03"]);
 
         $id = session("player.id");
         

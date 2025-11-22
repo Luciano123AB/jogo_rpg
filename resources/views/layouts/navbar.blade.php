@@ -56,7 +56,7 @@
                                     
                                     $perfil = asset("assets/images/perfils/" . (session("player.personagem.classe")) . "_perfil.png");
 
-                                    if (session("player.foto") != "...") {
+                                    if (session("player.foto") != "nenhuma") {
                                         $perfil = "data:image/png;data:image/jpeg;base64," . session("player.foto");
                                     }
                                 @endphp
