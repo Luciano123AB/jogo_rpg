@@ -27,7 +27,7 @@
                     <form action="{{ route("$rota") }}" method="post" enctype="multipart/form-data" novalidate>
                         @csrf
 
-                        <input type="hidden" value="{{ $id }}">
+                        <input type="hidden" name="id" value="{{ $id }}">
 
                         <div class="card-header border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} text-center rounded-top">
                             @if ($pagina == "Cadastro")
