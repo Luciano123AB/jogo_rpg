@@ -135,7 +135,11 @@
         height: 63px;
     }
 
-    .tabela-scroll {
+    .tabelas {
+        height: 50vh;
+    }
+
+    .tabelas-scroll {
         max-height: 50vh;
         overflow-y: auto;
         overflow-x: auto;

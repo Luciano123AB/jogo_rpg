@@ -37,6 +37,7 @@ Route::prefix("/")->group(function () {
                 session([
                     "alerta" => [
                         "titulo" => "Seja Muito Bem Vindo!",
+                        "icone" => "bi-house-fill",
                         "texto" => "Faça seu cadastro caso ainda não tenha feito e divirta-se.",
                         "pagina" => "home"
                     ],

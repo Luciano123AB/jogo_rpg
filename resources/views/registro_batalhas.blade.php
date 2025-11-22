@@ -5,9 +5,9 @@
         <div class="{{ session("tema") == "escuro" ? "fundos_card_claro" : "fundos_card_escuro" }} card p-3">
             <div class="d-flex gap-3">
                 <div class="cards w-50">
-                    <div class="sombras card animate__animated animate__backInLeft {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
+                    <div class="sombras tabelas card animate__animated animate__backInLeft {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
                         <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">-Vitórias:</h4>
-                        <div class="tabela-scroll">
+                        <div class="tabelas-scroll">
                             <table class="border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} w-100">
                                 <thead class="text-center">
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border"><i class="bi bi-list-ol"></i>Nº</th>
@@ -40,9 +40,9 @@
                 </div>
 
                 <div class="cards w-50">
-                    <div class="sombras card animate__animated animate__backInRight {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
+                    <div class="sombras tabelas card animate__animated animate__backInRight {{ session("tema") == "escuro" ? "bg-secondary border-primary" : "bg-dark border-danger" }} p-3">
                         <h4 class="{{ session("tema") == "escuro" ? "cor_fontes_escuro titulos_escuro" : "cor_fontes_claro titulos_claro" }}">-Derrotas:</h4>
-                        <div class="tabela-scroll">
+                        <div class="tabelas-scroll">
                             <table class="border border-2 {{ session("tema") == "escuro" ? "border-primary" : "border-danger" }} w-100">
                                 <thead class="text-center">
                                     <th class="{{ session("tema") == "escuro" ? "titulos_escuro cor_fontes_escuro border-primary" : "titulos_claro cor_fontes_claro border-danger" }} border"><i class="bi bi-list-ol"></i>Nº</th>

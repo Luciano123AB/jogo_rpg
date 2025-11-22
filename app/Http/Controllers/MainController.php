@@ -13,6 +13,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Regras do Jogo!",
+                "icone" => "bi-question-circle-fill",
                 "texto" => "Aqui você entenderá como o jogo funciona.",
                 "pagina" => "regras"
             ]
@@ -30,6 +31,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Descrição das Classes!",
+                "icone" => "bi-person-lines-fill",
                 "texto" => "Aqui você vai entender como cada classe funciona.",
                 "pagina" => "sobre"
             ]
@@ -45,6 +47,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Créditos do Jogo!",
+                "icone" => "bi-body-text",
                 "texto" => "Aqui você verá a lista de todos os desenvolvedores envolvidos.",
                 "pagina" => "creditos"
             ]
@@ -62,6 +65,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Cadastro de Player!",
+                "icone" => "bi-person-fill-add",
                 "texto" => "Aqui você criará sua conta e escolherá sua classe preferencial.",
                 "pagina" => "cadastro"
             ]
@@ -85,6 +89,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Atualização de Player!",
+                "icone" => "bi-person-fill-down",
                 "texto" => "Aqui você editará os dados da sua conta e escolherá sua nova classe preferencial.",
                 "pagina" => "atualizacao"
             ]
@@ -115,6 +120,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Lista de Players!",
+                "icone" => "bi-list-stars",
                 "texto" => "Aqui você vizualizará todos os players existentes e quem está na liderança, e caso queira, poderá desafiá-los para uma batalha.",
                 "pagina" => "listagem"
             ]
@@ -136,6 +142,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Registro de Batalhas!",
+                "icone" => "bi-file-earmark-medical-fill",
                 "texto" => "Aqui você irá relembrar todas as suas vitórias e derrotas.",
                 "pagina" => "registro"
             ]
@@ -158,6 +165,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Preparação Antes da Batalha!",
+                "icone" => "⚔️",
                 "texto" => "Aqui você escolherá quem irá enfrentar usando sua classe.",
                 "pagina" => "preparacao"
             ]
@@ -225,6 +233,7 @@ class MainController extends Controller
         session([
             "alerta" => [
                 "titulo" => "Batalha!",
+                "icone" => "bi-phone-landscape-fill",
                 "texto" => "Agora é a Hora! Aqui você aplicará o que aprendeu na página de regras, e recomendo que para essa página você vire a tela do seu dispositivo. Boa sorte!",
                 "pagina" => "batalha"
             ]
